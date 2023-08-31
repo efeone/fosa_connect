@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include fosa_connect *.css
+recursive-include fosa_connect *.csv
+recursive-include fosa_connect *.html
+recursive-include fosa_connect *.ico
+recursive-include fosa_connect *.js
+recursive-include fosa_connect *.json
+recursive-include fosa_connect *.md
+recursive-include fosa_connect *.png
+recursive-include fosa_connect *.py
+recursive-include fosa_connect *.svg
+recursive-include fosa_connect *.txt
+recursive-exclude fosa_connect *.pyc
