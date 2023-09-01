@@ -8,19 +8,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "program_name",
-  "amended_from"
+  "program_name"
  ],
  "fields": [
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Program",
-   "print_hide": 1,
-   "read_only": 1
-  },
   {
    "fieldname": "program_name",
    "fieldtype": "Data",
@@ -32,9 +22,8 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2023-09-01 15:11:25.651801",
+ "modified": "2023-09-01 16:44:41.242523",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Program",
