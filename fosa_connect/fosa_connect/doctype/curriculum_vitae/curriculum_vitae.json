@@ -1,0 +1,177 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-01 10:40:54.216849",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "first_name",
+  "middle_name",
+  "last_name",
+  "column_break_3gnu7",
+  "full_name",
+  "image",
+  "address_and_contacts_tab",
+  "phone",
+  "email",
+  "linked_in",
+  "website_or_portfolio",
+  "column_break_emvve",
+  "address",
+  "profile_tab",
+  "career_objective_or_summary",
+  "hobbies_and_interests",
+  "skills_tab",
+  "technical_skills",
+  "soft_skills",
+  "language_proficiency",
+  "certifications"
+ ],
+ "fields": [
+  {
+   "fieldname": "address",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "linked_in",
+   "fieldtype": "Data",
+   "label": "Linked In"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image",
+   "reqd": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "career_objective_or_summary",
+   "fieldtype": "Small Text",
+   "label": "Career Objective or Summary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hobbies_and_interests",
+   "fieldtype": "Data",
+   "label": "Hobbies and Interests"
+  },
+  {
+   "fieldname": "column_break_3gnu7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "technical_skills",
+   "fieldtype": "Data",
+   "label": "Technical Skills"
+  },
+  {
+   "fieldname": "soft_skills",
+   "fieldtype": "Data",
+   "label": "Soft Skills"
+  },
+  {
+   "fieldname": "language_proficiency",
+   "fieldtype": "Data",
+   "label": "Language Proficiency"
+  },
+  {
+   "fieldname": "certifications",
+   "fieldtype": "Data",
+   "label": "Certifications"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "address_and_contacts_tab",
+   "fieldtype": "Tab Break",
+   "label": "Address and contacts"
+  },
+  {
+   "fieldname": "column_break_emvve",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "skills_tab",
+   "fieldtype": "Tab Break",
+   "label": "Skills"
+  },
+  {
+   "fieldname": "website_or_portfolio",
+   "fieldtype": "Data",
+   "label": "Website or Portfolio"
+  },
+  {
+   "fieldname": "profile_tab",
+   "fieldtype": "Tab Break",
+   "label": "Profile"
+  }
+ ],
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-01 14:49:16.474949",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "Curriculum Vitae",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name",
+ "track_changes": 1
+}
