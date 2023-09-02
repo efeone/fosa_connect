@@ -1,0 +1,141 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:admission_number",
+ "creation": "2023-09-01 12:51:17.446815",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_tab",
+  "name_of_member",
+  "admission_number",
+  "status",
+  "student_details_tab",
+  "year_of_admission",
+  "department",
+  "email",
+  "alumni_details_tab",
+  "profession",
+  "year_of_passing",
+  "organisation_name",
+  "organisation_email",
+  "organisation_description",
+  "organisation_website"
+ ],
+ "fields": [
+  {
+   "fieldname": "admission_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Admission Number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "year_of_admission",
+   "fieldtype": "Int",
+   "label": "Year of Admission"
+  },
+  {
+   "fieldname": "year_of_passing",
+   "fieldtype": "Data",
+   "label": "Year of Passing"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Program"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email ",
+   "options": "Email"
+  },
+  {
+   "fieldname": "organisation_name",
+   "fieldtype": "Data",
+   "label": "Organisation Name"
+  },
+  {
+   "fieldname": "organisation_email",
+   "fieldtype": "Data",
+   "label": "Organisation Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "name_of_member",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name of Member",
+   "options": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "organisation_description",
+   "fieldtype": "Small Text",
+   "label": "Organisation Description"
+  },
+  {
+   "fieldname": "organisation_website",
+   "fieldtype": "Data",
+   "label": "Organisation Website"
+  },
+  {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "student_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Student Details"
+  },
+  {
+   "fieldname": "alumni_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Alumni Details"
+  },
+  {
+   "fieldname": "profession",
+   "fieldtype": "Data",
+   "label": "Profession"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Alumni\nStudent",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-02 12:15:02.014279",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "Member",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
