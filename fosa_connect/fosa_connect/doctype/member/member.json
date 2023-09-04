@@ -38,7 +38,9 @@
   "soft_skills",
   "column_break_hms3h",
   "language_proficiency",
-  "certifications"
+  "certifications",
+  "career_history_tab",
+  "career_history"
  ],
  "fields": [
   {
@@ -209,12 +211,23 @@
   {
    "fieldname": "column_break_hms3h",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "career_history_tab",
+   "fieldtype": "Tab Break",
+   "label": "Career History"
+  },
+  {
+   "fieldname": "career_history",
+   "fieldtype": "Table",
+   "label": "Career History",
+   "options": "Career History"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-04 17:13:39.657423",
+ "modified": "2023-09-04 17:16:30.494558",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",

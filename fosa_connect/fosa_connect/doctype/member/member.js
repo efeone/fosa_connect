@@ -21,7 +21,9 @@ frappe.ui.form.on('Member', {
 			frappe.contacts.clear_address_and_contact(frm);
 		}
         //frm.toggle_display(['address_html'], !frm.doc.__islocal);
+        if(!frm.is_new()){
         frm.set_df_property('primary_address', 'reqd', 1)
+        }
 	 },
     
 	validate: function (frm) {
