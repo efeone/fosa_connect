@@ -8,28 +8,34 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "disabled",
   "job_title",
   "qualification",
   "responsibility",
+  "start_date",
   "job_description",
   "column_break_lzsug",
+  "is_published",
   "job_category",
   "location",
   "job_type",
-  "salary_info",
   "last_date_to_apply",
-  "section_break_ixlfp"
+  "salary_info"
  ],
  "fields": [
   {
+   "columns": 2,
    "fieldname": "job_title",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Job Title",
    "unique": 1
   },
   {
+   "columns": 2,
    "fieldname": "location",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Location"
   },
   {
@@ -45,21 +51,20 @@
   {
    "fieldname": "last_date_to_apply",
    "fieldtype": "Date",
-   "label": "Last date to apply"
+   "in_list_view": 1,
+   "label": "End date"
   },
   {
+   "columns": 2,
    "fieldname": "job_category",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Job Category",
    "options": "Job Category"
   },
   {
    "fieldname": "column_break_lzsug",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_ixlfp",
-   "fieldtype": "Section Break"
   },
   {
    "fieldname": "qualification",
@@ -77,11 +82,31 @@
    "fieldtype": "Select",
    "label": "Job Type",
    "options": "Full\nPart"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled",
+   "read_only_depends_on": "eval:doc.is_published"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Published",
+   "read_only_depends_on": "eval:doc.disabled"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-02 15:18:18.504092",
+ "modified": "2023-09-04 14:44:18.753546",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
@@ -105,10 +130,12 @@
    "delete": 1,
    "email": 1,
    "export": 1,
+   "if_owner": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Alumni",
+   "select": 1,
    "share": 1,
    "write": 1
   },
@@ -119,6 +146,7 @@
    "read": 1,
    "report": 1,
    "role": "Student",
+   "select": 1,
    "share": 1
   }
  ],
