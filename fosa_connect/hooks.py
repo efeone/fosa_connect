@@ -88,6 +88,8 @@ app_license = "MIT"
 # before_app_uninstall = "fosa_connect.utils.before_app_uninstall"
 # after_app_uninstall = "fosa_connect.utils.after_app_uninstall"
 
+signup_form_template = "fosa_connect/templates/signup.html"
+
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
