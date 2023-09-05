@@ -1,36 +1,75 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:admission_number",
- "creation": "2023-09-01 12:51:17.446815",
+ "autoname": "USER.######",
+ "creation": "2023-09-04 11:27:40.740429",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "general_tab",
-  "name_of_member",
+  "member_type",
+  "first_name",
+  "middle_name",
+  "last_name",
+  "academic_details_section",
   "admission_number",
-  "status",
-  "student_details_tab",
   "year_of_admission",
   "department",
-  "email",
-  "alumni_details_tab",
-  "profession",
+  "details_section",
   "year_of_passing",
-  "organisation_name",
-  "organisation_email",
-  "organisation_description",
-  "organisation_website"
+  "job_title",
+  "designation",
+  "contact_section",
+  "mobile_no",
+  "column_break_v6wyj",
+  "email_id",
+  "profile_tab",
+  "primary_address",
+  "address_html",
+  "image",
+  "linkedin",
+  "website_or_portfolio",
+  "career_objective_or_summary",
+  "hobbies_and_interests",
+  "skills_section",
+  "technical_skills",
+  "soft_skills",
+  "column_break_hms3h",
+  "language_proficiency",
+  "certifications",
+  "career_history_tab",
+  "career_history"
  ],
  "fields": [
+  {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "member_type",
+   "fieldtype": "Select",
+   "label": "Member Type",
+   "options": "Alumni\nStudent",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_section",
+   "fieldtype": "Section Break",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "address_html",
+   "fieldtype": "HTML",
+   "label": "Address"
+  },
   {
    "fieldname": "admission_number",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Admission Number",
-   "reqd": 1,
    "unique": 1
   },
   {
@@ -39,86 +78,160 @@
    "label": "Year of Admission"
   },
   {
-   "fieldname": "year_of_passing",
-   "fieldtype": "Data",
-   "label": "Year of Passing"
-  },
-  {
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
    "options": "Program"
   },
   {
-   "fieldname": "email",
+   "fieldname": "year_of_passing",
    "fieldtype": "Data",
-   "label": "Email ",
-   "options": "Email"
+   "label": "Year of Passing"
   },
   {
-   "fieldname": "organisation_name",
+   "fieldname": "job_title",
    "fieldtype": "Data",
-   "label": "Organisation Name"
+   "label": "Job Title"
   },
   {
-   "fieldname": "organisation_email",
+   "fieldname": "designation",
    "fieldtype": "Data",
-   "label": "Organisation Email",
-   "options": "Email"
+   "label": "Designation"
   },
   {
-   "fieldname": "name_of_member",
+   "fetch_from": "member_primary_address.phone",
+   "fieldname": "mobile_no",
+   "fieldtype": "Read Only",
+   "label": "Mobile No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "member_primary_address.email_id",
+   "fieldname": "email_id",
+   "fieldtype": "Read Only",
+   "label": "Email ID"
+  },
+  {
+   "fieldname": "column_break_v6wyj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_address",
+   "fieldtype": "Link",
+   "label": "Primary Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "first_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Name of Member",
+   "label": "First Name",
    "options": "Name",
    "reqd": 1
   },
   {
-   "fieldname": "organisation_description",
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name",
+   "options": "Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name",
+   "options": "Name"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "profile_tab",
+   "fieldtype": "Tab Break",
+   "label": "Profile"
+  },
+  {
+   "fieldname": "linkedin",
+   "fieldtype": "Data",
+   "label": "LinkedIn"
+  },
+  {
+   "fieldname": "website_or_portfolio",
+   "fieldtype": "Data",
+   "label": "Website or Portfolio"
+  },
+  {
+   "fieldname": "career_objective_or_summary",
    "fieldtype": "Small Text",
-   "label": "Organisation Description"
+   "label": "Career Objective or Summary"
   },
   {
-   "fieldname": "organisation_website",
+   "fieldname": "hobbies_and_interests",
    "fieldtype": "Data",
-   "label": "Organisation Website"
+   "label": "Hobbies and Interests"
   },
   {
-   "fieldname": "general_tab",
-   "fieldtype": "Tab Break",
-   "label": "General"
+   "fieldname": "skills_section",
+   "fieldtype": "Section Break",
+   "label": "Skills"
   },
   {
-   "fieldname": "student_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Student Details"
-  },
-  {
-   "fieldname": "alumni_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Alumni Details"
-  },
-  {
-   "fieldname": "profession",
+   "fieldname": "technical_skills",
    "fieldtype": "Data",
-   "label": "Profession"
+   "label": "Technical Skills"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Alumni\nStudent",
-   "reqd": 1
+   "fieldname": "soft_skills",
+   "fieldtype": "Data",
+   "label": "Soft Skills"
+  },
+  {
+   "fieldname": "language_proficiency",
+   "fieldtype": "Data",
+   "label": "Language Proficiency"
+  },
+  {
+   "fieldname": "certifications",
+   "fieldtype": "Data",
+   "label": "Certifications"
+  },
+  {
+   "depends_on": "eval:doc.member_type=='Student'",
+   "fieldname": "academic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Academic details"
+  },
+  {
+   "depends_on": "eval:doc.member_type=='Alumni'",
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "column_break_hms3h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "career_history_tab",
+   "fieldtype": "Tab Break",
+   "label": "Career History"
+  },
+  {
+   "fieldname": "career_history",
+   "fieldtype": "Table",
+   "label": "Career History",
+   "options": "Career History"
   }
  ],
+ "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-02 12:15:02.014279",
+ "modified": "2023-09-04 17:16:30.494558",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
