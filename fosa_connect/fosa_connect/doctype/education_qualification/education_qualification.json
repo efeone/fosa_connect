@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-01 11:05:19.125379",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "degrees_earned",
+  "majorfield_of_study",
+  "schooluniversity_name",
+  "percentagegrade",
+  "graduation_year"
+ ],
+ "fields": [
+  {
+   "fieldname": "percentagegrade",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Percentage/grade"
+  },
+  {
+   "fieldname": "graduation_year",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Graduation Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schooluniversity_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "School/University Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "majorfield_of_study",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Major/Field of Study",
+   "reqd": 1
+  },
+  {
+   "fieldname": "degrees_earned",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Degree(s) Earned",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-05 13:04:23.291292",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "Education Qualification",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

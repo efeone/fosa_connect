@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-05 12:17:47.986171",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "titleposition",
+  "companyorganization",
+  "contact_information_phoneemail"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "titleposition",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title/Position",
+   "reqd": 1
+  },
+  {
+   "fieldname": "companyorganization",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company/Organization"
+  },
+  {
+   "fieldname": "contact_information_phoneemail",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contact Information (Phone/Email)",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-05 13:03:34.583402",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "References",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
