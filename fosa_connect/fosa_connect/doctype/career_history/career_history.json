@@ -1,6 +1,4 @@
 {
- "_comments": "[]",
- "_liked_by": "[]",
  "actions": [],
  "allow_rename": 1,
  "creation": "2023-09-04 14:39:48.223716",
@@ -13,6 +11,7 @@
   "organization_description",
   "from",
   "to",
+  "current",
   "remarks",
   "project"
  ],
@@ -30,16 +29,16 @@
    "fieldname": "industry",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Industry",
-   "reqd": 1
+   "label": "Industry"
   },
   {
    "fieldname": "organization_description",
    "fieldtype": "Small Text",
-   "label": "Organization Description"
+   "label": "Organization Description",
+   "reqd": 1
   },
   {
-   "columns": 2,
+   "columns": 1,
    "fieldname": "from",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -47,19 +46,21 @@
    "reqd": 1
   },
   {
-   "columns": 2,
+   "columns": 1,
    "fieldname": "to",
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "To",
-   "reqd": 1
+   "mandatory_depends_on": "eval:!doc.current",
+   "read_only_depends_on": "eval:doc.current"
   },
   {
    "columns": 2,
    "fieldname": "role",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Role"
+   "label": "Role",
+   "reqd": 1
   },
   {
    "fieldname": "remarks",
@@ -71,12 +72,19 @@
    "fieldname": "project",
    "fieldtype": "Text Editor",
    "label": "Project"
+  },
+  {
+   "default": "0",
+   "fieldname": "current",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Current"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-04 16:58:43.454480",
+ "modified": "2023-09-05 15:36:08.915084",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Career History",

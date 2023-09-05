@@ -40,7 +40,13 @@
   "language_proficiency",
   "certifications",
   "career_history_tab",
-  "career_history"
+  "career_history",
+  "education",
+  "projects",
+  "awards_and_achievements",
+  "publications",
+  "volunteer_work_or_extracurricular_activities",
+  "references"
  ],
  "fields": [
   {
@@ -99,14 +105,14 @@
    "label": "Designation"
   },
   {
-   "fetch_from": "member_primary_address.phone",
+   "fetch_from": "primary_address.phone",
    "fieldname": "mobile_no",
    "fieldtype": "Read Only",
    "label": "Mobile No",
    "read_only": 1
   },
   {
-   "fetch_from": "member_primary_address.email_id",
+   "fetch_from": "primary_address.email_id",
    "fieldname": "email_id",
    "fieldtype": "Read Only",
    "label": "Email ID"
@@ -222,12 +228,46 @@
    "fieldtype": "Table",
    "label": "Career History",
    "options": "Career History"
+  },
+  {
+   "fieldname": "projects",
+   "fieldtype": "Table",
+   "label": "Projects",
+   "options": "Projects"
+  },
+  {
+   "fieldname": "awards_and_achievements",
+   "fieldtype": "Small Text",
+   "label": "Awards and Achievements"
+  },
+  {
+   "fieldname": "publications",
+   "fieldtype": "Table",
+   "label": "Publications",
+   "options": "Publications"
+  },
+  {
+   "fieldname": "volunteer_work_or_extracurricular_activities",
+   "fieldtype": "Small Text",
+   "label": "Volunteer Work or Extracurricular Activities"
+  },
+  {
+   "fieldname": "education",
+   "fieldtype": "Table",
+   "label": "Education",
+   "options": "Education Qualification"
+  },
+  {
+   "fieldname": "references",
+   "fieldtype": "Table",
+   "label": "References",
+   "options": "References"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-04 17:16:30.494558",
+ "modified": "2023-09-05 13:07:17.956625",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",
