@@ -1,18 +1,26 @@
 frappe.ui.form.on('Job', {
   refresh: function (frm) {
-    var liked_user_list = JSON.parse(frm.doc._liked_by)
+    if (frappe.user_roles.includes('Student')){
+    if (!frm.is_new()){
 
-    // Checking if the logged in user has liked the job
-    if (!liked_user_list.includes(frappe.session.user)){
+      var liked_user_list = []
+      
+      if (frm.doc._liked_by) {
+        liked_user_list = JSON.parse(frm.doc._liked_by)}
 
-      frm.add_custom_button(('Interested'), function () {
-        interest_button_fn(frm, `Yes`)
-      });
+      // Checking if the logged in user has liked the job
+      if (!liked_user_list.includes(frappe.session.user)){
+
+        frm.add_custom_button(('Interested'), function () {
+          interest_button_fn(frm, `Yes`)
+        });
+      }
+      else {
+        frm.add_custom_button('Not Interested', function () {
+          interest_button_fn(frm, `No`)
+        });
+      }
     }
-    else {
-      frm.add_custom_button('Not Interested', function () {
-        interest_button_fn(frm, `No`)
-      });
     }
   }
   
