@@ -15,7 +15,6 @@
  ],
  "fields": [
   {
-   "depends_on": "frm.set_query('member', function(doc) {\n  return {\n  \tfilters: {\n    'link_doctype': 'Student',\n    'link_name': doc.name\n  \t}\n  }\n\t})",
    "fieldname": "member",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -44,7 +43,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-06 16:04:10.058133",
+ "modified": "2023-09-06 17:36:19.316262",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Interest",
