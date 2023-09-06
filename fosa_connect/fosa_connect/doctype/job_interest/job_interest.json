@@ -15,6 +15,7 @@
  ],
  "fields": [
   {
+   "depends_on": "frm.set_query('member', function(doc) {\n  return {\n  \tfilters: {\n    'link_doctype': 'Student',\n    'link_name': doc.name\n  \t}\n  }\n\t})",
    "fieldname": "member",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -26,7 +27,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Open\nAccept\nReject\nHold"
+   "options": "Open\nAccepted\nRejected\nOn Hold\nCancelled"
   },
   {
    "fieldname": "posting_date",
@@ -43,7 +44,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-04 12:50:04.004487",
+ "modified": "2023-09-06 16:04:10.058133",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Interest",
