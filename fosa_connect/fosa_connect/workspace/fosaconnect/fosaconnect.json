@@ -1,0 +1,43 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"te6LIEna30\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">FosaConnect</span>\",\"col\":11}},{\"id\":\"lLbVcfpKuw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"q0T8Cvv2Gk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Member\",\"col\":3}},{\"id\":\"3hRCZsb6tg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Job\",\"col\":3}}]",
+ "creation": "2023-09-05 13:22:30.361155",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "projects",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "FosaConnect",
+ "links": [],
+ "modified": "2023-09-06 11:34:16.076509",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "FosaConnect",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Member",
+   "link_to": "Member",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Job",
+   "link_to": "Job",
+   "type": "DocType"
+  }
+ ],
+ "title": "FosaConnect"
+}
