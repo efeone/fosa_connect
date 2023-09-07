@@ -2,6 +2,7 @@
     <div class="page-card-body">
         <label for="member_type">Select Member Type:</label>
         <select id="member_type" name="member_type" required style="width: 50%; padding: 7px; border: none; border-radius: 4px;">
+            <option value="null"></option>
             <option value="student">Student</option>
             <option value="alumni">Alumni</option>
         </select><br><br>
@@ -72,7 +73,11 @@
         document.getElementById('alumni_fields').style.display = 'none';
 
   document.getElementById('member_type').addEventListener('change', function() {
-          if (this.value === 'student') {
+
+          if (this.value === 'null') {
+              document.getElementById('student_fields').style.display = 'none';
+              document.getElementById('alumni_fields').style.display = 'none';
+          } else if (this.value === 'student') {
               document.getElementById('student_fields').style.display = 'block';
               document.getElementById('alumni_fields').style.display = 'none';
           } else if (this.value === 'alumni') {
