@@ -3,6 +3,7 @@
 
 frappe.ui.form.on('Member', {
     setup: function(frm) {
+        // Filter addresses to show only address linked to the current user
         frm.set_query('primary_address', function(doc) {
 			return {
 				filters: {
@@ -13,8 +14,14 @@ frappe.ui.form.on('Member', {
 		})
     },
 	 refresh: function(frm) {
-        frappe.dynamic_link = {doc: frm.doc, fieldname: 'name', doctype: 'Member'}
+        //Create CV Button
+        frm.add_custom_button(('Create CV'), function () {
+        frappe.set_route('print', frm.doc.doctype, frm.doc.name)
+        });
 
+        //Dynamic Link to link member to their new address
+        frappe.dynamic_link = {doc: frm.doc, fieldname: 'name', doctype: 'Member'}
+        //New address
         if(!frm.doc.__islocal) {
 			frappe.contacts.render_address_and_contact(frm);
         } else {
