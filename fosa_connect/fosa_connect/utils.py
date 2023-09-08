@@ -2,21 +2,14 @@ import frappe
 
 @frappe.whitelist()
 def create_job_interest_entry(job_id, student_id):
-    print("Entry1")
     try:
-        print('Entry2')
-        print(student_id)
-        print(job_id)
         member = frappe.get_doc("Member", {"email_id": student_id})
-        print("Entry4")
         # Check if a job interest entry already exists for the student and job
         existing_entry = frappe.get_list(
             "Job Interest",
             filters={"job": job_id, "member": member.name},
         )
-        print('Entry3')
         if not existing_entry:
-            print('Entry 5')
             # Create a new entry in the "Job Interest" DocType
             job_interest = frappe.new_doc("Job Interest")
             job_interest.job = job_id
