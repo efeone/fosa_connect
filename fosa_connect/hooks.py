@@ -217,3 +217,10 @@ signup_form_template = "fosa_connect/templates/signup.html"
 # auth_hooks = [
 #	"fosa_connect.auth.validate"
 # ]
+
+
+
+
+fixtures =[
+    "Qualification"
+]
