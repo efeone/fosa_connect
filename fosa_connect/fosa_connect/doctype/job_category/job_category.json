@@ -22,7 +22,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-01 15:12:38.143996",
+ "modified": "2023-09-11 15:12:33.744682",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Category",
@@ -40,6 +40,15 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Alumni",
+   "share": 1
   }
  ],
  "quick_entry": 1,

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ADD8E6;
+            margin: 0;
+            padding: 0;
+        }
+        .job-list {
+                    max-width: 800px;
+                    margin: 20px auto;
+                    background-color: #ADD8E6;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    border-radius: 10px;
+                    padding: 20px;
+                }
+
+                .job {
+                    border: 1px solid #ddd;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    transition: background-color 0.3s ease;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .font-size-lg {
+           font-size: 24px;
+           color: #333;
+           margin: 0;
+           text-decoration: none;
+       }
+
+       .font-size-lg:hover {
+           color: #007BFF;
+       }
+
+       .text-muted {
+           color: #666;
+           margin-top: 5px;
+       }
+       .apply-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+  <div class="job-list">
+      <div class="job">
+          <div class="col">
+              <a class="font-size-lg">{{ doc.job_title }}</a>
+              <p class="text-muted">Location: {{ doc.location }}</p>
+              <p class="text-muted">Last Date to Apply: {{ doc.last_date_to_apply }}</p>
+              <p class="text-muted">{{ doc.job_description }}</p>
+          </div>
+          <a href="{{ doc.route }}" class="apply-button">View details</a>
+      </div>
+  </div>
+</body>
+</html>
