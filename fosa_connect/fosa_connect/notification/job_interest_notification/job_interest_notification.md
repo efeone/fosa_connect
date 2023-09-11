@@ -1,0 +1,1 @@
+* A new job interest have been created *

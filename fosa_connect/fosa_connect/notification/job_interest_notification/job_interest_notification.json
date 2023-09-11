@@ -1,0 +1,28 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "",
+ "creation": "2023-09-08 10:42:04.009490",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Job Interest",
+ "enabled": 1,
+ "event": "Save",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "* A new job interest have been created *",
+ "modified": "2023-09-08 14:50:57.108679",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "Job Interest Notification",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Alumni"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Job Interest {{doc.name}} Submitted"
+}
