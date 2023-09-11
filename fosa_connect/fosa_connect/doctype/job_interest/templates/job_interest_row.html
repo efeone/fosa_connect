@@ -1,0 +1,65 @@
+{% set jobs = frappe.get_doc("Job", job) %}
+<style media="screen">
+
+	div .main{
+		font-family: sans-serif;
+		margin: 30px 0;
+		background-color:#f2f2f2;
+		overflow: hidden;
+		border-radius: 20px;
+		padding: 15px 20px 10px 20px;
+		box-shadow: 13px 13px 13px rgb(230, 230, 230),
+								-13px -13px 13px 	rgb(255, 255, 255);
+
+		}
+		h1 {
+			color: white;
+			margin: 5px;
+			border-radius: 5px;
+		}
+	.badge {
+		color: white;
+		padding: 4px 8px;
+		text-align: center;
+		border-radius: 5px;
+	}
+	p {
+		padding: 0 10px;
+	}
+	.row1 {
+		display: flex;
+	}
+	.row2 {
+		display: flex;
+		justify-content: space-between;
+	}
+</style>
+<div class="main">
+    <h1><a href="{{ doc.route }}" style="color: black; font-size: 75%;">{{ jobs.job_title }}</a></h1>
+    <p class="row1">Job ID:<span class="text-danger">&nbsp {{ doc.job }}</span></p>
+    <p>Location: {{ jobs.location }} </p>
+		<div class="row2">
+			<p class="posting_date">Posted on {{ posting_date.strftime('%d-%m-%Y') }}</p>
+	    <p class="status">
+					{%- if status == 'Open' -%}
+
+				 <span class="badge badge-primary">Open</span>
+				 {%- elif status == 'Accepted' -%}
+
+				 <span class="badge badge-success">Accepted</span>
+				 {%- elif status == 'Rejected' -%}
+
+				 <span class="badge badge-danger">Rejected</span>
+				 {%- elif status == 'On Hold' -%}
+
+				 <span class="badge badge-warning">On Hold</span>
+				 {%- elif status == 'Cancelled' -%}
+
+				 <span class="badge badge-secondary">Cancelled</span>
+
+				 {%- endif -%}
+	    </p>
+		</div>
+
+</div>
+<!-- this is a sample default list template -->
