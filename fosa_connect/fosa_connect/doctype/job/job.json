@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "ID.#####",
  "creation": "2023-08-31 17:07:06.755179",
@@ -15,12 +16,13 @@
   "start_date",
   "job_description",
   "column_break_lzsug",
-  "is_published",
+  "published",
   "job_category",
   "location",
   "job_type",
   "last_date_to_apply",
-  "salary_info"
+  "salary_info",
+  "route"
  ],
  "fields": [
   {
@@ -28,8 +30,7 @@
    "fieldname": "job_title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Job Title",
-   "unique": 1
+   "label": "Job Title"
   },
   {
    "columns": 2,
@@ -88,25 +89,31 @@
    "fieldname": "disabled",
    "fieldtype": "Check",
    "label": "Disabled",
-   "read_only_depends_on": "eval:doc.is_published"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_published",
-   "fieldtype": "Check",
-   "in_list_view": 1,
-   "label": "Is Published",
-   "read_only_depends_on": "eval:doc.disabled"
+   "read_only_depends_on": "eval:doc.published"
   },
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
    "label": "Start date"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "is published",
+   "read_only_depends_on": "eval:doc.disabled"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "published",
  "links": [],
- "modified": "2023-09-04 14:44:18.753546",
+ "modified": "2023-09-07 16:00:40.909719",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
@@ -151,6 +158,7 @@
   }
  ],
  "quick_entry": 1,
+ "route": "Job",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
