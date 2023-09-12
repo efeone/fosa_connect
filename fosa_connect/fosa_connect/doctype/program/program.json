@@ -16,14 +16,13 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Program Name",
-   "options": "Name",
    "reqd": 1,
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-01 16:44:41.242523",
+ "modified": "2023-09-08 13:21:37.519498",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Program",
