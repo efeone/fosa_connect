@@ -30,14 +30,16 @@
    "fieldname": "job_title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Job Title"
+   "label": "Job Title",
+   "reqd": 1
   },
   {
    "columns": 2,
    "fieldname": "location",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Location"
+   "label": "Location",
+   "reqd": 1
   },
   {
    "fieldname": "salary_info",
@@ -47,7 +49,8 @@
   {
    "fieldname": "job_description",
    "fieldtype": "Long Text",
-   "label": "Job Description"
+   "label": "Job Description",
+   "reqd": 1
   },
   {
    "fieldname": "last_date_to_apply",
@@ -61,7 +64,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Job Category",
-   "options": "Job Category"
+   "options": "Job Category",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_lzsug",
@@ -71,12 +75,14 @@
    "fieldname": "qualification",
    "fieldtype": "Link",
    "label": "Qualification",
-   "options": "Qualification"
+   "options": "Qualification",
+   "reqd": 1
   },
   {
    "fieldname": "responsibility",
    "fieldtype": "Data",
-   "label": "Responsibility"
+   "label": "Responsibility",
+   "reqd": 1
   },
   {
    "fieldname": "job_type",
@@ -114,7 +120,7 @@
  "has_web_view": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2023-09-13 09:48:06.108349",
+ "modified": "2023-09-13 14:23:51.905285",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",

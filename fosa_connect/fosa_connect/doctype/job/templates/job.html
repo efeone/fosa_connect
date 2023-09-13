@@ -76,14 +76,20 @@
         <h1>{{doc.job_title}}</h1>
         <h2>Job Category: <span class="category">{{doc.job_category}}</span></h2>
         <hr>
-        <p class="published_date">Published Date: {{doc.start_date}}</p>
-        <p class="location">Location: {{doc.location}}</p>
+        {% if doc.start_date %}
+        <p class="published_date">Published Date:</strong> {{doc.get_formatted("start_date")}}</p>
+         {% endif %}
+        <p class="location" style="margin-top:-23px">Location: {{doc.location}}</p>
         <p><strong>Job Type:</strong> {{doc.job_type}}</p>
         <p><strong>Job Description:</strong>{{doc.job_description}}</p>
         <p><strong>Responsibilities:</strong>{{doc.responsibility}}</p>
         <p><strong>Qualifications:</strong>{{doc.qualification}}</p>
+        {% if doc.salary_info %}
         <p><strong>Salary Info.:</strong> {{doc.salary_info}}</p>
-        <p class="end_date">Last Date to apply:</strong> {{doc.last_date_to_apply}}</p>
+        {% endif %}
+          {% if doc.last_date_to_apply %}
+        <p class="end_date">Last Date to apply:</strong> {{doc.get_formatted("last_date_to_apply")}}</p>
+        {% endif %}
         <p>If you are interested in this position, please Click On intrested </a>.</p>
         <div class="apply-button">
             <button class="btn" id="interestButton" onclick="toggleInterest()">I'm Interested</button>
