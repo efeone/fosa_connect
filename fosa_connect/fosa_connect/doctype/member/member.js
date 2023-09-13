@@ -31,8 +31,22 @@ frappe.ui.form.on('Member', {
         if(!frm.is_new()){
         frm.set_df_property('primary_address', 'reqd', 1)
         }
+        var currentCheckbox = frm.doc.current;
+        var toField = frm.get_field('to'); // Assuming 'to' is the fieldname
+
+        if (currentCheckbox) {
+            toField.$wrapper.hide(); // Hide the 'to' field
+            toField.set_value(''); // Clear the 'to' field value
+        } else {
+            toField.$wrapper.show(); // Show the 'to' field
+        }
+
+        // Set 'to' field as required when not a new record
+        if (!frm.is_new()) {
+            frm.set_df_property('to', 'reqd', 1);
+        }
 	 },
-    
+
 	validate: function (frm) {
         if(frm.doc.status == 'Student'){
         var year = frm.doc.year_of_admission;
