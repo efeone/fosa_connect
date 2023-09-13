@@ -112,10 +112,9 @@
   }
  ],
  "has_web_view": 1,
- "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2023-09-11 15:04:08.615234",
+ "modified": "2023-09-13 09:48:06.108349",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
@@ -172,7 +171,7 @@
   }
  ],
  "quick_entry": 1,
- "route": "Job",
+ "route": "jobs",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
