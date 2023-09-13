@@ -1,0 +1,128 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Agriculture",
+  "modified": "2023-09-06 10:41:54.036710",
+  "name": "Agriculture"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Food",
+  "modified": "2023-09-06 10:42:14.277029",
+  "name": "Food"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Natural Resources",
+  "modified": "2023-09-06 10:42:29.118620",
+  "name": "Natural Resources"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Architecture",
+  "modified": "2023-09-06 10:42:45.266642",
+  "name": "Architecture"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Construction",
+  "modified": "2023-09-06 10:42:53.174224",
+  "name": "Construction"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Arts",
+  "modified": "2023-09-06 10:43:02.021368",
+  "name": "Arts"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Communications and Media",
+  "modified": "2023-09-06 10:51:55.156442",
+  "name": "Communications and Media"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Audio/Video Technology",
+  "modified": "2023-09-06 10:52:05.144155",
+  "name": "Audio/Video Technology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Business and Finance",
+  "modified": "2023-09-06 11:05:27.323953",
+  "name": "Business and Finance"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Education and Training",
+  "modified": "2023-09-06 11:05:36.654780",
+  "name": "Education and Training"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Government and Public Administration",
+  "modified": "2023-09-06 11:05:54.562602",
+  "name": "Government and Public Administration"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Health Science",
+  "modified": "2023-09-06 11:06:03.931363",
+  "name": "Health Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Information Technology",
+  "modified": "2023-09-06 11:06:19.630698",
+  "name": "Information Technology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Law",
+  "modified": "2023-09-06 11:06:46.239280",
+  "name": "Law"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Public Safety and Security",
+  "modified": "2023-09-06 11:07:06.346107",
+  "name": "Public Safety and Security"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Sales and Marketing",
+  "modified": "2023-09-06 11:07:13.027976",
+  "name": "Sales and Marketing"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Science and Technology",
+  "modified": "2023-09-06 11:12:13.173104",
+  "name": "Science and Technology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Transportation",
+  "modified": "2023-09-06 11:15:28.598221",
+  "name": "Transportation"
+ }
+]

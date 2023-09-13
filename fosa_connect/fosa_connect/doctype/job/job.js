@@ -1,31 +1,29 @@
 frappe.ui.form.on('Job', {
   refresh: function (frm) {
-    if (frappe.user_roles.includes('Student')){
-    if (!frm.is_new()){
+    if (frappe.user_roles.includes('Student')) {
+      if (!frm.is_new()) {
 
-      var liked_user_list = []
-      
-      if (frm.doc._liked_by) {
-        liked_user_list = JSON.parse(frm.doc._liked_by)}
+        var liked_user_list = []
 
-      // Checking if the logged in user has liked the job
-      if (!liked_user_list.includes(frappe.session.user)){
+        if (frm.doc._liked_by) {
+          liked_user_list = JSON.parse(frm.doc._liked_by)
+        }
 
-        frm.add_custom_button(('Interested'), function () {
-          create_job_interest(frm)
-          interest_button_fn(frm, `Yes`)
-        });
+        // Checking if the logged in user has liked the job
+        if (!liked_user_list.includes(frappe.session.user)) {
+          frm.add_custom_button(('Interested'), function () {
+            create_job_interest(frm)
+            interest_button_fn(frm, `Yes`)
+          });
+        }
+        else {
+          frm.add_custom_button('Not Interested', function () {
+            interest_button_fn(frm, `No`)
+          });
+        }
       }
-      else {
-        frm.add_custom_button('Not Interested', function () {
-          interest_button_fn(frm, `No`)
-        });
-      }
-    }
     }
   }
-  
-  
 });
 
 function interest_button_fn(frm, add) {
@@ -46,21 +44,12 @@ function interest_button_fn(frm, add) {
 }
 
 function create_job_interest(frm) {
-// Create a new entry in the "Job Interest" DocType
+  // Create a new entry in the "Job Interest" DocType
   frappe.call({
     method: 'fosa_connect.fosa_connect.utils.create_job_interest_entry',
     args: {
-        job_id: frm.doc.name,
-        student_id: frappe.session.user
+      job_id: frm.doc.name,
+      student_id: frappe.session.user,
     },
-    callback: function(response) {
-        if (response.message === 'success') {
-            // Successfully created the "Job Interest" entry
-            frappe.msgprint('You have expressed interest in this job.');
-        } else {
-            // Handle any errors that occurred during the creation of the entry
-            frappe.msgprint('An error occurred while expressing interest in this job.');
-        }
-    }
   });
 }
