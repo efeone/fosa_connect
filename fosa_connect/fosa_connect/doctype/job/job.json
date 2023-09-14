@@ -9,20 +9,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "disabled",
+  "published",
   "job_title",
   "qualification",
   "responsibility",
   "start_date",
-  "job_description",
+  "last_date_to_apply",
   "column_break_lzsug",
-  "published",
+  "disabled",
   "job_category",
   "location",
   "job_type",
-  "last_date_to_apply",
   "salary_info",
-  "route"
+  "route",
+  "section_break_snini",
+  "column_break_lcr8b",
+  "job_description"
  ],
  "fields": [
   {
@@ -109,12 +111,20 @@
    "label": "Is Published",
    "permlevel": 1,
    "read_only_depends_on": "eval:doc.disabled"
+  },
+  {
+   "fieldname": "column_break_lcr8b",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_snini",
+   "fieldtype": "Section Break"
   }
  ],
  "has_web_view": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2023-09-13 09:48:06.108349",
+ "modified": "2023-09-14 11:49:10.746905",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
