@@ -1,0 +1,31 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-14 16:54:00.803151",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_category"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_category",
+   "fieldtype": "Link",
+   "label": "Job Category",
+   "options": "Job Category"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-14 16:54:00.803151",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "Job Categories",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
