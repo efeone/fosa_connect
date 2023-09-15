@@ -120,13 +120,12 @@ signup_form_template = "fosa_connect/templates/signup.html"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "Job Interest": {
+        "after_insert": "fosa_connect.fosa_connect.doctype.job_interest.job_interest.job_create_notification_log",
+        "on_update": "fosa_connect.fosa_connect.doctype.job_interest.job_interest.student_notification_log"
+    }
+}
 
 # Scheduled Tasks
 # ---------------

@@ -59,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2023-09-07 17:05:16.733794",
+ "modified": "2023-09-13 15:09:45.063766",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Interest",
@@ -102,7 +102,7 @@
   }
  ],
  "quick_entry": 1,
- "route": "job",
+ "route": "job-interest",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
