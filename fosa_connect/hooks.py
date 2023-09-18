@@ -100,9 +100,9 @@ signup_form_template = "fosa_connect/templates/signup.html"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-#	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
+permission_query_conditions = {
+	"Job": "fosa_connect.fosa_connect.doctype.job.job.permission_query_conditions",
+}
 #
 # has_permission = {
 #	"Event": "frappe.desk.doctype.event.event.has_permission",
