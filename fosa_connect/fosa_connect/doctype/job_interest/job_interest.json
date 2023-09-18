@@ -29,7 +29,8 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Open\nAccepted\nRejected\nOn Hold\nCancelled"
+   "options": "Open\nAccepted\nRejected\nOn Hold\nCancelled",
+   "read_only": 1
   },
   {
    "fieldname": "posting_date",
@@ -59,7 +60,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2023-09-13 15:09:45.063766",
+ "modified": "2023-09-18 09:32:49.494136",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Interest",
