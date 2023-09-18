@@ -267,7 +267,7 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-05 13:07:17.956625",
+ "modified": "2023-09-12 14:33:04.523806",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",
@@ -283,6 +283,31 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Student",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Alumni",
+   "select": 1,
    "share": 1,
    "write": 1
   }
