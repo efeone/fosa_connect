@@ -17,7 +17,8 @@ def job_create_notification_log(doc, method=None):
         recipient = frappe.db.get_value("Job", doc.job, "owner")
         job_title = frappe.db.get_value("Job", doc.job, "job_title")
         subject = "New Job Interest for " + job_title
-        create_notification_log(doc, recipient, subject)
+        content = "This is a sample email content"
+        create_notification_log(doc, recipient, subject, content)
 
 
 # Job Update for student
@@ -27,4 +28,5 @@ def student_notification_log(doc, method=None):
         recipient = frappe.db.get_value("Member", doc.member, "email_id")
         job_title = frappe.db.get_value("Job", doc.job, "job_title")
         subject = "Job Interest update for " + job_title + " : " + doc.status
-        create_notification_log(doc, recipient, subject)
+        content = "This is a sample email content"
+        create_notification_log(doc, recipient, subject, content)
