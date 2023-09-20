@@ -36,7 +36,7 @@ def create_notification_log(doc, recipient, subject, content=None, type=None):
         subject: subject of notification log
         type: type of the notification log"""
     notification_log = frappe.new_doc("Notification Log")
-    notification_log.type = "Alert"
+    notification_log.type = "Mention"
     if type:
         notification_log.type = type
     notification_log.document_type = doc.doctype
