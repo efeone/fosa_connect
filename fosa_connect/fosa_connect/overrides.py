@@ -9,7 +9,7 @@ def sign_up(email, first_name, last_name, full_name,  member_type, admission_num
         frappe.throw(_('Sign Up is disabled'), title='Not Allowed')
 
     # Check if a user with the provided email already exists
-    user = frappe.db.get("User", {"email": email})
+    user = frappe.get_all("User", {"email": email})
     if user:
         user = frappe.get_doc("User", user[0]["name"])
         if user.enabled:
@@ -36,56 +36,57 @@ def sign_up(email, first_name, last_name, full_name,  member_type, admission_num
     user.flags.ignore_permissions = True
     user.flags.ignore_password_policy = True
     user.insert()
-
-    # set default signup role as per Portal Settings
+# set default signup role as per Portal Settings
     default_role = frappe.db.get_value("Portal Settings", None, "default_role")
     if default_role:
         user.add_roles(default_role)
 
-    # Check the member_type and call the appropriate create_member function
-    if member_type == 'Student':
-        create_student_member(email, first_name, last_name, member_type, admission_number, year_of_admission, department)
-        create_alumni_member(email, first_name, last_name,  member_type, year_of_passing, job_title, designation )
+    # Create a member record
+    create_member(email, first_name, last_name, member_type,admission_number, year_of_admission, department, year_of_passing, job_title, designation)
 
     if user.flags.email_sent:
         return 1, _("Please check your email for verification")
     else:
         return 2, _("Please ask your administrator to verify your sign-up")
 
-@frappe.whitelist(allow_guest=True)
-def create_student_member(email, first_name, last_name, member_type, admission_number, year_of_admission, department):
-    # Create a new student member
-    member = frappe.get_doc({
-        "doctype": "Member",
-        "email": email,
-        "first_name": escape_html(first_name),
-        "last_name": last_name,
-        "member_type": "Student",
-        "admission_number": admission_number,
-        "year_of_admission": year_of_admission,
-        "department": department,
-
-
-    })
-    member.flags.ignore_permissions = True
-    member.flags.ignore_password_policy = True
-    member.insert()
-    frappe.db.commit()
 
 @frappe.whitelist(allow_guest=True)
-def create_alumni_member(email, first_name, last_name, member_type, year_of_passing, job_title, designation, ):
-    # Create a new alumni member
-    member = frappe.get_doc({
-        "doctype": "Member",
-        "email": email,
-        "first_name": escape_html(first_name),
-        "last_name": last_name,
-        "member_type": "Alumni",
-        "job_title": job_title,
-        "year_of_passing": year_of_passing,
-        "designation": designation,
-    })
-    member.flags.ignore_permissions = True
-    member.flags.ignore_password_policy = True
-    member.insert()
-    frappe.db.commit()
+def create_member(email, first_name, last_name, member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, job_title=None, designation=None):
+    # Check if a member with the same admission number already exists
+    existing_member = frappe.get_all("Member", filters={"admission_number": admission_number}, limit=1)
+
+    if existing_member:
+        # Member with the same admission number exists
+        existing_member_doc = frappe.get_doc("Member", existing_member[0]["name"])
+
+        # You can choose to update the existing member's information here if needed
+        # Example: existing_member_doc.first_name = first_name
+        # Update other fields as necessary
+
+        existing_member_doc.save()
+        frappe.db.commit()
+
+        return existing_member_doc.name  # Return the name of the existing member
+    else:
+        # Create a new member
+        member_data = {
+            "doctype": "Member",
+            "email": email,
+            "first_name": escape_html(first_name),
+            "last_name": last_name,
+            "member_type": member_type,
+            "admission_number": admission_number if member_type == "Student" else "",
+            "year_of_admission": year_of_admission if member_type == "Student" else "",
+            "department": department if member_type == "Student" else "",
+            "year_of_passing": year_of_passing if member_type == "Alumni" else "",
+            "job_title": job_title if member_type == "Alumni" else "",
+            "designation": designation if member_type == "Alumni" else "",
+        }
+
+        member = frappe.get_doc(member_data)
+        member.flags.ignore_permissions = True
+        member.flags.ignore_password_policy = True
+        member.insert()
+        frappe.db.commit()
+
+        return member.name  # Return the name of the newly created member
