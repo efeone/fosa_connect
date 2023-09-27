@@ -100,9 +100,9 @@ signup_form_template = "fosa_connect/templates/signup.html"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-#	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
+permission_query_conditions = {
+	"Job": "fosa_connect.fosa_connect.doctype.job.job.permission_query_conditions",
+}
 #
 # has_permission = {
 #	"Event": "frappe.desk.doctype.event.event.has_permission",
@@ -120,13 +120,12 @@ signup_form_template = "fosa_connect/templates/signup.html"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "Job Interest": {
+        "after_insert": "fosa_connect.fosa_connect.doctype.job_interest.job_interest.job_create_notification_log",
+        "on_update": "fosa_connect.fosa_connect.doctype.job_interest.job_interest.student_notification_log"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -219,5 +218,5 @@ signup_form_template = "fosa_connect/templates/signup.html"
 # ]
 
 fixtures = [
-    "Program", "Job Category"
+    "Program", "Job Category", "Workflow"
 ]
