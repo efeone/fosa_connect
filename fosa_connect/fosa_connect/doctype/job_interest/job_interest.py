@@ -4,6 +4,7 @@
 import frappe
 from frappe.website.website_generator import WebsiteGenerator
 from frappe.model.document import Document
+from frappe.email.doctype.email_template.email_template import get_email_template
 from fosa_connect.fosa_connect.utils import create_notification_log
 
 
@@ -17,7 +18,8 @@ def job_create_notification_log(doc, method=None):
         recipient = frappe.db.get_value("Job", doc.job, "owner")
         job_title = frappe.db.get_value("Job", doc.job, "job_title")
         subject = "New Job Interest for " + job_title
-        content = "This is a sample email content"
+        email_template = get_email_template("Alumni - Received Job Application", doc.as_dict())
+        content = email_template['message']
         create_notification_log(doc, recipient, subject, content)
 
 
@@ -28,5 +30,6 @@ def student_notification_log(doc, method=None):
         recipient = frappe.db.get_value("Member", doc.member, "email_id")
         job_title = frappe.db.get_value("Job", doc.job, "job_title")
         subject = "Job Interest update for " + job_title + " : " + doc.status
-        content = "This is a sample email content"
+        email_template = get_email_template("Student - Job Application Update", doc.as_dict())
+        content = email_template['message']
         create_notification_log(doc, recipient, subject, content)
