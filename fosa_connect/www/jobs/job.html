@@ -1,0 +1,83 @@
+{% extends "templates/base.html" %}
+
+{%- block content -%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div style="padding-left:25px; padding-top:10px;">
+  <a href="/jobs" style="color: blue; text-decoration: none; display: flex; align-items: center;">
+    <div style="width: 50px; height: 30px; display: flex; justify-content: center; align-items: center;">
+      <i class="fas fa-arrow-left" style="color: black; font-size: 24px;"></i>
+    </div>
+  </a>
+</div>
+<div class="container-outer">
+  <div class="container job-details-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 style="color: black; flex: 1; margin: auto;margin-bottom: 20px;">{{ jobs.job_title }}</h1>
+          <div class="apply-button">
+             {%- if "Student" in context.roles -%}
+            <button class="btn" id="interestButton" onclick="toggleInterest()">Apply Now</button>
+            {%- else -%}
+              <button class="btn" id="interestButton" onclick="toggleInterest()">Edit Here</button>
+              {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p><i class="fas fa-briefcase"></i> Job ID: <span style="color: red;">{{ jobs.name }}</span></p>
+        <p><i class="fas fa-map-marker-alt"></i>  Location: {{ jobs.location }} </p>
+        {%- if jobs.salary_info -%}
+        <p><i class="fas fa-money-bill"></i> Salary: {{ jobs.salary_info }} </p>
+        {%- endif -%}
+        <p><i class="fas fa-briefcase"></i> Job type: {{ jobs.job_type }} </p>
+        {%- if jobs.start_date -%}
+        <p><i class="far fa-calendar-alt"></i> Published date: {{ jobs.get_formatted("start_date") }} </p>
+        {%- endif -%}
+      </div>
+      <div class="col-md-6">
+        <p><i class="fas fa-calendar-day"></i> Last date to apply: {{ jobs.get_formatted("last_date_to_apply") }} </p>
+        <h4><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</h4>
+        <p><i class="fas fa-tasks"></i> Responsibility: {{ jobs.responsibility }} </p>
+        <p><i class="fas fa-graduation-cap"></i> Qualification: {{ jobs.qualification }} </p>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: justify;"><i class="fas fa-file-alt"></i> {{ jobs.job_description }}</p>
+  </div>
+</div>
+<style>
+/* Custom CSS for styling the container */
+.container-outer {
+  padding: 15px 50px 50px 50px;
+}
+.job-details-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 18px;
+}
+.apply-button {
+  text-align: center;
+  margin-top: 20px;
+}
+.btn {
+  background-color: green;
+  color: white;
+  padding: 5px 5px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: green;
+}
+/* Style for the icons */
+.fas, .far {
+  margin-right: 5px; /* Add spacing to the right of icons */
+}
+</style>
+<script src="/job.js"></script>
+{%- endblock -%}
