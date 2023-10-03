@@ -220,3 +220,8 @@ doc_events = {
 fixtures = [
     "Program", "Job Category", "Workflow", "Workflow State", "Email Template"
 ]
+
+
+website_route_rules = [
+    {'from_route':'/jobs/job/<docname>','to_route':'jobs/job'}
+]

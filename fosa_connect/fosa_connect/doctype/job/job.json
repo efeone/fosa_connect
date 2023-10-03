@@ -20,11 +20,8 @@
   "job_category",
   "location",
   "job_type",
-  "salary_info",
-  "route",
-  "section_break_snini",
-  "column_break_lcr8b",
-  "job_description"
+  "last_date_to_apply",
+  "salary_info"
  ],
  "fields": [
   {
@@ -32,14 +29,16 @@
    "fieldname": "job_title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Job Title"
+   "label": "Job Title",
+   "reqd": 1
   },
   {
    "columns": 2,
    "fieldname": "location",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Location"
+   "label": "Location",
+   "reqd": 1
   },
   {
    "fieldname": "salary_info",
@@ -49,7 +48,8 @@
   {
    "fieldname": "job_description",
    "fieldtype": "Long Text",
-   "label": "Job Description"
+   "label": "Job Description",
+   "reqd": 1
   },
   {
    "fieldname": "last_date_to_apply",
@@ -63,7 +63,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Job Category",
-   "options": "Job Category"
+   "options": "Job Category",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_lzsug",
@@ -73,12 +74,14 @@
    "fieldname": "qualification",
    "fieldtype": "Link",
    "label": "Qualification",
-   "options": "Qualification"
+   "options": "Qualification",
+   "reqd": 1
   },
   {
    "fieldname": "responsibility",
    "fieldtype": "Data",
-   "label": "Responsibility"
+   "label": "Responsibility",
+   "reqd": 1
   },
   {
    "fieldname": "job_type",
@@ -100,31 +103,16 @@
    "label": "Start date"
   },
   {
-   "fieldname": "route",
-   "fieldtype": "Data",
-   "label": "Route"
-  },
-  {
    "default": "0",
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Is Published",
    "permlevel": 1,
    "read_only_depends_on": "eval:doc.disabled"
-  },
-  {
-   "fieldname": "column_break_lcr8b",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_snini",
-   "fieldtype": "Section Break"
   }
  ],
- "has_web_view": 1,
- "is_published_field": "published",
  "links": [],
- "modified": "2023-09-14 11:49:10.746905",
+ "modified": "2023-09-25 09:32:57.944690",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
@@ -181,7 +169,6 @@
   }
  ],
  "quick_entry": 1,
- "route": "jobs",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
