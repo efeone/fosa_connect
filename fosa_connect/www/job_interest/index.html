@@ -1,0 +1,96 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+<style>
+    /* Custom CSS for creating a gap between containers */
+    .job-interest-container {
+        margin-bottom: 20px; /* Adjust the margin as needed */
+        border: 1px solid #ccc; /* Add a border to each container */
+        border-radius:10px;
+    }
+    .card-title {
+      margin-top: 0;
+    }
+    hr {
+        margin-top: 20px; /* Add spacing above HR elements */
+        margin-bottom: 20px; /* Add spacing below HR elements */
+        border: 0; /* Remove default HR styling */
+        border-top: 1px solid #ccc; /* Add a custom horizontal line */
+    }
+</style>
+
+<div class="container mt-5">
+  <h1>{{ _("Job Interest") }}</h1>
+
+
+  <form id="jobFilterForm">
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="jobTitle">Job Title</label>
+                          <select name="jobtitle" class="form-control" id="jobTitle">
+                            <option value="">Select title</option>
+                            {% for jobtitle in context.job_titles %}
+                            <option value="{{jobtitle.job_title}}" {% if context.job_title == jobtitle.job_title %}selected{% endif %}>{{jobtitle.job_title}}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="location">Location</label>
+                          <select name="location" class="form-control" id="location">
+                            <option value="">Select location</option>
+                            {% for location in context.locations %}
+                                <option value="{{ location.location }}" {% if context.location == location.location %}selected{% endif %}>
+                                    {{ location.location }}
+                                </option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="status">Status</label>
+                          <select name="status" class="form-control" id="status">
+                              <option value="">Select status</option>
+                              <option value="Open" {% if status == 'Open' %}selected{% endif %}>Open</option>
+                              <option value="Accepted" {% if status == 'Accepted' %}selected{% endif %}>Accepted</option>
+                              <option value="Rejected" {% if status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                              <option value="On Hold" {% if status == 'On Hold' %}selected{% endif %}>On Hold</option>
+                              {% if "Student" in context.user_type %}
+                              <option value="Cancelled" {% if status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                              {% endif %}
+                              <!-- Add more status options as needed -->
+                          </select>
+                      </div>
+                  </div>
+              </div>
+          </form>
+
+<hr>
+
+  <!-- List of job interest -->
+
+  <div class="row">
+    {% for job_interest in job_interests %}
+      <div class="col-md-4">
+        <div class="job-interest-container job-interest-card" onclick="window.location='/job_interest/job_interest/{{ job_interest.name }}';">
+          <div class="card-body">
+            <h3 class="card-title" style="color: black;">{{ job_interest.job_title }}</h3>
+            <p class="card-text">Job ID:<span style="color: red;"> {{ job_interest.id }}</span></p>
+            <p class="card-text">Location: {{ job_interest.location }}</p>
+            <div class="d-flex justify-content-between">
+                <p class="card-text">Posted on {{ job_interest.posting_date.strftime("%b %d, %Y") }}</p>
+                <span class="badge badge-{% if job_interest.status=='Open' %}primary{% elif job_interest.status=='Accepted' %}success{% elif job_interest.status=='Rejected' %}danger{% elif job_interest.status=='On Hold' %}warning{% elif job_interest.status=='Cancelled' %}secondary{% endif %}" style="width: 80px; height: 20px;">{{ job_interest.status }}</span>
+            </div>
+        </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="/index.js"></script>
+{%- endblock -%}
