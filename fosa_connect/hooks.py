@@ -223,5 +223,6 @@ fixtures = [
 
 
 website_route_rules = [
-    {'from_route':'/jobs/job/<docname>','to_route':'jobs/job'}
+    {'from_route':'/jobs/job/<docname>','to_route':'jobs/job'},
+	{'from_route':'/job_interest/job_interest/<docname>','to_route':'job_interest/job_interest'},
 ]

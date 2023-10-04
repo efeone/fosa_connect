@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "JI.######",
  "creation": "2023-09-02 15:29:45.050790",
@@ -12,9 +11,7 @@
   "job",
   "member",
   "posting_date",
-  "status",
-  "route",
-  "published"
+  "status"
  ],
  "fields": [
   {
@@ -43,24 +40,11 @@
    "in_list_view": 1,
    "label": "Job ",
    "options": "Job"
-  },
-  {
-   "fieldname": "route",
-   "fieldtype": "Data",
-   "label": "Route"
-  },
-  {
-   "default": "0",
-   "fieldname": "published",
-   "fieldtype": "Check",
-   "label": "Published"
   }
  ],
- "has_web_view": 1,
  "index_web_pages_for_search": 1,
- "is_published_field": "published",
  "links": [],
- "modified": "2023-09-18 09:32:49.494136",
+ "modified": "2023-09-25 09:28:11.304512",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Interest",
@@ -103,7 +87,6 @@
   }
  ],
  "quick_entry": 1,
- "route": "job-interest",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

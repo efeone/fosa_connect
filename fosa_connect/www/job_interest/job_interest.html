@@ -1,0 +1,126 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div style="padding-left:25px; padding-top:20px;">
+  <a href="/job_interest" style="color: blue; text-decoration: none; display: flex; align-items: center;">
+    <div style="width: 50px; height: 30px; display: flex; justify-content: center; align-items: center;">
+      <i class="fas fa-arrow-left" style="color: black;font-size: 24px;"></i>
+    </div>
+  </a>
+</div>
+<div class="container-outer">
+
+  <div class="container job-details-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 style="margin-top: 20px;">{{ jobs.job_title }}</h1>
+          <div class="status" style="font-weight: bold; display: flex; color: white;">
+            {%- if job_interest.status == 'Open' -%}
+            <span class="badge badge-primary" style="width: 90px; height: 22px;">Open</span>
+            {%- elif job_interest.status == 'Accepted' -%}
+            <span class="badge badge-success" style="width: 90px; height: 22px;">Accepted</span>
+            {%- elif job_interest.status == 'Rejected' -%}
+            <span class="badge badge-danger" style="width: 90px; height: 22px;">Rejected</span>
+            {%- elif job_interest.status == 'On Hold' -%}
+            <span class="badge badge-warning" style="width: 90px; height: 22px;">On Hold</span>
+            {%- elif job_interest.status == 'Cancelled' -%}
+            <span class="badge badge-secondary" style="width: 90px; height: 22px;">Cancelled</span>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p><i class="fas fa-briefcase"></i> Job ID: <span style="color: red;">{{ job_interest.job }}</span></p>
+        <p><i class="fas fa-map-marker-alt"></i> Location: {{ jobs.location }}</p>
+        {%- if jobs.salary_info -%}
+        <p><i class="fas fa-money-bill"></i> Salary: {{ jobs.salary_info }} </p>
+        {%- endif -%}
+        <p><i class="fas fa-briefcase"></i> Job type: {{ jobs.job_type }}</p>
+        {%- if jobs.start_date -%}
+        <p><i class="far fa-calendar-alt"></i> Published date: {{ jobs.start_date }}</p>
+        {%- endif -%}
+      </div>
+      <div class="col-md-6">
+        <p><i class="fas fa-calendar-day"></i> Last date to apply: {{ jobs.last_date_to_apply }}</p>
+        <h4><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</h4>
+        <p><i class="fas fa-tasks"></i> Responsibility: {{ jobs.responsibility }}</p>
+        <p><i class="fas fa-graduation-cap"></i> Qualification: {{ jobs.qualification }}</p>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: justify;"><i class="fas fa-file-alt"></i> {{ jobs.job_description }}</p>
+    {%- if "Alumni" in context.user_type -%}
+    {% if job_interest.status == 'Open' %}
+    <p>
+          <a href="/{{ job_interest.member }}" style="color: blue; text-decoration: none;">
+            <i class="fas fa-user"></i> View Member Detail
+          </a>
+          <button id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+              <i class="fas fa-check-circle" style="color: green; font-size: 24px; margin-left: 10px;"></i>
+          </button>
+          <button id="action-button" class="workflow-action-button" data-action="Reject" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+              <i class="fas fa-times-circle" style="color: red; font-size: 24px; margin-left: 10px;"></i>
+          </button>
+          <button id="action-button" class="workflow-action-button" data-action="Hold" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+              <i class="fas fa-pause-circle" style="color: orange; font-size: 24px; margin-left: 10px;"></i>
+          </button>
+        </p>
+        {% elif job_interest.status == 'On Hold' %}
+        <p>
+              <a href="/{{ job_interest.member }}" style="color: blue; text-decoration: none;">
+                <i class="fas fa-user"></i> View Member Detail
+              </a>
+              <button id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+                  <i class="fas fa-check-circle" style="color: green; font-size: 24px; margin-left: 10px;"></i>
+              </button>
+              <button id="action-button" class="workflow-action-button" data-action="Reject" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+                  <i class="fas fa-times-circle" style="color: red; font-size: 24px; margin-left: 10px;"></i>
+              </button>
+        </p>
+    {% endif %}
+    {%- endif -%}
+    {%- if "Student" in context.user_type -%}
+    {% if job_interest.status == 'Open' %}
+    <p>
+      <button id="action-button" class="btn btn-danger workflow-action-button" data-action="Cancel" data-user-role="Student"
+        onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+        <i class="fas fa-times-circle"></i> Cancel Job Interest
+      </button>
+
+    </p>
+    {% endif %}
+    {%- endif -%}
+    <p><i class="fas fa-clock"></i> Posted on {{ job_interest.posting_date.strftime("%b %d, %Y") }}</p>
+
+
+  </div>
+
+</div>
+
+<style>
+  /* Custom CSS for styling the outer container */
+  .container-outer {
+    padding: 15px 50px 50px 50px; /* Add padding to the outside of the container */
+  }
+
+  /* Custom CSS for styling the container */
+  .job-details-container {
+    border: 1px solid #ccc;
+    border-radius:10px;
+    padding: 20px;
+    font-size: 18px;
+  }
+
+  /* Style for the icons */
+  .fas, .far {
+    margin-right: 5px;
+  }
+</style>
+
+<script src="/job_interest.js"></script>
+{%- endblock -%}
