@@ -19,7 +19,7 @@
              {%- if "Alumni" not in context.roles -%}
              <button class="btn" id="interestButton" onclick="create_job_interest()">Apply Now</button>
             {%- else -%}
-              <button class="btn" id="interestButton" onclick="toggleInterest()">Edit Here</button>
+            <button class="btn" id="interestButton" onclick="window.location='/create-jobs/{{jobs.name}}/edit';">Edit Here</button>
               {%- endif -%}
           </div>
         </div>

@@ -20,9 +20,10 @@
   <h1>{{ _("Job Portal") }}</h1>
 
   {% if "Alumni" in context.roles %}
-     <div class="text-right">
-         <a href="/create_job" class="btn btn-success">Create New Job</a>
-     </div>
+  <div class="text-right">
+    <a href="/create-jobs/new" class="btn btn-success" >Create New Job</a>
+</div>
+
      {% endif %}
     <form id="jobFilterForm">
     <div class="row">
