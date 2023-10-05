@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <form class="signup-form" role="form">
     <div class="page-card-body">
         <label for="member_type">Select Member Type:</label>
@@ -19,12 +20,57 @@
         <div class="form-group">
             <label class="form-label sr-only" for="phone_number">{{ _("Phone Number") }}</label>
             <input type="text" id="phone_number" class="form-control" placeholder="{{ _('Phone Number') }}" required>
+=======
+{% set dept_doc = frappe.get_all('Program',fields=["program_name"]) %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<form class="signup-form signup-form-monschool" role="form">
+  <div class="page-card-body">
+    <div class="form-group">
+      <select id="member_type" name="member_type" required style="width: 99%; padding: 7px; border: none; border-radius: 4px;text-align: center;">
+          <option value="null" id="nullOption">Select Member Type</option>
+          <option value="Student">Student</option>
+          <option value="Alumni">Alumni</option>
+      </select><br><br>
+      </div>
+      <div class="form-group">
+          <label class="form-label sr-only" for="signup_firstname">{{ _("First Name") }}</label>
+          <input type="text" id="signup_firstname" class="form-control" placeholder="{{ _('First Name') }}" required autofocus>
+      </div>
+      <div class="form-group">
+          <label class="form-label sr-only" for="signup_lastname">{{ _("Last Name") }}</label>
+          <input type="text" id="signup_lastname" class="form-control" placeholder="{{ _('Last Name') }}" required autofocus>
+      </div>
+      <div class="form-group">
+          <label class="form-label sr-only" for="signup_email">{{ _("Email") }}</label>
+          <input type="email" id="signup_email" class="form-control" placeholder="{{ _('Email') }}" required>
+      </div>
+      <div class="form-group">
+          <label class="form-label sr-only" for="phone_number">{{ _("Phone Number") }}</label>
+          <input type="text" id="phone_number" class="form-control" placeholder="{{ _('Phone Number') }}" required>
+      </div>
+      <div id="Student_fields">
+        <div class="form-group">
+            <label class="form-label sr-only" for="admission_number">{{ _("Admission Number") }}</label>
+            <input type="text" id="admission_number" class="form-control" placeholder="{{ _('Admission Number') }}" required>
         </div>
         <div class="form-group">
-            <label class="form-label sr-only" for="signup_email">{{ _("Email") }}</label>
-            <input type="email" id="signup_email" class="form-control" placeholder="{{ _('Email') }}" required>
+            <label class="form-label sr-only" for="year_of_admission">{{ _("Year of Admission") }}</label>
+            <input type="text" id="year_of_admission" class="form-control" placeholder="{{ _('Year of Admission') }}" required>
+>>>>>>> Stashed changes
+        </div>
+        <div class="form-group">
+            <label class="form-label sr-only" for="department"></label>
+            <select id="department-select" name="department" class="form-control" style="background-color: var(--control-bg);" required>
+              <option value="">Select Department</option>
+  {%- for department in dept_doc -%}
+      <option value="{{ department.program_name }}">{{ department.program_name }}</option>
+  {%- endfor -%}
+</select>
         </div>
 
+<<<<<<< Updated upstream
         <div id="student_fields">
           <div class="form-group">
               <label class="form-label sr-only" for="admission_number">{{ _("Admission Number") }}</label>
@@ -60,15 +106,39 @@
     </div>
     <div class="page-card-actions">
         <button class="btn btn-sm btn-info btn-block btn-signup"type="submit">{{ _("Sign up") }}</button>
+=======
+      </div>
+      <div id="Alumni_fields">
 
-        <p class="text-center sign-up-message">
-            <a href="#login" class="blue">{{ _("Have an account? Login") }}</a>
-        </p>
-    </div>
+        <div class="form-group">
+            <label class="form-label sr-only" for="year_of_passing">{{ _("Year of Passing") }}</label>
+            <input type="text" id="year_of_passing" class="form-control" placeholder="{{ _('Year of Passing') }}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label sr-only" for="job_title">{{ _("Job Title") }}</label>
+            <input type="text" id="job_title" class="form-control" placeholder="{{ _('Job Title') }}"required>
+        </div>
+        <div class="form-group">
+            <label class="form-label sr-only" for="designation">{{ _("Designation") }}</label>
+            <input type="text" id="designation" class="form-control" placeholder="{{ _('Designation') }}"required>
+        </div>
+      </div>
+  </div>
+
+
+  <div class="page-card-actions">
+      <button class="btn btn-sm btn-primary btn-block btn-signup" type="submit">{{ _("Sign up") }}</button>
+>>>>>>> Stashed changes
+
+      <p class="text-center sign-up-message">
+          <a href="#login" class="blue">{{ _("Have an account? Login") }}</a>
+      </p>
+  </div>
 </form>
 
 
 <script>
+<<<<<<< Updated upstream
         document.getElementById("nullOption").selected = true;
         document.getElementById('student_fields').style.display = 'none';
         document.getElementById('alumni_fields').style.display = 'none';
@@ -83,4 +153,92 @@
               document.getElementById('alumni_fields').style.display = 'block';
           }
       });
+=======
+
+  document.getElementById("nullOption").selected = true;
+  document.getElementById('Student_fields').style.display = 'none';
+  document.getElementById('Alumni_fields').style.display = 'none';
+
+  document.getElementById('member_type').addEventListener('change', function() {
+    if (this.value === 'Student') {
+        document.getElementById('Student_fields').style.display = 'block';
+        document.getElementById('Alumni_fields').style.display = 'none';
+    } else if (this.value === 'Alumni') {
+        document.getElementById('Student_fields').style.display = 'none';
+        document.getElementById('Alumni_fields').style.display = 'block';
+    } else {
+      document.getElementById('Student_fields').style.display = 'none';
+      document.getElementById('Alumni_fields').style.display = 'none';
+    }
+  });
+
+  frappe.ready(function () {
+  $(".signup-form-monschool").on("submit", (e) => {
+      e.preventDefault();
+      const memberType = $("#member_type").val();
+
+      if (memberType === "Student") {
+          signupStudent();
+      } else if (memberType === "Alumni") {
+          signupAlumni();
+      }
+  });
+});
+
+const signupStudent = () => {
+  const email = ($("#signup_email").val() || "").trim();
+  const first_name = frappe.utils.xss_sanitise($("#signup_firstname").val() || "").trim();
+  const last_name = frappe.utils.xss_sanitise($("#signup_lastname").val() || "").trim();
+  const full_name = (first_name + ' ' + last_name).trim();
+  const admission_number = frappe.utils.xss_sanitise($("#admission_number").val() || "").trim();
+  const year_of_admission = frappe.utils.xss_sanitise($("#year_of_admission").val() || "").trim();
+  const department = frappe.utils.xss_sanitise($("#department").val() || "").trim();
+
+
+  // Perform additional client-side validation if needed
+
+  frappe.call({
+      method: "fosa_connect.fosa_connect.overrides.sign_up",
+      args: {
+          "email": email,
+          "first_name": first_name,
+          "last_name": last_name,
+          "full_name": full_name,
+          "admission_number": admission_number,
+          "year_of_admission": year_of_admission,
+          "department": department,
+          "member_type": "Student", // Hardcode the member_type for student signup
+      },
+      statusCode: login.login_handlers,
+  });
+};
+
+const signupAlumni = () => {
+  const email = ($("#signup_email").val() || "").trim();
+  const first_name = frappe.utils.xss_sanitise($("#signup_firstname").val() || "").trim();
+  const last_name = frappe.utils.xss_sanitise($("#signup_lastname").val() || "").trim();
+  const full_name = (first_name + ' ' + last_name).trim();
+  const year_of_passing = frappe.utils.xss_sanitise($("#year_of_passing").val() || "").trim();
+  const job_title = frappe.utils.xss_sanitise($("#job_title").val() || "").trim();
+  const designation = frappe.utils.xss_sanitise($("#designation").val() || "").trim();
+
+  // Perform additional client-side validation if needed
+
+  frappe.call({
+      method: "fosa_connect.fosa_connect.overrides.sign_up",
+      args: {
+          "email": email,
+          "first_name": first_name,
+          "last_name": last_name,
+          "full_name": full_name,
+          "year_of_passing": year_of_passing,
+          "job_title": job_title,
+          "designation": designation,
+          "member_type": "Alumni", // Hardcode the member_type for alumni signup
+      },
+      statusCode: login.login_handlers,
+  });
+};
+
+>>>>>>> Stashed changes
 </script>
