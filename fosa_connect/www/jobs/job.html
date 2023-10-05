@@ -16,8 +16,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1 style="color: black; flex: 1; margin: auto;margin-bottom: 20px;">{{ jobs.job_title }}</h1>
           <div class="apply-button">
-             {%- if "Student" in context.roles -%}
-            <button class="btn" id="interestButton" onclick="toggleInterest()">Apply Now</button>
+             {%- if "Alumni" not in context.roles -%}
+             <button class="btn" id="interestButton" onclick="create_job_interest()">Apply Now</button>
             {%- else -%}
               <button class="btn" id="interestButton" onclick="toggleInterest()">Edit Here</button>
               {%- endif -%}
@@ -79,5 +79,17 @@
   margin-right: 5px; /* Add spacing to the right of icons */
 }
 </style>
+<script>
+function create_job_interest() {
+  // Create a new entry in the "Job Interest" DocType
+  frappe.call({
+    method: 'fosa_connect.fosa_connect.utils.create_job_interest_entry',
+    args: {
+      job_id: "{{ jobs.name }}",
+      student_id: frappe.session.user,
+    },
+  });
+}
+</script>
 <script src="/job.js"></script>
 {%- endblock -%}
