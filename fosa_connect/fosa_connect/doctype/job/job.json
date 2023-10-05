@@ -14,7 +14,7 @@
   "qualification",
   "responsibility",
   "start_date",
-  "last_date_to_apply",
+  "job_description",
   "column_break_lzsug",
   "disabled",
   "job_category",
@@ -112,7 +112,7 @@
   }
  ],
  "links": [],
- "modified": "2023-09-25 09:32:57.944690",
+ "modified": "2023-10-03 16:22:21.278396",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
