@@ -26,7 +26,7 @@ def job_create_notification_log(doc, method=None):
 # Job Update for student
 @frappe.whitelist()
 def student_notification_log(doc, method=None):
-    if doc.status != "Open":
+    if doc.status != "Open" and doc.status != "Cancelled":
         recipient = frappe.db.get_value("Member", doc.member, "email_id")
         job_title = frappe.db.get_value("Job", doc.job, "job_title")
         subject = "Job Interest update for " + job_title + " : " + doc.status
