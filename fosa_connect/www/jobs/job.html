@@ -17,7 +17,11 @@
           <h1 style="color: black; flex: 1; margin: auto;margin-bottom: 20px;">{{ jobs.job_title }}</h1>
           <div class="apply-button">
              {%- if "Alumni" not in context.roles -%}
+              {%- if frappe.db.exists("Job Interest", {"job": jobs.name, "member": member}) -%}
+              <label>Applied</label>
+             {%- else -%}
              <button class="btn" id="interestButton" onclick="create_job_interest()">Apply Now</button>
+             {%- endif -%}
             {%- else -%}
             <button class="btn" id="interestButton" onclick="window.location='/create-jobs/{{jobs.name}}/edit';">Edit Here</button>
               {%- endif -%}
@@ -88,6 +92,9 @@ function create_job_interest() {
       job_id: "{{ jobs.name }}",
       student_id: frappe.session.user,
     },
+    callback: function(response) {
+      location.reload();
+    }
   });
 }
 </script>
