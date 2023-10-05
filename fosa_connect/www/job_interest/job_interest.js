@@ -14,7 +14,7 @@ function triggerWorkflowAction(jobInterestId, button) {
             callback: function (r) {
                 if (r.message) {
                     // Handle the success response here
-                    alert(action + ' the application successfully: ' + r.message);
+                    alert(action + ' the application successfully ');
                     // Refresh the whole page
                    yourRefreshFunction();
                   } else {

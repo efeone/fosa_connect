@@ -73,8 +73,6 @@ def trigger_workflow_action(docname, action, user_role):
                 doc.save()
                 frappe.db.commit()
 
-                return f"Workflow action '{action}' triggered successfully."
-
         return f"Invalid action or user role for the current state."
 
     except Exception as e:

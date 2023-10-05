@@ -57,8 +57,8 @@
     {%- if "Alumni" in context.user_type -%}
     {% if job_interest.status == 'Open' %}
     <p>
-          <a href="/{{ job_interest.member }}" style="color: blue; text-decoration: none;">
-            <i class="fas fa-user"></i> View Member Detail
+          <a href="/printview?doctype=Member&name={{ job_interest.member }}&format=Profile%201" style="color: blue; text-decoration: none;">
+              <i class="fas fa-user"></i> View Member Detail
           </a>
           <button id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
               <i class="fas fa-check-circle" style="color: green; font-size: 24px; margin-left: 10px;"></i>
@@ -72,9 +72,9 @@
         </p>
         {% elif job_interest.status == 'On Hold' %}
         <p>
-              <a href="/{{ job_interest.member }}" style="color: blue; text-decoration: none;">
-                <i class="fas fa-user"></i> View Member Detail
-              </a>
+          <a href="/printview?doctype=Member&name={{ job_interest.member }}&format=Profile%201" style="color: blue; text-decoration: none;">
+              <i class="fas fa-user"></i> View Member Detail
+          </a>
               <button id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
                   <i class="fas fa-check-circle" style="color: green; font-size: 24px; margin-left: 10px;"></i>
               </button>
@@ -84,7 +84,7 @@
         </p>
     {% endif %}
     {%- endif -%}
-    {%- if "Student" in context.user_type -%}
+    {%- if "Alumni" not in context.user_type -%}
     {% if job_interest.status == 'Open' %}
     <p>
       <button id="action-button" class="btn btn-danger workflow-action-button" data-action="Cancel" data-user-role="Student"
@@ -120,6 +120,18 @@
   .fas, .far {
     margin-right: 5px;
   }
+  /* Remove default button styles */
+    .workflow-action-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+    /* Remove underlines from links */
+    .workflow-action-button:hover {
+        text-decoration: none;
+    }
 </style>
 
 <script src="/job_interest.js"></script>
