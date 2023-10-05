@@ -1,0 +1,471 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:11:15.651560",
+  "name": "High School Diploma (or equivalent)",
+  "qualification": "High School Diploma (or equivalent)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:14:12.072593",
+  "name": "B.Tech - Computer Science and Engineering (CSE)",
+  "qualification": "B.Tech - Computer Science and Engineering (CSE)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:14:31.491864",
+  "name": "B.Tech - Electrical Engineering (EE)",
+  "qualification": "B.Tech - Electrical Engineering (EE)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:15:29.156182",
+  "name": "B.Tech - Mechanical Engineering (ME)",
+  "qualification": "B.Tech - Mechanical Engineering (ME)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:15:47.552088",
+  "name": "B.Tech - Civil Engineering (CE)",
+  "qualification": "B.Tech - Civil Engineering (CE)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:16:23.017632",
+  "name": "B.Tech - Electronics and Communication Engineering (ECE)",
+  "qualification": "B.Tech - Electronics and Communication Engineering (ECE)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:16:41.105915",
+  "name": "B.Tech - Chemical Engineering (ChE)",
+  "qualification": "B.Tech - Chemical Engineering (ChE)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:17:05.523894",
+  "name": "B.Tech-Aerospace Engineering",
+  "qualification": "B.Tech-Aerospace Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:22:15.205557",
+  "name": "B.Tech - Biotechnology",
+  "qualification": "B.Tech - Biotechnology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:22:31.160230",
+  "name": "B.Tech - Environmental Engineering",
+  "qualification": "B.Tech - Environmental Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:23:04.698649",
+  "name": "B.Tech - Automotive Engineering",
+  "qualification": "B.Tech - Automotive Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:23:51.881207",
+  "name": "B.Tech - Information Technology (IT)",
+  "qualification": "B.Tech - Information Technology (IT)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:35:24.037347",
+  "name": "B.Tech - Petroleum Engineering",
+  "qualification": "B.Tech - Petroleum Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:35:41.913243",
+  "name": "B.Tech - Materials Science and Engineering",
+  "qualification": "B.Tech - Materials Science and Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:36:05.394459",
+  "name": "B.Tech - Nuclear Engineering",
+  "qualification": "B.Tech - Nuclear Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:36:23.942179",
+  "name": "B.Tech - Instrumentation and Control Engineering",
+  "qualification": "B.Tech - Instrumentation and Control Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:36:41.584881",
+  "name": "B.Tech - Metallurgical Engineering",
+  "qualification": "B.Tech - Metallurgical Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:37:01.852006",
+  "name": "B.Tech - Textile Engineering",
+  "qualification": "B.Tech - Textile Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:37:16.720961",
+  "name": "B.Tech - Mining Engineering",
+  "qualification": "B.Tech - Mining Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:37:32.276879",
+  "name": "B.Tech - Industrial Engineering",
+  "qualification": "B.Tech - Industrial Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:37:45.214030",
+  "name": "B.Tech - Renewable Energy Engineering",
+  "qualification": "B.Tech - Renewable Energy Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:44:02.582175",
+  "name": "BSc - Biology",
+  "qualification": "BSc - Biology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:44:36.085149",
+  "name": "BSc - Chemistry",
+  "qualification": "BSc - Chemistry"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:45:41.513370",
+  "name": "BSc - Physics",
+  "qualification": "BSc - Physics"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:46:42.303430",
+  "name": "BSc - Mathematics",
+  "qualification": "BSc - Mathematics"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:47:12.957953",
+  "name": "BSc - Computer Science",
+  "qualification": "BSc - Computer Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:49:36.439862",
+  "name": "BSc - Environmental Science",
+  "qualification": "BSc - Environmental Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:49:56.479801",
+  "name": "BSc - Geology",
+  "qualification": "BSc - Geology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:50:20.623106",
+  "name": "BSc - Psychology",
+  "qualification": "BSc - Psychology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:50:39.991082",
+  "name": "BSc - Biotechnology",
+  "qualification": "BSc - Biotechnology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:51:08.663924",
+  "name": "BSc - Zoology",
+  "qualification": "BSc - Zoology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:51:24.522750",
+  "name": "BSc - Botany",
+  "qualification": "BSc - Botany"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:51:49.821008",
+  "name": "BSc - Forensic Science",
+  "qualification": "BSc - Forensic Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:52:12.993710",
+  "name": "MSc - Computer Science",
+  "qualification": "MSc - Computer Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:52:28.749424",
+  "name": "MSc - Data Science",
+  "qualification": "MSc - Data Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:53:47.288226",
+  "name": "MSc - Information Technology",
+  "qualification": "MSc - Information Technology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:54:08.408137",
+  "name": "MSc - Business Administration or MBA",
+  "qualification": "MSc - Business Administration or MBA"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:54:26.883612",
+  "name": "MSc - Finance",
+  "qualification": "MSc - Finance"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:54:50.630517",
+  "name": "MSc - Economics",
+  "qualification": "MSc - Economics"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:55:15.824439",
+  "name": "MSc - Psychology",
+  "qualification": "MSc - Psychology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:55:27.703305",
+  "name": "MSc - Biotechnology",
+  "qualification": "MSc - Biotechnology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:55:44.394993",
+  "name": "MSc - Environmental Science",
+  "qualification": "MSc - Environmental Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:55:56.747791",
+  "name": "MSc - Physics",
+  "qualification": "MSc - Physics"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:56:08.815609",
+  "name": "MSc - Chemistry",
+  "qualification": "MSc - Chemistry"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:56:35.212279",
+  "name": "MSc - Biology",
+  "qualification": "MSc - Biology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:56:48.873041",
+  "name": "MSc - Mathematics",
+  "qualification": "MSc - Mathematics"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:57:02.611972",
+  "name": "MSc - Geology",
+  "qualification": "MSc - Geology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:57:16.759403",
+  "name": "MSc - Astronomy",
+  "qualification": "MSc - Astronomy"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:57:52.453442",
+  "name": "MSc - Health Sciences",
+  "qualification": "MSc - Health Sciences"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:58:07.325840",
+  "name": "MSc - Engineering",
+  "qualification": "MSc - Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:58:25.539404",
+  "name": "MSc - Nursing",
+  "qualification": "MSc - Nursing"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:58:53.268123",
+  "name": "MSc - Social Work",
+  "qualification": "MSc - Social Work"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 11:59:12.600980",
+  "name": "MSc - Educational Psychology",
+  "qualification": "MSc - Educational Psychology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:04:21.307146",
+  "name": "BA - History",
+  "qualification": "BA - History"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:05:51.177722",
+  "name": "BA - Political Science",
+  "qualification": "BA - Political Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:07:05.585575",
+  "name": "Bachelor of Arts",
+  "qualification": "Bachelor of Arts"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:07:48.699623",
+  "name": "BA - Sociology",
+  "qualification": "BA - Sociology"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:13:19.379279",
+  "name": "BA - Communications",
+  "qualification": "BA - Communications"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:13:42.114938",
+  "name": "BA - Music",
+  "qualification": "BA - Music"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-06 12:14:08.763694",
+  "name": "BA - Theater and Performing Arts",
+  "qualification": "BA - Theater and Performing Arts"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-07 09:51:13.118163",
+  "name": "Bachelor of Medicine, Bachelor of Surgery",
+  "qualification": "Bachelor of Medicine, Bachelor of Surgery"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-07 09:51:57.591111",
+  "name": "Bachelor of Dental Surgery",
+  "qualification": "Bachelor of Dental Surgery"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-07 09:52:36.118947",
+  "name": "Bachelor of Homeopathic Medicine and Surgery",
+  "qualification": "Bachelor of Homeopathic Medicine and Surgery"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-07 09:52:56.194289",
+  "name": "Bachelor of Ayurvedic Medicine and Surgery",
+  "qualification": "Bachelor of Ayurvedic Medicine and Surgery"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-07 10:01:15.163630",
+  "name": "Bachelor of Unani Medicine and Surgery",
+  "qualification": "Bachelor of Unani Medicine and Surgery"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-07 10:03:15.428026",
+  "name": "Bachelor of Physiotherapy",
+  "qualification": "Bachelor of Physiotherapy"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2023-09-08 14:38:43.471231",
+  "name": "Other",
+  "qualification": "Other"
+ }
+]

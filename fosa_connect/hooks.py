@@ -218,7 +218,7 @@ doc_events = {
 # ]
 
 fixtures = [
-    "Program", "Job Category", "Workflow", "Workflow State", "Email Template"
+    "Program", "Job Category", "Workflow", "Workflow State", "Email Template", "Qualification"
 ]
 
 
