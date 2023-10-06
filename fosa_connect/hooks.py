@@ -217,9 +217,15 @@ doc_events = {
 #	"fosa_connect.auth.validate"
 # ]
 
-fixtures = [
-    "Program", "Job Category", "Workflow", "Workflow State", "Email Template", "Qualification"
+fixtures = [{"dt": "Program"},
+			{"dt": "Job Category"},
+			{"dt": "Workflow"},
+			{"dt": "Workflow State"},
+			{"dt": "Email Template"},
+			{"dt": "Qualification"},
+			{'dt': 'Role', 'filters': [['name', 'in', ['Student','Alumni','Placement Officer']]]}
 ]
+
 
 
 website_route_rules = [
