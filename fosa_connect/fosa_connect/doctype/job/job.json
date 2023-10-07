@@ -21,7 +21,8 @@
   "location",
   "job_type",
   "last_date_to_apply",
-  "salary_info"
+  "salary_info",
+  "organization_name"
  ],
  "fields": [
   {
@@ -87,7 +88,7 @@
    "fieldname": "job_type",
    "fieldtype": "Select",
    "label": "Job Type",
-   "options": "Full\nPart"
+   "options": "Full Time\nPart Time"
   },
   {
    "default": "0",
@@ -109,10 +110,15 @@
    "label": "Is Published",
    "permlevel": 1,
    "read_only_depends_on": "eval:doc.disabled"
+  },
+  {
+   "fieldname": "organization_name",
+   "fieldtype": "Data",
+   "label": "Organization Name"
   }
  ],
  "links": [],
- "modified": "2023-10-03 16:22:21.278396",
+ "modified": "2023-10-06 15:26:16.236228",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
