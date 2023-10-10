@@ -33,3 +33,24 @@ def permission_query_conditions(user):
         return conditions
 
     return None
+
+@frappe.whitelist()
+def post_job(job_title, qualification, responsibility, start_date, end_date, job_category, location, job_type, salary_info, job_description):
+    job_data = { 
+        "doctype": "Job",
+        "job_title": job_title,
+        "qualification": qualification,
+        "responsibility": responsibility,
+        "start_date": start_date,
+        "last_date_to_apply": end_date,
+        "job_category": job_category,
+        "location": location,
+        "job_type": job_type,
+        "salary_info": salary_info,
+        "job_description": job_description
+    }
+    job_doc = frappe.get_doc(job_data)
+    job_doc.insert()
+    frappe.db.commit()
+
+    return "Job created successfully"

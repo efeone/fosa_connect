@@ -88,7 +88,7 @@
    "fieldname": "job_type",
    "fieldtype": "Select",
    "label": "Job Type",
-   "options": "Full Time\nPart Time"
+   "options": "Full-Time\nPart-Time"
   },
   {
    "default": "0",
@@ -118,7 +118,7 @@
   }
  ],
  "links": [],
- "modified": "2023-10-06 15:26:16.236228",
+ "modified": "2023-10-07 23:10:15.359258",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",

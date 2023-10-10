@@ -1,0 +1,54 @@
+{% extends "templates/base.html" %}
+{% set catgry_doc = frappe.get_all('Job Category',fields=['job_category']) %}
+{% set qualification_doc = frappe.get_all('Qualification',fields=['qualification']) %}
+{%- block content -%}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<body>
+  <h1>Post Job</h1>
+  <form class="cf">
+    <div class="half left cf">
+      <input type="text" id="input-title" placeholder="Job Title">
+      <select id="input-qualification">
+        <option value="" disabled selected>Qualification</option>
+          {%- for qualify in qualification_doc -%}
+            <option value="{{ qualify.qualification }}">{{ qualify.qualification  }}</option>
+          {%- endfor -%}
+      </select>
+      <input type="text" id="input-responsibility" placeholder="Responsibility">
+      &nbsp;
+      <label for="start-date" class="fonds">Start Date:</label>
+      <input type="date" id="start-date" placeholder="start-date">
+      &nbsp;
+      <label for="end-date" class="fonds">End Date:</label>
+      <input type="date" id="end-date" placeholder="end-date">
+    </div>
+
+    <div class="half left cf" style="padding: 0%;">
+      <select id="input-category">
+        <option value="" disabled selected>Job Category</option>
+          {%- for category in catgry_doc -%}
+            <option value="{{ category.job_category }}">{{ category.job_category }}</option>
+          {%- endfor -%}
+      </select>
+      <input type="text" id="input-location" placeholder="Location">
+      <select id="input-type">
+        <option value="" disabled selected>Job-Type</option>
+        <option value="Full-Time">Full-Time</option>
+        <option value="Part-Time">Part-Time</option>
+    </select>
+    
+      <input type="text" id="input-salary" placeholder="Salary">
+    </div>
+    <div>
+      <textarea class="message" name="message" type="text" id="input-message" placeholder="Job Description"></textarea>
+    </div>
+
+    <div class="button-container">
+      <button class="discard" type="button" id="discard">Discard</button>
+      <button class="submit" type="submit" value="Submit" id="input-submit">Save</button>
+    </div>
+  </form>
+</body>
+
+{%- endblock -%}
