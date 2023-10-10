@@ -1,0 +1,159 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: #f1f1f1;
+      font-family: 'Merriweather', sans-serif;
+      padding: 1em;
+    }
+
+    h1 {
+      text-align: center;
+      color: #a8a8a8;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    input, textarea {
+      border: 0;
+      outline: 0;
+      padding: 1em;
+      border-radius: 12px;
+      display: block;
+      width: 92%;
+      margin-top: 1em;
+      font-family: 'Merriweather', sans-serif;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      resize: none;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 0px 2px rgba(19, 132, 150, 1)!important;
+    }
+
+    #input-submit:hover {
+      box-shadow: 0 1px 1px 1px rgba(163, 163, 163, 0.6);
+    }
+
+    textarea {
+      height: 126px;
+    }
+
+    .half {
+      float: left;
+      width: 48%;
+      margin-bottom: 1em;
+    }
+
+    .right {
+      width: 50%;
+    }
+
+    .left {
+      margin-right: 2%;
+    }
+
+    @media (max-width: 480px) {
+      .half {
+        width: 100%;
+        float: none;
+        margin-bottom: 0;
+      }
+    }
+
+    /* Clearfix */
+    .cf:before,
+    .cf:after {
+      content: " ";
+      display: table;
+    }
+
+    .cf:after {
+      clear: both;
+    }
+
+    .fonds {
+      color: #a8a8a8;
+      font-size: small;
+      border-top-width: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      margin-left: 57%;
+    }
+
+    #input-submit {
+      color: white;
+      background: #138496;
+      cursor: pointer;
+      border-radius: 12px;
+      width: 100px;
+      height: 40px;
+      border: #138496;
+    }
+
+    .discard {
+      color: rgb(0, 0, 0);
+      background: #ffffff;
+      cursor: pointer;
+      border-radius: 12px;
+      width: 100px;
+      height: 40px;
+      border: 0px;
+      margin-right: 10px;
+    }
+    #input-category{
+      border: 0;
+      outline: 0;
+      padding: 1em;
+      border-radius: 12px;
+      background: #ffffff;
+      display: block;
+      color:#797979;
+      width: 92%;
+      margin-top: 1em;
+      font-family: 'Merriweather', sans-serif;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      resize: none; 
+    }
+    #input-qualification{
+      border: 0;
+      outline: 0;
+      padding: 1em;
+      border-radius: 12px;
+      background: #ffffff;
+      display: block;
+      color:#797979;
+      width: 92%;
+      margin-top: 1em;
+      font-family: 'Merriweather', sans-serif;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      resize: none;
+
+    }
+    #input-type{
+      border: 0;
+      outline: 0;
+      padding: 1em;
+      border-radius: 12px;
+      background: #ffffff;
+      display: block;
+      color:#797979;
+      width: 92%;
+      margin-top: 1em;
+      font-family: 'Merriweather', sans-serif;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      resize: none;
+    }
