@@ -64,7 +64,8 @@ app_license = "MIT"
 # ------------
 
 # before_install = "fosa_connect.install.before_install"
-# after_install = "fosa_connect.install.after_install"
+after_install = "fosa_connect.fosa_connect.utils.set_uncheck_disable_signup"
+after_install = "fosa_connect.fosa_connect.utils.set_default_landing_page"
 
 # Uninstallation
 # ------------

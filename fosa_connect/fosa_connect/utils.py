@@ -46,3 +46,14 @@ def create_notification_log(doc, recipient, subject, content=None, type=None):
     if content:
         notification_log.email_content = content
     notification_log.save(ignore_permissions=True)
+
+def set_uncheck_disable_signup():
+    website_settings = frappe.get_single("Website Settings")
+    if website_settings.disable_signup:
+        website_settings.disable_signup = 0
+        website_settings.save()
+
+def set_default_landing_page():
+    website_settings = frappe.get_single("Website Settings")
+    website_settings.home_page = "home"
+    website_settings.save()
