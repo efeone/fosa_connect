@@ -1,0 +1,512 @@
+{% extends "templates/base.html" %}
+
+
+{% block content %}
+{% set address = frappe.get_doc("Address", member.primary_address) %}
+<form class="update-member" role="form">
+<div class="container">
+
+<div class="row gutters">
+
+<div class="col-xl-20 col-lg-20 col-md-25 col-sm-20 col-20">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="row gutters">
+		    <div class="card-body">
+		        <div class="account-settings">
+			        <div class="user-profile">
+			        	<div class="user-avatar">
+				        	<img id="img" src="{{ member.image}}" alt="Image Description" class="print-only" align="center">
+				        </div>
+				        <h6 class="user-name" align="center">{{member.first_name}}</h6>
+
+			        </div>
+		        </div>
+	        </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <h6 class="mb-2 text-primary">Personal Details</h6>
+        </div>
+
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+              <label for="first_name">Member Type</label>
+              <input class="form-control" id="User_type" placeholder="Enter first name" value="{{member.member_type}}">
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name" placeholder="Enter first name" value="{{member.first_name}}">
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+                <label for="middle_name">Middle Name</label>
+                <input type="text" class="form-control" id="middle_name" placeholder="Enter Middle name" value="{{member.middle_name}}">
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name" value="{{member.last_name}}">
+            </div>
+        </div>
+
+        {% if member.member_type == "Student" %}
+        <div id="student_fields">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h6 class="mb-2 text-primary">Academic Details</h6>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="form-group">
+                    <label for="admission_number">Admission Number</label>
+                    <input type="text" class="form-control" id="admission_number" placeholder="Admission Number" value="{{member.admission_number}}">
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group">
+                    <label for="year_of_admission">Year of Admission</label>
+                    <input type="text" class="form-control" id="year_of_admission" placeholder="Year of Admission" value="{{member.year_of_admission}}">
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" placeholder="Department" value="{{member.department}}">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if member.member_type == "Alumni" %}
+        <div id="alumni_fields">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <h6 class="mb-2 text-primary">Alumni Details</h6>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group">
+                    <label for="year_of_passing">Year of Passing</label>
+                    <input type="text" class="form-control" id="year_of_passing" placeholder="Year of Passing" value="{{member.year_of_passing}}">
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group">
+                    <label for="designation">Designation</label>
+                    <input type="text" class="form-control" id="designation" placeholder="Designation" value="{{member.designation}}">
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group">
+                    <label for="job_title">Job Title</label>
+                    <input type="text" class="form-control" id="job_title" placeholder="Job Title" value="{{member.job_title}}">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-12" style="margin-top: 20px;">
+				<h6 class="mb-2 text-primary">Contact Detials</h6>
+			</div>
+			{% if member.primary_address is not none %}
+			<div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
+			<label class="col-sm-10 control-label">Address</label>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="address_line1" placeholder="Address line 1" value="{{address.address_line1}}">
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="address_line2" placeholder="Address line 2" value="{{address.address_line2}}">
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="city" placeholder="City" value="{{address.city}}">
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+							<input type="text" class="form-control" id="state" placeholder="State" value="{{address.state}}">
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+							<input type="text" class="form-control" id="pincode" placeholder="Postal code" value="{{address.pincode}}">
+						</div>
+					</div>
+      </div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="mobile_no">Phone number</label>
+					<input type="text" class="form-control" id="phone" placeholder="Phone Number" value="{{address.phone}}">
+				</div>
+			</div>
+
+			{% else %}
+			<div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
+			<label class="col-sm-10 control-label">Address</label>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="address_line1" placeholder="Address line 1">
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="address_line2" placeholder="Address line 2">
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="city" placeholder="City">
+						</div>
+					</div>
+      </div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="mobile_no">Phone number</label>
+					<input type="text" class="form-control" id="mobile_no" placeholder="Phone Number">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="email_id">Email ID</label>
+					<input type="email" class="form-control" id="email_id" placeholder="Year of Admission" value="{{member.email_id}}">
+				</div>
+			</div>
+			{%endif%}
+
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
+				<h6 class="mb-2 text-primary">Profile</h6>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="linkedin">Linkedin</label>
+					<input type="text" class="form-control" id="linkedin" placeholder="Linkedin">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
+        <div class="form-group">
+            <label for="website_or_portfolio">Website or Portfolio</label>
+            <input type="text" class="form-control" id="website_or_portfolio" name="website_or_portfolio" placeholder="Enter Website or Portfolio">
+        </div>
+    </div>
+		<div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
+        <div class="form-group">
+            <label for="career_objective_or_summary">Career Objective or Summary</label>
+            <textarea rows="3" class="form-control" id="career_objective_or_summary" name="career_objective_or_summary" placeholder="Enter career objective or summary">{{member.career_objective_or_summary}}</textarea>
+        </div>
+    </div>
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="form-group">
+				<label for="hobbies_and_interests">Hobbies and Interests</label>
+				<input type="text" class="form-control" id="hobbies_and_interests" placeholder="hobbies_and_interests">
+			</div>
+		</div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
+          <h6 class="mb-2 text-primary">Skills</h6>
+      </div>
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<label class="col-sm-10 control-label">Technical Skills</label>
+					<table class="table" id="technical-skills">
+						<thead>
+							<tr>
+								<th>Skills</th>
+								<th>Rating</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for row in member.technical_skills %}
+							<tr>
+								<td><input type="text" name="skills[]" value="{{ row.skills }}" /></td>
+
+								<td class="star-wrapper">
+										<a class="fas fa-star s1" onclick="setRating(this, 1)"></a>
+										<a class="fas fa-star s2" onclick="setRating(this, 2)"></a>
+										<a class="fas fa-star s3" onclick="setRating(this, 3)"></a>
+										<a class="fas fa-star s4" onclick="setRating(this, 4)"></a>
+										<a class="fas fa-star s5" onclick="setRating(this, 5)"></a>
+
+										<input type="hidden" class="rating-input" value="0" />
+								</td>
+								<td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				<button type="button" onclick="add_technical_skills_row()">Add Row</button>
+				</div>
+
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<label class="col-sm-10 control-label">Soft Skills</label>
+						<table class="table" id="soft-skills">
+							<thead>
+								<tr>
+									<th>Skills</th>
+									<th>Rating</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for row in member.soft_skills %}
+								<tr>
+									<td><input type="text" name="skills[]" value="{{ row.skills }}" /></td>
+
+									<td class="star-wrapper">
+											<a class="fas fa-star s1"></a>
+											<a class="fas fa-star s2"></a>
+											<a class="fas fa-star s3"></a>
+											<a class="fas fa-star s4"></a>
+											<a class="fas fa-star s5"></a>
+									</td>
+									<td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					<button type="button" onclick="add_soft_skills_row()">Add Row</button>
+					</div>
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<label class="col-sm-10 control-label">language_proficiency</label>
+		          <table class="table" id="language-proficiency">
+		          <thead>
+		            <tr>
+		              <th>Language</th>
+		              <th>Read</th>
+		              <th>write</th>
+									<th>speak</th>
+
+		            </tr>
+		          </thead>
+		          <tbody>
+		            {% for row in member.language_proficiency %}
+		            <tr>
+		                <td><input type="text" name="language[]" value="{{ row.language }}" /></td>
+		                <td><input type="checkbox" name="read[]" value="{{ row.read }}" /></td>
+		                <td><input type="checkbox" name="write[]" value="{{ row.write }}" /></td>
+										<td><input type="checkbox" name="speak]" value="{{ row.speak }}" /></td>
+
+		                <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+		            </tr>
+		            {% endfor %}
+		        </tbody>
+		        </table>
+		        <button type="button" onclick="add_language_proficiency_row()">Add Row</button>
+
+		      </div>
+
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
+				<h6 class="mb-2 text-primary">Career History</h6>
+			</div>
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<label class="col-sm-10 control-label">Career History</label>
+          <table class="table" id="carrer-history">
+          <thead>
+            <tr>
+              <th>Organization Name</th>
+              <th>Industry</th>
+              <th>Role</th>
+							<th>organization_description</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in member.career_history %}
+            <tr>
+                <td><input type="text" name="organization_name[]" value="{{ row.organization_name }}" /></td>
+                <td><input type="text" name="industry[]" value="{{ row.industry }}" /></td>
+                <td><input type="text" name="role[]" value="{{ row.role }}" /></td>
+								<td><input type="text" name="organization_description[]" value="{{ row.organization_description }}" /></td>
+                <td><input type="text" name="from_date[]" value="{{ row.from_date }}" /></td>
+                <td><input type="text" name="to_date[]" value="{{ row.to_date }}" /></td>
+                <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        <button type="button" onclick="add_carrer_history_row()">Add Row</button>
+
+      </div>
+
+			<div class="col-xl-12 col-lg-10 col-md-12 col-sm-12 col-12">
+			<label class="col-sm-10 control-label">Education</label>
+            <table class="table" id="education">
+              <thead>
+                <tr>
+                  <th>Degree(s) Earned</th>
+                  <th>Major/Field of Study</th>
+                  <th>School/University Name</th>
+                  <th>Percentage/Grade</th>
+                  <th>Graduation Year</th>
+                </tr>
+              </thead>
+							<tbody>
+		            {% for row in member.education %}
+		            <tr>
+		                <td><input type="text" name="degrees_earned[]" value="{{ row.degrees_earned }}" /></td>
+		                <td><input type="text" name="majorfield_of_study[]" value="{{ row.majorfield_of_study }}" /></td>
+		                <td><input type="text" name="schooluniversity_name[]" value="{{ row.schooluniversity_name }}" /></td>
+		                <td><input type="text" name="percentagegrade[]" value="{{ row.percentagegrade }}" /></td>
+		                <td><input type="text" name="graduation_year[]" value="{{ row.graduation_year }}" /></td>
+		                <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+		            </tr>
+		            {% endfor %}
+		        </tbody>
+		        </table>
+		        <button type="button" onclick="add_education_row()">Add Row</button>
+
+          </div>
+
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<label class="col-sm-6 control-label">Projects</label>
+            <table class="table" id="projects">
+            <thead>
+              <tr>
+
+                <th>Project Title</th>
+                <th>Description</th>
+                <th>Role</th>
+                <th>Technologies Used</th>
+
+              </tr>
+            </thead>
+						<tbody>
+	            {% for row in member.projects %}
+	            <tr>
+
+	                <td><input type="text" name="project_title[]" value="{{ row.project_title }}" /></td>
+	                <td><input type="text" name="description[]" value="{{ row.description }}" /></td>
+	                <td><input type="text" name="role[]" value="{{ row.role }}" /></td>
+	                <td><input type="text" name="technologies_used[]" value="{{ row.technologies_used }}" /></td>
+	                <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+	            </tr>
+	            {% endfor %}
+	        </tbody>
+	        </table>
+	        <button type="button" onclick="add_projects_row('projects')">Add Row</button>
+
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<label class="col-sm-10 control-label">Awards and Achievements</label>
+
+                <div class="col-sm-13">
+                    <textarea rows="3" class="form-control" id="awards_and_achievements">{{member.awards_and_achievements}}</textarea>
+                </div>
+            </div>
+            <br>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<label class="col-sm-10 control-label">Publications</label>
+                <table class="table" id="publications">
+                <thead>
+                  <tr>
+
+                    <th>Title</th>
+                    <th>Publisher</th>
+                    <th>Publication Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in member.publications %}
+									<tr>
+
+
+			                <td><input type="text" name="title[]" value="{{ row.title }}" /></td>
+			                <td><input type="text" name="publisher[]" value="{{ row.publisher }}" /></td>
+			                <td><input type="text" name="publication_date[]" value="{{ row.publication_date }}" /></td>
+			                <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+			            </tr>
+			            {% endfor %}
+			        </tbody>
+			        </table>
+			        <button type="button" onclick="add_publications_row('publication')">Add Row</button>
+
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<label class="col-sm-10 control-label">Volunteer Work or Extracurricular Activities</label>
+                <div class="col-sm-13">
+                    <textarea rows="3" class="form-control" id="volunteer_work_or_extracurricular_activities">{{member.volunteer_work_or_extracurricular_activities}}</textarea>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<label class="col-sm-10 control-label">References</label>
+              <table class="table" id="references">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Title/Position</th>
+                  <th>Company/Organisation</th>
+                  <th>Contact Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in member.references %}
+								<tr>
+
+		                <td><input type="text" name="name1[]" value="{{ row.name1 }}" /></td>
+		                <td><input type="text" name="titleposition[]" value="{{ row.titleposition }}" /></td>
+		                <td><input type="text" name="companyorganization[]" value="{{ row.companyorganization }}" /></td>
+		                <td><input type="text" name="contact_information_phoneemail[]" value="{{ row.contact_information_phoneemail }}" /></td>
+		                <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+		            </tr>
+		            {% endfor %}
+		        </tbody>
+		        </table>
+			        <button type="button" onclick="add_references_row('references')">Add Row</button>
+
+            </div>
+					</div>
+					<div class="row gutters">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="text-right">
+								<button type="button" id="cancel" name="submit" class="btn btn-secondary">Cancel</button>
+								<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
+<script>
+add_star_wrapper_row();
+function add_star_wrapper_row(){
+    const stars = document.querySelectorAll('.star-wrapper a');
+    let selectedStar = null;
+
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        selectedStar = index;
+        let starValue = (index + 1) / 5;
+        updateStars();
+      });
+    });
+
+    function updateStars() {
+      stars.forEach((star, index) => {
+        if (index <= selectedStar) {
+          star.style.color = 'gold';
+        } else {
+          star.style.color = '#fff';
+        }
+      });
+    }
+	}
+</script>
+
+
+
+
+{% endblock %}
