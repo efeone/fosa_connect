@@ -57,3 +57,17 @@ def set_default_landing_page():
     website_settings = frappe.get_single("Website Settings")
     website_settings.home_page = "home"
     website_settings.save()
+
+@frappe.whitelist()
+def user_validate(doc, method=None):
+    if doc.email:
+        member_type = frappe.get_value("Member", {"email_id": doc.email}, "member_type")
+        print("member_type :", member_type)
+        if doc.workflow_state == "Enabled" and member_type == "Student":
+            print("in if")
+            row = doc.append('roles')
+            row.role = 'Student'
+        if doc.workflow_state == "Enabled" and member_type == "Alumni":
+            print("in else")
+            row = doc.append('roles')
+            row.role = 'Alumni'

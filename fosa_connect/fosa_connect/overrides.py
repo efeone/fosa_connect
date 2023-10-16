@@ -26,19 +26,20 @@ def sign_up(email, first_name, last_name, full_name,  member_type, admission_num
         "last_name": escape_html(last_name),
         "full_name": escape_html(full_name),
         "country": "",
-        "enabled": 1,
+        "enabled": 0,
         "new_password": random_string(10),
         "user_type": "Website User",
         "send_welcome_email": 0
     })
     user.flags.ignore_permissions = True
     user.flags.ignore_password_policy = True
-    user.insert()
-# set default signup role as per Portal Settings
-    default_role = frappe.db.get_value("Portal Settings", None, "default_role")
-    if default_role:
-        user.add_roles(default_role)
+    user.insert(ignore_permissions=True)
 
+# set default signup role as per Portal Settings
+    #if member_type == "Student":
+#        user.add_roles("Student")
+#    elif member_type == "Alumni":
+#        user.add_roles("Alumni")
     # Create a member record
     create_member(email, first_name, last_name, member_type,admission_number, year_of_admission, department, year_of_passing, job_title, designation)
 
@@ -50,21 +51,8 @@ def sign_up(email, first_name, last_name, full_name,  member_type, admission_num
 
 @frappe.whitelist(allow_guest=True)
 def create_member(email, first_name, last_name, member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, job_title=None, designation=None):
-    # Check if a member with the same admission number already exists
-    existing_member = frappe.get_all("Member", filters={"admission_number": admission_number}, limit=1)
-
-    if existing_member:
-        # Member with the same admission number exists
-        existing_member_doc = frappe.get_doc("Member", existing_member[0]["name"])
-
-        # You can choose to update the existing member's information here if needed
-        # Example: existing_member_doc.first_name = first_name
-        # Update other fields as necessary
-
-        existing_member_doc.save()
-        frappe.db.commit()
-
-        return existing_member_doc.name  # Return the name of the existing member
+    if frappe.db.exists('Member', { 'email': email }):
+        frappe.throw('Member already registered with this email id.')
     else:
         # Create a new member
         member_data = {
@@ -84,7 +72,7 @@ def create_member(email, first_name, last_name, member_type, admission_number=No
         member = frappe.get_doc(member_data)
         member.flags.ignore_permissions = True
         member.flags.ignore_password_policy = True
-        member.insert()
+        member.insert(ignore_permissions=True)
         frappe.db.commit()
 
         return member.name  # Return the name of the newly created member
