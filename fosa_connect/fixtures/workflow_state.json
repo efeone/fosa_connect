@@ -2,6 +2,15 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-10-07 16:29:19.920227",
+  "name": "Enabled",
+  "style": "",
+  "workflow_state_name": "Enabled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
   "icon": "question-sign",
   "modified": "2023-09-01 10:15:28.349874",
   "name": "Pending",
@@ -61,5 +70,14 @@
   "name": "Cancelled",
   "style": "Inverse",
   "workflow_state_name": "Cancelled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-10-07 16:29:38.116967",
+  "name": "Disabled",
+  "style": "",
+  "workflow_state_name": "Disabled"
  }
 ]
