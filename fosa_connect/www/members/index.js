@@ -161,33 +161,36 @@ function add_references_row() {
 function add_technical_skills_row() {
     var table = document.getElementById("technical-skills").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow();
-
+    tableName = 'technical-skills';
     var skillsCell = newRow.insertCell(0);
     var levelCell = newRow.insertCell(1);
     var actionCell = newRow.insertCell(2);
     levelCell.className= "star-wrapper"
     skillsCell.innerHTML = '<input type="text" name="skills[]" value="" />';
-    levelCell.innerHTML = '<a class="fas fa-star s1"></a><a class="fas fa-star s2"></a><a class="fas fa-star s3"></a><a class="fas fa-star s4"></a><a class="fas fa-star s5"></a>';
+    levelCell.innerHTML = '<a class="fas fa-star s1"></a> <a class="fas fa-star s2"></a> <a class="fas fa-star s3"></a> <a class="fas fa-star s4"></a> <a class="fas fa-star s5"></a> <input type="hidden" class="rating-input" value="0">';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
-    add_star_wrapper_row();
+    var rowIndex = newRow.rowIndex;
+    add_star_wrapper_row(tableName, rowIndex);
 }
 
 
 function add_soft_skills_row() {
     var table = document.getElementById("soft-skills").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow();
-
+    tableName = "soft-skills";
     var skillsCell = newRow.insertCell(0);
     var levelCell = newRow.insertCell(1);
     var actionCell = newRow.insertCell(2);
     levelCell.className= "star-wrapper"
     skillsCell.innerHTML = '<input type="text" name="skills[]" value="" />';
-    levelCell.innerHTML = '<a class="fas fa-star s1"></a> <a class="fas fa-star s2"></a> <a class="fas fa-star s3"></a> <a class="fas fa-star s4"></a> <a class="fas fa-star s5"></a>';
+    levelCell.innerHTML = '<a class="fas fa-star s1"></a> <a class="fas fa-star s2"></a> <a class="fas fa-star s3"></a> <a class="fas fa-star s4"></a> <a class="fas fa-star s5"></a> <input type="hidden" class="rating-input" value="0">';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
+    var rowIndex = newRow.rowIndex;
+    add_star_wrapper_row(tableName, rowIndex);
 }
 
 function add_language_proficiency_row() {
-    var table = document.getElementById("language_proficiency").getElementsByTagName('tbody')[0];
+    var table = document.getElementById("language-proficiency").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow();
 
     var languageCell = newRow.insertCell(0);
@@ -307,7 +310,7 @@ function get_technical_skills_data() {
     for (var i = 0; i < table.rows.length; i++) {
         var row = table.rows[i];
         var skills = row.cells[0].querySelector('input').value;
-        var level = row.cells[0].querySelector('input').value;
+        var level = row.cells[1].querySelector('input').value;
         data.push({ skills: skills, level: level,});
     }
 
@@ -351,6 +354,30 @@ function get_language_proficiency_data() {
     // You can now send the jsonData to your server or use it as needed.
 }
 
+// Star Rating
+function add_star_wrapper_row(tableName, rowIndex){
+	const row = document.getElementById(tableName).rows[rowIndex];
+    const stars = row.querySelectorAll('.star-wrapper a');
+    let selectedStar = null;
+
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        selectedStar = index;
+        let starValue = (index + 1) / 5;
+        updateStars();
+      });
+    });
+
+    function updateStars() {
+      stars.forEach((star, index) => {
+        if (index <= selectedStar) {
+          star.style.color = 'gold';
+        } else {
+          star.style.color = '#fff';
+        }
+      });
+    }
+	}
 
 
 
@@ -360,3 +387,4 @@ function setRating(starElement, rating) {
     const ratingInput = row.querySelector('.rating-input'); // Find the hidden input
     ratingInput.value = rating; // Set the value of the hidden input to the selected rating
 }
+
