@@ -1,78 +1,142 @@
 {% set dept_doc = frappe.get_all('Program',fields=["program_name"]) %}
-<form class="signup-form signup-form-fosa" role="form">
+<form class="signup-form signup-form-fosa" role="form" id="signup-form">
     <div class="page-card-body">
         <div class="form-group">
-          <select class="form-control" id="member_type" name="member_type" required style="width: 99%; padding: 7px; border: none; border-radius: 4px;text-align: center;">
-              <option value="null" id="nullOption">Select Member Type</option>
-              <option value="Student">Student</option>
-              <option value="Alumni">Alumni</option>
-          </select>
-        </div>
-        <div class="form-group">
-            <label class="form-label sr-only" for="signup_firstname">{{ _("First Name") }}</label>
-            <input type="text" id="signup_firstname" class="form-control" placeholder="{{ _('First Name') }}" required autofocus>
-        </div>
-        <div class="form-group">
-            <label class="form-label sr-only" for="signup_lastname">{{ _("Last Name") }}</label>
-            <input type="text" id="signup_lastname" class="form-control" placeholder="{{ _('Last Name') }}" required autofocus>
-        </div>
-        <div class="form-group">
-            <label class="form-label sr-only" for="signup_email">{{ _("Email") }}</label>
-            <input type="email" id="signup_email" class="form-control" placeholder="{{ _('Email') }}" required>
-        </div>
-        <div class="form-group">
-            <label class="form-label sr-only" for="phone_number">{{ _("Phone Number") }}</label>
-            <input type="text" id="phone_number" class="form-control" placeholder="{{ _('Phone Number') }}" required>
-        </div>
-
-        <div id="Student_fields">
-          <div class="form-group">
-            <label class="form-label sr-only" for="admission_number">{{ _("Admission Number") }}</label>
-            <input type="text" id="admission_number" class="form-control" placeholder="{{ _('Admission Number') }}">
-          </div>
-          <div class="form-group">
-            <label class="form-label sr-only" for="year_of_admission">{{ _("Year of Admission") }}</label>
-            <input type="text" id="year_of_admission" class="form-control" placeholder="{{ _('Year of Admission') }}">
-          </div>
-          <div class="form-group">
-            <label class="form-label sr-only" for="department"></label>
-            <select id="department-select" name="department" class="form-control" style="background-color: var(--control-bg);">
-              <option value="">Select Department</option>
-                {%- for department in dept_doc -%}
-                  <option value="{{ department.program_name }}">{{ department.program_name }}</option>
-                {%- endfor -%}
+            <select
+                class="form-control"
+                id="member_type"
+                name="member_type"
+                required
+                style="width: 99%; padding: 7px; border: none; border-radius: 4px;text-align: center;"
+            >
+                <option value="" id="nullOption">Select Member Type</option>
+                <option value="Student">Student</option>
+                <option value="Alumni">Alumni</option>
             </select>
         </div>
+        <div id="General_fields">
+            <div class="form-group">
+                <label class="form-label sr-only" for="signup_firstname">{{ _("First Name") }}</label>
+                <input
+                    type="text"
+                    id="signup_firstname"
+                    class="form-control"
+                    placeholder="{{ _('First Name') }}"
+                    required
+                    autofocus
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="signup_lastname">{{ _("Last Name") }}</label>
+                <input
+                    type="text"
+                    id="signup_lastname"
+                    class="form-control"
+                    placeholder="{{ _('Last Name') }}"
+                    required
+                    autofocus
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="signup_email">{{ _("Email") }}</label>
+                <input
+                    type="email"
+                    id="signup_email"
+                    class="form-control"
+                    placeholder="{{ _('Email') }}"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="phone_number">{{ _("Phone Number") }}</label>
+                <input
+                    type="text"
+                    id="phone_number"
+                    class="form-control"
+                    placeholder="{{ _('Phone Number') }}"
+                    required
+                >
+            </div>
         </div>
-
+        <div id="Student_fields">
+            <div class="form-group">
+                <label class="form-label sr-only" for="admission_number">{{ _("Admission Number") }}</label>
+                <input
+                    type="text"
+                    id="admission_number"
+                    class="form-control"
+                    placeholder="{{ _('Admission Number') }}"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="year_of_admission">{{ _("Year of Admission") }}</label>
+                <input
+                    type="text"
+                    id="year_of_admission"
+                    class="form-control"
+                    placeholder="{{ _('Year of Admission') }}"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="department"></label>
+                <select
+                    id="department-select"
+                    name="department"
+                    class="form-control"
+                    style="background-color: var(--control-bg);"
+                    required
+                >
+                    <option value="">Select Department</option>
+                    {%- for department in dept_doc -%}
+                    <option value="{{ department.program_name }}">{{ department.program_name }}</option>
+                    {%- endfor -%}
+                </select>
+            </div>
+        </div>
         <div id="Alumni_fields">
-          <div class="form-group">
-              <label class="form-label sr-only" for="year_of_passing">{{ _("Year of Passing") }}</label>
-              <input type="text" id="year_of_passing" class="form-control" placeholder="{{ _('Year of Passing') }}">
-          </div>
-          <div class="form-group">
-              <label class="form-label sr-only" for="job_title">{{ _("Job Title") }}</label>
-              <input type="text" id="job_title" class="form-control" placeholder="{{ _('Job Title') }}">
-          </div>
-          <div class="form-group">
-              <label class="form-label sr-only" for="designation">{{ _("Designation") }}</label>
-              <input type="text" id="designation" class="form-control" placeholder="{{ _('Designation') }}">
-          </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="year_of_passing">{{ _("Year of Passing") }}</label>
+                <input
+                    type="text"
+                    id="year_of_passing"
+                    class="form-control"
+                    placeholder="{{ _('Year of Passing') }}"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="job_title">{{ _("Job Title") }}</label>
+                <input
+                    type="text"
+                    id="job_title"
+                    class="form-control"
+                    placeholder="{{ _('Job Title') }}"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="designation">{{ _("Designation") }}</label>
+                <input
+                    type="text"
+                    id="designation"
+                    class="form-control"
+                    placeholder="{{ _('Designation') }}"
+                    required
+                >
+            </div>
         </div>
     </div>
     <div class="page-card-actions">
         <button class="btn btn-sm btn-primary btn-block btn-signup" type="submit">{{ _("Sign up") }}</button>
-
         <p class="text-center sign-up-message">
             <a href="#login" class="blue">{{ _("Have an account? Login") }}</a>
         </p>
     </div>
 </form>
-
-
 <script>
     frappe.ready(function () {
-      console.log("on load");
         $(".signup-form-fosa").on("submit", (e) => {
             signup_fosa_connect(e);
         });
@@ -81,7 +145,7 @@
     const signup_fosa_connect = (e) => {
         e.preventDefault();
         let memberType = $("#member_type").val();
-        if(memberType=="null"){
+        if(memberType==""){
           frappe.throw("Please select Member Type!")
         }
         else {
@@ -118,19 +182,39 @@
     }
 
     document.getElementById("nullOption").selected = true;
+    document.getElementById('General_fields').style.display = 'none';
     document.getElementById('Student_fields').style.display = 'none';
     document.getElementById('Alumni_fields').style.display = 'none';
 
     document.getElementById('member_type').addEventListener('change', function() {
-      if (this.value === 'Student') {
-          document.getElementById('Student_fields').style.display = 'block';
-          document.getElementById('Alumni_fields').style.display = 'none';
-      } else if (this.value === 'Alumni') {
-          document.getElementById('Student_fields').style.display = 'none';
-          document.getElementById('Alumni_fields').style.display = 'block';
-      } else {
-        document.getElementById('Student_fields').style.display = 'none';
-        document.getElementById('Alumni_fields').style.display = 'none';
-      }
-    });
+    if (this.value === 'Student') {
+      document.getElementById('General_fields').style.display = 'block';
+      document.getElementById('Student_fields').style.display = 'block';
+      document.getElementById('Alumni_fields').style.display = 'none';
+      document.getElementById('year_of_passing').value = '';
+      document.getElementById('job_title').value = '';
+      document.getElementById('designation').value = '';
+    } else if (this.value === 'Alumni') {
+      document.getElementById('General_fields').style.display = 'block';
+      document.getElementById('Student_fields').style.display = 'none';
+      document.getElementById('Alumni_fields').style.display = 'block';
+      document.getElementById('admission_number').value = '';
+      document.getElementById('year_of_admission').value = '';
+      document.getElementById('department-select').value = '';
+    } else {
+      document.getElementById('signup_firstname').value = '';
+      document.getElementById('signup_lastname').value = '';
+      document.getElementById('signup_email').value = '';
+      document.getElementById('phone_number').value = '';
+      document.getElementById('admission_number').value = '';
+      document.getElementById('year_of_admission').value = '';
+      document.getElementById('department-select').value = '';
+      document.getElementById('year_of_passing').value = '';
+      document.getElementById('job_title').value = '';
+      document.getElementById('designation').value = '';
+      document.getElementById('General_fields').style.display = 'none';
+      document.getElementById('Student_fields').style.display = 'none';
+      document.getElementById('Alumni_fields').style.display = 'none';
+    }
+  });
 </script>
