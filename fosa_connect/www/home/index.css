@@ -11,6 +11,40 @@
   padding-bottom: var(--dl-space-space-halfunit);
   justify-content: space-between;
 }
+/* Style the dropdown container */
+.navbar-link1.dropdown {
+    position: relative;
+}
+
+/* Style the dropdown toggle button */
+.navbar-link1 .dropdown-toggle {
+    cursor: pointer;
+}
+
+/* Style the dropdown menu */
+.navbar-link1 .dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/* Style each dropdown item */
+.navbar-link1 .dropdown-menu li {
+    padding: 10px;
+    list-style: none;
+}
+
+/* Style the dropdown item links */
+.navbar-link1 .dropdown-menu li a {
+    text-decoration: none;
+}
+
+/* Style the dropdown items on hover */
+.navbar-link1 .dropdown-menu li:hover {
+    background-color: #f0f0f0; /* Background color on hover (if needed) */
+}
+
 .navbar-desktop {
   flex: 1;
   display: flex;
