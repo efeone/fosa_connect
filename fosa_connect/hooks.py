@@ -64,8 +64,7 @@ app_license = "MIT"
 # ------------
 
 # before_install = "fosa_connect.install.before_install"
-after_install = "fosa_connect.fosa_connect.utils.set_uncheck_disable_signup"
-after_install = "fosa_connect.fosa_connect.utils.set_default_landing_page"
+# after_install = "fosa_connect.install.after_install"
 
 # Uninstallation
 # ------------
@@ -125,7 +124,10 @@ doc_events = {
     "Job Interest": {
         "after_insert": "fosa_connect.fosa_connect.doctype.job_interest.job_interest.job_create_notification_log",
         "on_update": "fosa_connect.fosa_connect.doctype.job_interest.job_interest.student_notification_log"
-    }
+    },
+	"User": {
+	   "validate": "fosa_connect.fosa_connect.utils.user_validate"
+	   }
 }
 
 # Scheduled Tasks

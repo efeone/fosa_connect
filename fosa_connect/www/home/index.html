@@ -36,9 +36,9 @@
         <link rel="icon" href="home/images/favicon.webp" type="image/x-icon">
     </head>
     <body>
-        
+
         <div>
-            
+
             <div class="home-container">
                 <div class="home-head">
                     <nav class="navbar-navbar">
@@ -79,17 +79,17 @@
                             </div>
                             <div class="navbar-quick-actions">
                                 {% if frappe.session.user == "Guest" %}
-                                <a href="http://127.0.0.1:8000/login">
+                                <a href="/login">
                                     <div class="navbar-sign-up-btn">
                                         <span class="navbar-sign-up">Sign in</span>
                                     </div>
                                 </a>
                                 {% else %}
-                                
+
                                     <div class="navbar-sign-up-btn" onclick="logoutUser()">
                                         <span class="navbar-sign-up">Logout</span>
                                     </div>
-                                
+
                                 {% endif %}
                                 <img
                                     id="open-mobile-menu"
