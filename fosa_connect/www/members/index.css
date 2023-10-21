@@ -234,3 +234,6 @@
         .input{
           background-color: #F4F5F6;
         }
+        .mult-select-tag .item-container{
+          background: white;
+        }

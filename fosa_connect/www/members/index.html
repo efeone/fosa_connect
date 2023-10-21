@@ -1,8 +1,9 @@
 {% extends "templates/base.html" %}
 
-
+{% set catgry_doc = frappe.get_all('Job Category',fields=['job_category']) %}
 {% block content %}
-{% set address = frappe.get_doc("Address", member.primary_address) %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 <form class="update-member" role="form">
     <div class="container">
         <div class="row gutters">
@@ -120,7 +121,7 @@
                             </div>
                             {% endif %}
 
-        {% if member.member_type == "Alumni" %}
+                            {% if member.member_type == "Alumni" %}
                             <div id="alumni_fields">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <h6 class="mb-2 text-primary">Alumni Details</h6>
@@ -167,8 +168,20 @@
                                 <h6 class="mb-2 text-primary">Contact Detials</h6>
                             </div>
                             {% if member.primary_address is not none %}
+                            {% set address = frappe.get_doc("Address", member.primary_address) %}
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
                                 <label class="col-sm-10 control-label">Address</label>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="address_title"
+                                            placeholder="Address Title"
+                                            value="{{address.address_title}}"
+                                        >
+                                    </div>
+                                </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <input
@@ -245,6 +258,16 @@
                                         <input
                                             type="text"
                                             class="form-control"
+                                            id="address_title"
+                                            placeholder="Address Title"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
                                             id="address_line1"
                                             placeholder="Address line 1"
                                         >
@@ -270,6 +293,16 @@
                                         >
                                     </div>
                                 </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="pincode"
+                                            placeholder="Postal code"
+                                        >
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
@@ -282,6 +315,7 @@
                                     >
                                 </div>
                             </div>
+                            {%endif%}
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="email_id">Email ID</label>
@@ -294,7 +328,6 @@
                                     >
                                 </div>
                             </div>
-                            {%endif%}
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
                                 <h6 class="mb-2 text-primary">Profile</h6>
                             </div>
@@ -342,8 +375,17 @@
                                         id="hobbies_and_interests"
                                         placeholder="hobbies_and_interests"
                                     >
-                                </div>
-                            </div>
+                                  </div>
+                                  <label for="area_interested_in">Area Interested In</label>
+                                  <select class="form-control" id="area_interested_in" name="area_interested_in">
+                                     <option value="" disabled hidden>Select an area</option>
+                                    {% for area in catgry_doc %}
+                                    <option value="{{ area.job_category }}">{{ area.job_category }}</option>
+                                    {% endfor %}
+                                  </select>
+
+                                </div
+
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
                                 <h6 class="mb-2 text-primary">Skills</h6>
                             </div>
@@ -360,15 +402,15 @@
                                         {% for row in member.technical_skills %}
                                         <tr>
                                             <td>
-                                                <input type="text" name="skills[]" value="{{ row.skills }}">
+                                                <input type="text" name="technical-skills[]" value="{{ row.skills }}">
                                             </td>
                                             <td class="star-wrapper">
-                                                <a class="fas fa-star s1" onclick="setRating(this, 1)"></a>
-                                                <a class="fas fa-star s2" onclick="setRating(this, 2)"></a>
-                                                <a class="fas fa-star s3" onclick="setRating(this, 3)"></a>
-                                                <a class="fas fa-star s4" onclick="setRating(this, 4)"></a>
-                                                <a class="fas fa-star s5" onclick="setRating(this, 5)"></a>
-                                                <input type="hidden" class="rating-input" value="0">
+                                                <a class="fas fa-star s1"></a>
+                                                <a class="fas fa-star s2"></a>
+                                                <a class="fas fa-star s3"></a>
+                                                <a class="fas fa-star s4"></a>
+                                                <a class="fas fa-star s5"></a>
+                                                <input type="hidden" class="rating-input" value="{{ row.level }}">
                                             </td>
                                             <td>
                                                 <button type="button" onclick="deleteRow(this)">Delete</button>
@@ -392,7 +434,7 @@
                                         {% for row in member.soft_skills %}
                                         <tr>
                                             <td>
-                                                <input type="text" name="skills[]" value="{{ row.skills }}">
+                                                <input type="text" name="soft-skills[]" value="{{ row.skills }}">
                                             </td>
                                             <td class="star-wrapper">
                                                 <a class="fas fa-star s1"></a>
@@ -400,7 +442,7 @@
                                                 <a class="fas fa-star s3"></a>
                                                 <a class="fas fa-star s4"></a>
                                                 <a class="fas fa-star s5"></a>
-                                                <input type="hidden" class="rating-input" value="0">
+                                                <input type="hidden" class="rating-input" value="{{ row.level }}">
                                             </td>
                                             <td>
                                                 <button type="button" onclick="deleteRow(this)">Delete</button>
@@ -429,13 +471,28 @@
                                                 <input type="text" name="language[]" value="{{ row.language }}">
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="read[]" value="{{ row.read }}">
+                                                <input type="checkbox" name="read[]"
+                                                {% if row.read == 1 %}
+                                                checked>
+                                                {% else %}
+                                                >
+                                                {% endif %}
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="write[]" value="{{ row.write }}">
+                                                <input type="checkbox" name="write[]"
+                                                {% if row.write == 1 %}
+                                                checked>
+                                                {% else %}
+                                                >
+                                                {% endif %}
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="speak]" value="{{ row.speak }}">
+                                                <input type="checkbox" name="speak[]"
+                                                {% if row.speak == 1 %}
+                                                checked>
+                                                {% else %}
+                                                >
+                                                {% endif %}
                                             </td>
                                             <td>
                                                 <button type="button" onclick="deleteRow(this)">Delete</button>
@@ -578,8 +635,9 @@
                                 </table>
                                 <button type="button" onclick="add_projects_row('projects')">Add Row</button>
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <label class="col-sm-10 control-label">Awards and Achievements</label>
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
+                            <label class="col-sm-10 control-label">Awards and Achievements</label>
                                 <div class="col-sm-13">
                                     <textarea rows="3" class="form-control" id="awards_and_achievements">{{member.awards_and_achievements}}</textarea>
                                 </div>
@@ -691,6 +749,7 @@
     rowlength = document.getElementById(tableName).rows.length
     for (var i=1; i <= rowlength; i++) {
     const row = document.getElementById(tableName).rows[i];
+    if(row) {
     const stars = row.querySelectorAll('.star-wrapper a');
     let selectedStar = null;
 
@@ -701,7 +760,11 @@
         updateStars();
       });
     });
-
+    stars.forEach((star, index) => {
+      let starValue = row.querySelector('.rating-input').value
+      selectedStar = (starValue*5)-1;
+      updateStars();
+    });
     function updateStars() {
       stars.forEach((star, index) => {
         if (index <= selectedStar) {
@@ -712,6 +775,9 @@
       });
     }
   }
+  }
   })
 </script>
+
+
 {% endblock %}
