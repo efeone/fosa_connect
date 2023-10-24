@@ -1,0 +1,61 @@
+{% extends "templates/base.html" %}
+{% set catgry_doc = frappe.get_all('Job Category', fields=['job_category']) %}
+{% set qualification_doc = frappe.get_all('Qualification', fields=['qualification']) %}
+{% set job_doc = frappe.get_doc('Job', job_id) %}
+{%- block content -%}
+
+<body>
+  <h1>Edit Job</h1>
+  <form class="cf">
+    <div class="half left cf">
+      <input type="text" id="input-title" value="{{ job_doc.job_title }}" placeholder="Job Title">
+      <select id="input-qualification">
+        <option value="" disabled>Qualification</option>
+        {%- for qualify in qualification_doc -%}
+            <option value="{{ qualify.qualification }}" {% if qualify.qualification == job_doc.qualification %}selected{% endif %}>{{ qualify.qualification }}</option>
+        {%- endfor -%}
+    </select>
+    
+    
+      <input type="text" id="input-responsibility" value="{{ job_doc.responsibility }}" placeholder="Responsibility">
+      &nbsp;
+      <label for="start-date" class="fonds">Start Date:</label>
+      <input type="date" id="start-date" value="{{ job_doc.start_date }}">
+      &nbsp;
+      <label for="end-date" class="fonds">End Date:</label>
+      <input type="date" id="end-date" value="{{ job_doc.last_date_to_apply }}">
+    </div>
+
+    <div class="half left cf" style="padding: 0%;">
+      <select id="input-category" value="">
+        <option value="" disabled>Job Category</option>
+        {%- for category in catgry_doc -%}
+            <option value="{{ category.job_category }}" {% if category.job_category == job_doc.job_category %}selected{% endif %}>{{ category.job_category }}</option>
+        {%- endfor -%}
+    </select>
+    
+      <input type="text" id="input-location" value="{{ job_doc.location }}" placeholder="Location">
+      <select id="input-type">
+        <option value="" disabled selected>Job-Type</option>
+        <option value="Full-Time" {% if job_doc.job_type == 'Full-Time' %}selected{% endif %}>Full-Time</option>
+        <option value="Part-Time" {% if job_doc.job_type == 'Part-Time' %}selected{% endif %}>Part-Time</option>
+      </select>
+      <input type="text" id="input-salary" value="{{ job_doc.salary_info }}" placeholder="Salary">
+      <input type="text" id="input-organization" value="{{ job_doc.organization_name}}" placeholder="Organization">
+    </div>
+    <div>
+      <textarea class="message" name="message" id="input-message" placeholder="Job Description">{{ job_doc.job_description }}</textarea>
+    </div>
+    <div>
+      <label for="isPublished">Publish</label>
+      <input type="checkbox" id="isPublished" name="isPublished" value="1" {% if job_doc.published %}checked{% endif %}>
+    </div>
+    
+    <div class="button-container">
+      <button class="discard" type="reset" >Discard</button>
+      <button class="submit" type="submit" value="Submit" id="input-submit">Save</button>
+    </div>
+  </form>
+</body>
+
+{%- endblock -%}

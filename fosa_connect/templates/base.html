@@ -190,7 +190,7 @@
 		// for backward compatibility of some libs
 		frappe.sys_defaults = frappe.boot.sysdefaults;
 	</script>
-	<script type="text/javascript" src="/assets/frappe/dist/js/frappe-web.bundle.ZTJNSQRM.js"></script>
+	{{ include_script('frappe-web.bundle.js') }}
 	{% endblock %}
 
 	<script type="text/javascript" src="/website_script.js"></script>
