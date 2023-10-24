@@ -39,13 +39,19 @@
     </select>
     
       <input type="text" id="input-salary" placeholder="Salary">
+      <input type="text" id="input-organization"  placeholder="Organization">
     </div>
     <div>
       <textarea class="message" name="message" type="text" id="input-message" placeholder="Job Description"></textarea>
     </div>
+    <div>
+      <label for="isPublished">Publish</label>
+      <input type="checkbox" id="isPublished" name="isPublished" value="1" checked>
+  </div>
+  
 
     <div class="button-container">
-      <button class="discard" type="button" id="discard">Discard</button>
+      <button class="discard" type="reset">Discard</button>
       <button class="submit" type="submit" value="Submit" id="input-submit">Save</button>
     </div>
   </form>
