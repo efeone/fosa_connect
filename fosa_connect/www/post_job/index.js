@@ -1,5 +1,12 @@
+if(document.getElementById('isPublished').checked){
+    var isPublished = 1;
+  } else {
+    var isPublished = 0;
+  }
+  
+
+
 frappe.ready(function () {
-    console.log("on load");
     $(".cf").on("submit", (e) => {
         createJobEntry(e);
     });
@@ -19,6 +26,7 @@ const createJobEntry = (e) => {
     let type = $("#input-type").val().trim();
     let salary = $("#input-salary").val().trim();
     let message = $("#input-message").val().trim();
+    let organization = $("#input-organization").val().trim();
 
     // Create a new job posting entry
     frappe.call({
@@ -34,6 +42,8 @@ const createJobEntry = (e) => {
             "job_type": type,
             "salary_info": salary,
             "job_description": message,
+            "organization" : organization,
+            "isPublished" : isPublished
         },
         callback: function (response) {
             if (response.message) {

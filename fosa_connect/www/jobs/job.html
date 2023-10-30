@@ -16,16 +16,20 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1 style="color: black; flex: 1; margin: auto;margin-bottom: 20px;">{{ jobs.job_title }}</h1>
           <div class="apply-button">
-             {%- if "Alumni" not in context.roles -%}
-              {%- if frappe.db.exists("Job Interest", {"job": jobs.name, "member": member}) -%}
-             <label style="color: green;">&#10003; Applied</label>
-             {%- else -%}
-             <button class="btn" id="interestButton" onclick="create_job_interest()">Apply Now</button>
-             {%- endif -%}
+            {%- if "Alumni" in context.roles -%}
+                <a href="/edit_job?job_id={{ jobs.name }}" class="btn btn-success">Edit Job</a>
             {%- else -%}
-              <button class="btn" id="interestButton" onclick="toggleInterest()">Edit Here</button>
-              {%- endif -%}
-          </div>
+                {%- if "Alumni" not in context.roles -%}
+                    {%- if frappe.db.exists("Job Interest", {"job": jobs.name, "member": member}) -%}
+                        <label style="color: green;">&#10003; Applied</label>
+                    {%- else -%}
+                        <button class="btn" id="interestButton" onclick="create_job_interest()">Apply Now</button>
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endif -%}
+        </div>
+        
+          
         </div>
       </div>
     </div>
