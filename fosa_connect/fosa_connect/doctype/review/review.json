@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:member",
+ "creation": "2023-10-27 09:47:13.347426",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_interest_id",
+  "first_name",
+  "department",
+  "job",
+  "member",
+  "image",
+  "column_break_wcfy9",
+  "student_testimonial"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_interest_id",
+   "fieldtype": "Link",
+   "label": "Job Interest ID",
+   "options": "Job Interest"
+  },
+  {
+   "fetch_from": "member.first_name",
+   "fetch_if_empty": 1,
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fetch_from": "member.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Program"
+  },
+  {
+   "fetch_from": "job_interest_id.job",
+   "fetch_if_empty": 1,
+   "fieldname": "job",
+   "fieldtype": "Link",
+   "label": "Job",
+   "options": "Job"
+  },
+  {
+   "fetch_from": "job_interest_id.member",
+   "fetch_if_empty": 1,
+   "fieldname": "member",
+   "fieldtype": "Link",
+   "label": "Member",
+   "options": "Member",
+   "unique": 1
+  },
+  {
+   "fetch_from": "member.image",
+   "fetch_if_empty": 1,
+   "fieldname": "image",
+   "fieldtype": "Data",
+   "label": "Image"
+  },
+  {
+   "fieldname": "column_break_wcfy9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "student_testimonial",
+   "fieldtype": "Small Text",
+   "label": "Student Testimonial"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-30 09:40:15.731253",
+ "modified_by": "Administrator",
+ "module": "FOSA Connect",
+ "name": "Review",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
