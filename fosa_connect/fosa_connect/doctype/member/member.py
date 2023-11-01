@@ -15,3 +15,4 @@ class Member(Document):
 
 	def on_trash(self):
 		delete_contact_and_address("Member", self.name)
+		

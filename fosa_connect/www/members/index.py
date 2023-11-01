@@ -14,9 +14,53 @@ def get_context(context):
 
 
 @frappe.whitelist(allow_guest=True)
-def update_member(email, first_name, middle_name, last_name, mobile_no, admission_number, year_of_admission, department, year_of_passing, job_title, designation, linkedin, website_or_portfolio, hobbies_and_interests, certifications, career_objective_or_summary,awards_and_achievements,volunteer_work_or_extracurricular_activities, career_history=None, education = None, projects=None, publications=None, technical_skills=None,soft_skills=None,language_proficiency=None, references=None):
+def update_member(email, first_name, middle_name, last_name, mobile_no, admission_number,
+    year_of_admission, department, year_of_passing, job_title, designation, linkedin,
+    website_or_portfolio, hobbies_and_interests, certifications, career_objective_or_summary,
+    awards_and_achievements,volunteer_work_or_extracurricular_activities,
+    address_title, address_line1, address_line2, city, state, pincode,area_interested_in=None,
+    career_history=None, education = None, projects=None, publications=None,
+    technical_skills=None,soft_skills=None, language_proficiency=None, references=None):
+
+    print("\nmultiselet data : ", area_interested_in)
+
+
     member = frappe.get_doc("Member", {"email_id": frappe.session.user})
     user = frappe.get_doc("User", {"email": frappe.session.user})
+
+    #Check if address exists
+    if frappe.db.exists("Dynamic Link", {"link_name" : member.name}):
+        primary_address = frappe.get_value("Dynamic Link", filters = {"link_name" : member.name}, fieldname = "parent")
+        address = frappe.get_doc("Address",primary_address)
+        if address:
+            address.address_title = address_title
+            address.address_line1 = address_line1
+            address.address_line2 = address_line2
+            address.city = city
+            address.state = state
+            address.pincode = pincode
+        address.save(ignore_permissions=True)
+        frappe.db.commit()
+
+    else:
+        #create a new address
+        address = frappe.new_doc("Address")
+        address.address_title = member.name
+        address.address_line1 = address_line1
+        address.address_line2 = address_line2
+        address.city = city
+        address.state = state
+        address.pincode = pincode
+        address.address_type = "Personal"
+        link = address.append('links')
+        link.link_doctype = "Member"
+        link.link_name = member.name
+        link.link_title = member.name
+        address.insert(ignore_permissions=True)
+        frappe.db.commit()
+        primary_address = address.address_title + "-" + address.address_type
+
+
     if member:
         # Update the first_name field
         member.first_name = escape_html(first_name)
@@ -41,6 +85,10 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         member.career_objective_or_summary = career_objective_or_summary
         member.awards_and_achievements = awards_and_achievements
         member.volunteer_work_or_extracurricular_activities = volunteer_work_or_extracurricular_activities
+        member.area_interested_in = area_interested_in
+
+        if not member.primary_address:
+            member.primary_address = primary_address
         member.career_history = []
         if career_history:
             career_history = json.loads(career_history)
@@ -107,13 +155,24 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
                 child.level=row.get('level')
         member.language_proficiency=[]
         if language_proficiency:
-            language_proficiency = json.loads('language_proficiency')
+            language_proficiency = json.loads(language_proficiency)
+            print('hello')
             for row in language_proficiency:
                 child = member.append('language_proficiency')
                 child.language = row.get('language')
                 child.read = row.get('read')
                 child.write = row.get('write')
                 child.speak = row.get('speak')
+
+        member.area_interested_in =[]
+        if area_interested_in:
+            area_interested_in= json.loads(area_interested_in)
+            for area in area_interested_in:
+                child=member.append('area_interested_in')
+                child.job_category = area
+
+
+
         # Save the updated Member document
         member.save()
 

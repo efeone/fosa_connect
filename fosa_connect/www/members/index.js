@@ -22,18 +22,25 @@ const designation = frappe.utils.xss_sanitise($("#designation").val() || "").tri
 const linkedin = frappe.utils.xss_sanitise($("#linkedin").val() || "").trim();
 const website_or_portfolio = frappe.utils.xss_sanitise($("#website_or_portfolio").val() || "").trim();
 const hobbies_and_interests = frappe.utils.xss_sanitise($("#hobbies_and_interests").val() || "").trim();
-const technical_skills = frappe.utils.xss_sanitise($("#technical_skills").val() || "").trim();
-const soft_skills = frappe.utils.xss_sanitise($("#soft_skills").val() || "").trim();
-const language_proficiency = frappe.utils.xss_sanitise($("#language_proficiency").val() || "").trim();
 const certifications = frappe.utils.xss_sanitise($("#certifications").val() || "").trim();
 const career_objective_or_summary = frappe.utils.xss_sanitise($("#career_objective_or_summary").val() || "").trim();
 const awards_and_achievements = frappe.utils.xss_sanitise($("#awards_and_achievements").val() || "").trim();
 const volunteer_work_or_extracurricular_activities = frappe.utils.xss_sanitise($("#volunteer_work_or_extracurricular_activities").val() || "").trim();
+const address_title = frappe.utils.xss_sanitise($("#address_title").val() || "").trim();
+const address_line1 = frappe.utils.xss_sanitise($("#address_line1").val() || "").trim();
+const address_line2 = frappe.utils.xss_sanitise($("#address_line2").val() || "").trim();
+const area_interested_in = frappe.utils.xss_sanitise($("#area_interested_in").val() || "").trim();
+const city = frappe.utils.xss_sanitise($("#city").val() || "").trim();
+const state = frappe.utils.xss_sanitise($("#state").val() || "").trim();
+const pincode = frappe.utils.xss_sanitise($('#pincode').val() ||"").trim();
 const career_history = get_carrer_history_data();
 const education = get_education_data();
 const projects = get_projects_data();
 const publications = get_publications_data();
 const references = get_references_data();
+const language_proficiency = get_language_proficiency_data();
+const technical_skills = get_skills_data("technical-skills");
+const soft_skills = get_skills_data("soft-skills");
 
 
 frappe.call({
@@ -65,10 +72,28 @@ frappe.call({
         "projects" : projects,
         "publications" : publications,
         "references" : references,
+        "address_title" : address_title,
+        "address_line1" : address_line1,
+        "address_line2" : address_line2,
+        "city" : city,
+        "state" : state,
+        "pincode" : pincode,
+        "area_interested_in" : area_interested_in,
 
+    },
+    callback: function (r) {
+        if (r.message) {
+            // Handle the success response here
+            alert(' Submitted successfully ');
+            // Refresh the whole page
+          } else {
+            // Handle errors here
+            alert('Error: ' + r.exc);
+        }
     },
 });
 };
+
 
 function add_carrer_history_row() {
     var table = document.getElementById("carrer-history").getElementsByTagName('tbody')[0];
@@ -166,7 +191,7 @@ function add_technical_skills_row() {
     var levelCell = newRow.insertCell(1);
     var actionCell = newRow.insertCell(2);
     levelCell.className= "star-wrapper"
-    skillsCell.innerHTML = '<input type="text" name="skills[]" value="" />';
+    skillsCell.innerHTML = '<input type="text" name="technical-skills[]" value="" />';
     levelCell.innerHTML = '<a class="fas fa-star s1"></a> <a class="fas fa-star s2"></a> <a class="fas fa-star s3"></a> <a class="fas fa-star s4"></a> <a class="fas fa-star s5"></a> <input type="hidden" class="rating-input" value="0">';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
     var rowIndex = newRow.rowIndex;
@@ -182,7 +207,7 @@ function add_soft_skills_row() {
     var levelCell = newRow.insertCell(1);
     var actionCell = newRow.insertCell(2);
     levelCell.className= "star-wrapper"
-    skillsCell.innerHTML = '<input type="text" name="skills[]" value="" />';
+    skillsCell.innerHTML = '<input type="text" name="soft-skills[]" value="" />';
     levelCell.innerHTML = '<a class="fas fa-star s1"></a> <a class="fas fa-star s2"></a> <a class="fas fa-star s3"></a> <a class="fas fa-star s4"></a> <a class="fas fa-star s5"></a> <input type="hidden" class="rating-input" value="0">';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
     var rowIndex = newRow.rowIndex;
@@ -304,13 +329,13 @@ function get_references_data() {
     // You can now send the jsonData to your server or use it as needed.
 }
 
-function get_technical_skills_data() {
-    var table = document.getElementById("technical-skills").getElementsByTagName('tbody')[0];
+function get_skills_data(tableName) {
+    var table = document.getElementById(tableName).getElementsByTagName('tbody')[0];
     var data = [];
     for (var i = 0; i < table.rows.length; i++) {
         var row = table.rows[i];
         var skills = row.cells[0].querySelector('input').value;
-        var level = row.cells[1].querySelector('input').value;
+        var level = row.querySelector('.rating-input').value;
         data.push({ skills: skills, level: level,});
     }
 
@@ -320,31 +345,27 @@ function get_technical_skills_data() {
     // You can now send the jsonData to your server or use it as needed.
 }
 
-
-function get_soft_skills_data() {
-    var table = document.getElementById("soft-skills").getElementsByTagName('tbody')[0];
-    var data = [];
-    for (var i = 0; i < table.rows.length; i++) {
-        var row = table.rows[i];
-        var skills = row.cells[0].querySelector('input').value;
-        var level = row.cells[0].querySelector('input').value;
-        data.push({ skills: skills, level: level,});
-    }
-
-    var jsonData = JSON.stringify(data);
-    console.log(jsonData);
-    return jsonData;
-    // You can now send the jsonData to your server or use it as needed.
-}
 function get_language_proficiency_data() {
     var table = document.getElementById("language-proficiency").getElementsByTagName('tbody')[0];
     var data = [];
     for (var i = 0; i < table.rows.length; i++) {
         var row = table.rows[i];
         var language = row.cells[0].querySelector('input').value;
-        var read = row.cells[1].querySelector('input').value;
-        var write = row.cells[2].querySelector('input').value;
-        var speak = row.cells[3].querySelector('input').value;
+        if (row.cells[1].querySelector('input').checked) {
+          var read = 1;
+         } else {
+           var read = 0;
+         }
+       if (row.cells[2].querySelector('input').checked) {
+         var write = 1;
+        } else {
+          var write = 0;
+        }
+      if (row.cells[3].querySelector('input').checked) {
+        var speak = 1
+       } else {
+         var speak = 0;
+       }
         data.push({ language: language, read: read, write: write, speak:speak,});
     }
 
@@ -364,6 +385,7 @@ function add_star_wrapper_row(tableName, rowIndex){
       star.addEventListener('click', () => {
         selectedStar = index;
         let starValue = (index + 1) / 5;
+          row.querySelector('.rating-input').value=starValue;
         updateStars();
       });
     });
@@ -378,13 +400,7 @@ function add_star_wrapper_row(tableName, rowIndex){
       });
     }
 	}
-
-
-
-//for saving star rating
-function setRating(starElement, rating) {
-    const row = starElement.parentElement.parentElement; // Get the parent row
-    const ratingInput = row.querySelector('.rating-input'); // Find the hidden input
-    ratingInput.value = rating; // Set the value of the hidden input to the selected rating
-}
-
+  new MultiSelectTag('area_interested_in', {
+    rounded: true,    // default true
+    shadow: true      // default false
+})
