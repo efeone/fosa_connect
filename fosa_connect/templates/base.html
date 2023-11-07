@@ -13,6 +13,8 @@
 	{% endblock %}
 
 	<link rel="canonical" href="{{ canonical }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 
 	{%- block head -%}
 		{% include "templates/includes/head.html" %}
@@ -95,6 +97,171 @@
                 <span>About Us</span>
             </span>
           </li>
+					<style>
+			 /* Style the notification icon */
+			 #notification-icon {
+					 cursor: pointer;
+					 position: relative;
+			 }
+
+			 /* Style the dropdown */
+			 #notification-dropdown {
+				 	display: none;
+					 background-color: #fff;
+					 z-index: 1;
+					 padding: 10px;
+					 /*margin-left: -258px;*/
+					 width: 480px;
+				  min-height: 300px;
+				  border: none;
+				  position: absolute;
+				  box-shadow: 0px 1px 4px rgba(17, 43, 66, 0.1),
+											0px 2px 6px rgba(17, 43, 66, 0.08);
+					border-radius: 5px;
+			 }
+
+			 @media (max-width: 767.98px) {
+			   .dropdown-notifications .notifications-list {
+			     max-height: 100vh;
+			     min-width: 100vw;
+			     width: calc(90vw - 60px);
+			   }
+				 #notification-dropdown {
+            width: 100%; /* Make it full-width for mobile */
+            right: 0; /* Align to the right edge of the screen */
+        }
+			 }
+
+			 /* Styles for desktop view */
+			 @media (min-width: 768px) {
+					 #notification-dropdown {
+							 right: 88px; /* Position 258px from the right edge */
+					 }
+			 }
+
+			 /* Additional styles for screen widths between 768px and 990px */
+    @media (min-width: 768px) and (max-width: 990px) {
+        #notification-dropdown {
+					width: 480px;
+        	left: 30px; /* Align to the right edge with right set to 0 */
+        }
+    }
+
+				#notification-dropdown .notification-body {
+			    text-align: left;
+			}
+
+				.spacing {
+        margin-bottom: 10px; /* Adjust the spacing as needed */
+    }
+		.blue-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: blue;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+		.notification-item:hover{
+			cursor: pointer;
+		}
+		.red-alert {
+        color: white;
+        right: 1px;
+    }
+		#notification-alert {
+    position: absolute;
+    top: 10px;
+    left: 23px; /* Adjust the horizontal position to make it touch the notification icon */
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 45%;
+    display: none;
+}
+@media (max-width: 768px) {
+    #notification-alert {
+        left: 5px; /* Adjust the horizontal position for small screens */
+    }
+}
+
+		</style>
+			<body>
+				{% set notifications = frappe.get_all("Notification Log",filters={'for_user':frappe.session.user},
+					fields=["name", "subject", "document_type", "document_name","creation","read"], order_by = '`read` ASC, creation DESC') %}
+	    	<li>
+	        <span class="nav-link" id="notification-icon" onclick="toggleDropdown(this)">
+	            <i class="fas fa-bell"></i>
+							<span class="red-alert" id="notification-alert"></span>
+	        </span>
+	        <div id="notification-dropdown" class="dropdown-content">
+						<div class="dropdown-menu notifications-list dropdown-menu-right" role="menu">                    </div>
+						<div class="notification-list-body" style="max-height: 300px; overflow-y: auto;">
+							<div class="panel-notifications"><div style="">
+				<div class="notification-body">
+
+
+					<div class="message">
+							 {% for notification_log in notifications %}
+							 <div>
+								<a class="recent-item notification-item " onclick="update_notification(this)" data-name="{{notification_log.name}}" data-name1={{notification_log.document_name}}>
+									{% if notification_log.read == 0 %}
+							<span class="blue-dot subject"></span>
+					{% endif %}
+									{{notification_log.subject}} <!-- remove this --><br></a>
+							</div>
+			<div class="notification-timestamp text-muted">
+				<span class="frappe-timestamp " data-timestamp="{{notification_log.creation}}" title="{{notification_log.modified}}"></span>
+			</div>
+			<div class="spacing"></div>
+			{% endfor %}
+		</div>
+				</div>
+				<div class="mark-as-read" title="Mark as Read">
+				</div>
+					</a>
+				</div>
+				</div>
+				</div>
+
+
+	        </div>
+	   </li>
+    <script>
+		// the notification body is hide when click outside the notification icon
+		function toggleDropdown(icon) {
+				 var notificationDropdown = document.getElementById("notification-dropdown");
+				 icon.classList.toggle("show-dropdown");
+				 notificationDropdown.style.display = notificationDropdown.style.display === "block" ? "none" : "block";
+		 }
+		 document.addEventListener("click", function (event) {
+        var notificationIcon = document.getElementById("notification-icon");
+        var notificationDropdown = document.getElementById("notification-dropdown");
+        if (!notificationIcon.contains(event.target) && !notificationDropdown.contains(event.target)) {
+            notificationDropdown.style.display = "none";
+        }
+    });
+		// red dot show on notification icon when unread message is occur
+		function updateNotificationAlert() {
+		    var notificationAlert = document.getElementById("notification-alert");
+		    var blueDots = document.querySelectorAll(".blue-dot");
+
+		    // Check if there are any blue dots (unread notifications) in the notification body
+		    var hasUnreadNotifications = blueDots.length > 0;
+
+		    if (hasUnreadNotifications) {
+		        notificationAlert.style.display = "block"; // Display the red alert
+		    } else {
+		        notificationAlert.style.display = "none"; // Hide the red alert
+		    }
+		}
+
+		// Call the function to update the red alert when the page loads or notifications are updated
+		updateNotificationAlert();
+
+
+    </script>
+</body>
         	<li class="nav-item dropdown logged-in" id="website-post-login" data-label="website-post-login" style="display: none">
         		<a href="#" class="nav-link nav-avatar" data-toggle="dropdown">
         			<span class="user-image-wrapper"></span>
@@ -202,5 +369,39 @@
 	{%- endblock %}
 	<!-- csrf_token -->
 		<script>frappe.csrf_token = "{{frappe.session.csrf_token}}";</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var timestampElements = document.querySelectorAll(".frappe-timestamp");
+
+    timestampElements.forEach(function(element) {
+      var timestamp = element.getAttribute("data-timestamp");
+      var formattedTimestamp = moment(timestamp).fromNow();
+      element.textContent = formattedTimestamp;
+    });
+  });
+</script>
+<script>
+const subject = frappe.utils.xss_sanitise($("#subject").val() || "").trim();
+function update_notification(notification) {
+var name = notification.getAttribute("data-name");
+var document_name = notification.getAttribute("data-name1");
+frappe.call({
+    method: "fosa_connect.templates.base.notification_icon",
+    args: {
+        "name": name
+      },
+      callback: function (response) {
+              if (response.message) {
+                  // Handle the success response, e.g., show a message to the user
+                  frappe.msgprint(response.message);
+              } else {
+                  // Handle any errors that may occur during the request
+              }
+							window.location.href = "/job_interest/job_interest/"+ document_name
+          }
+      });
+}</script>
+
 </body>
 </html>
