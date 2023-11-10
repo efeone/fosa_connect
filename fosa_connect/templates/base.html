@@ -97,6 +97,11 @@
                 <span>About Us</span>
             </span>
           </li>
+					<li class="nav-item dropdown logged-in">
+            <a href="/members" class="nav-link">
+                <span>Profile</span>
+            </a>
+          </li>
 					<style>
 			 /* Style the notification icon */
 			 #notification-icon {
@@ -186,7 +191,6 @@
 }
 
 		</style>
-			<body>
 				{% set notifications = frappe.get_all("Notification Log",filters={'for_user':frappe.session.user},
 					fields=["name", "subject", "document_type", "document_name","creation","read"], order_by = '`read` ASC, creation DESC') %}
 	    	<li>
@@ -261,7 +265,6 @@
 
 
     </script>
-</body>
         	<li class="nav-item dropdown logged-in" id="website-post-login" data-label="website-post-login" style="display: none">
         		<a href="#" class="nav-link nav-avatar" data-toggle="dropdown">
         			<span class="user-image-wrapper"></span>
