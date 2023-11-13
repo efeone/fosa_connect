@@ -11,6 +11,9 @@
   padding-bottom: var(--dl-space-space-halfunit);
   justify-content: space-between;
 }
+.link span {
+       font-size: 16px; /* Adjust the size as needed */
+   }
 /* Style the dropdown container */
 .navbar-link1.dropdown {
     position: relative;

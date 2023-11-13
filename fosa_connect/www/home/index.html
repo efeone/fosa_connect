@@ -78,9 +78,14 @@
                                         </a>
 
 
-                                        <span class="link">
+                                        <span class="link" >
                                             <span>About Us</span>
                                         </span>
+                                        {% if not frappe.session.user == "Guest" %}
+                                        <a href="/members" class="navbar-link2 link" style="margin-right: 10px;">
+                                            <span>Profile</span>
+                                              {% endif %}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -118,6 +123,12 @@
                                         <span>Jobs</span>
                                     </a>
                                 {% endif %}
+                                <div class="navbar-links1">
+                                    {% if not frappe.session.user == "Guest" %}
+                                        <a href="/job_interest" class="navbar-link1 link">
+                                            <span>Job Interest</span>
+                                        </a>
+                                    {% endif %}
                                 <a href="#services" class="navbar-link5 link">
                                     <span>Services</span>
                                 </a>
@@ -127,6 +138,12 @@
                                 <span class="link">
                                     <span>About Us</span>
                                 </span>
+                                {% if not frappe.session.user == "Guest" %}
+                                    <a href="/members" class="navbar-link1 link">
+                                        <span>Profile</span>
+                                    </a>
+                                {% endif %}
+                            </div>
                             </div>
                         </div>
                         <div>
