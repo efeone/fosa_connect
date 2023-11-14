@@ -29,9 +29,14 @@
         </style>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" data-tag="font">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" data-tag="font">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" data-tag="font">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" data-tag="font">
         <link href="home/index.css" rel="stylesheet">
         <link rel="stylesheet" href="home/style.css">
         <link rel="icon" href="home/images/favicon.webp" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
+        <link rel="stylesheet" href="css/style.css">
+
     </head>
     <body>
 
@@ -65,6 +70,7 @@
                                               <li><a href="/jobs">Jobs</a></li>
                                               <li><a href="/job_interest">Interested Jobs</a></li>
                                           </ul>
+
                                       </div>
                                       {% endif %}
                                         <a href="#services" class="navbar-link3 link">
@@ -73,19 +79,13 @@
                                         <a href="#features" class="navbar-link2 link">
                                             <span>Features</span>
                                         </a>
-                                        <a href="#features" class="navbar-link2 link">
+                                        <a href="#slideshow" class="navbar-link00 link">
                                             <span>SlideShow</span>
                                         </a>
-
-
-                                        <span class="link" >
+                                        <a href="about" class="link">
                                             <span>About Us</span>
                                         </span>
-                                        {% if not frappe.session.user == "Guest" %}
-                                        <a href="/members" class="navbar-link2 link" style="margin-right: 10px;">
-                                            <span>Profile</span>
-                                              {% endif %}
-                                        </a>
+                                      </a>
                                     </div>
                                 </div>
                             </div>
@@ -118,32 +118,18 @@
                                 </svg>
                             </div>
                             <div class="navbar-links1">
-                                {% if not frappe.session.user == "Guest" %}
-                                    <a href="/jobs" class="navbar-link1 link">
-                                        <span>Jobs</span>
-                                    </a>
-                                {% endif %}
-                                <div class="navbar-links1">
-                                    {% if not frappe.session.user == "Guest" %}
-                                        <a href="/job_interest" class="navbar-link1 link">
-                                            <span>Job Interest</span>
-                                        </a>
-                                    {% endif %}
-                                <a href="#services" class="navbar-link5 link">
+                                <a href="#services" class="navbar-link3 link">
                                     <span>Services</span>
                                 </a>
-                                <a href="#features" class="navbar-link6 link">
+                                <a href="#features" class="navbar-link2 link">
                                     <span>Features</span>
+                                </a>
+                                <a href="#slideshow" class="navbar-link00 link">
+                                    <span>Slideshow</span>
                                 </a>
                                 <span class="link">
                                     <span>About Us</span>
                                 </span>
-                                {% if not frappe.session.user == "Guest" %}
-                                    <a href="/members" class="navbar-link1 link">
-                                        <span>Profile</span>
-                                    </a>
-                                {% endif %}
-                            </div>
                             </div>
                         </div>
                         <div>
@@ -350,175 +336,29 @@
                 </div>
 
 
+              <br>
 
-                <!-- Swiper CSS -->
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
-
-
-
-                <!-- CSS -->
-                <link rel="stylesheet" href="css/style.css">
-
-            </head>
-            <!-- <body>
-
-              <br> -->
-
-                <div class="slide-container swiper">
+                <div class="slide-container swiper" id="slideshow">
                     <div class="slide-content">
                         <div class="card-wrapper swiper-wrapper">
+                            {% for review in reviews %}
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <span class="overlay"></span>
 
                                     <div class="card-image">
-                                       <img src="home/images/4.jpg" alt="" class="card-img">
+                                       <img src="/files/sld2d869f8.jpg" alt="" class="card-img">
                                     </div>
                                 </div>
 
                                 <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                                    <h2 class="name">{{ review.first_name }}</h2>
+                                    <p class="description">{{ review.student_testimonial }}</p>
 
-                                    <button class="button">View More</button>
+                                    <!-- <button class="button">View More</button> -->
                                 </div>
                             </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                           <img src="home/images/5.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                         <img src="home/images/3.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                            <img src="home/images/2.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                            <img src="home/images/1.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                            <img src="home/images/4.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                            <img src="home/images/1.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                            <img src="home/images/8.jpg" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-         <img src="home/images/9.jpg" alt="" class="card-img">                            </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Mohamed Yousef
-        </h2>
-                                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
-
-                                    <button class="button">View More</button>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
 
