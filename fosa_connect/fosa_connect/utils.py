@@ -57,18 +57,19 @@ def set_default_landing_page():
     website_settings = frappe.get_single("Website Settings")
     website_settings.home_page = "home"
     website_settings.save()
-    
+
 #assign role to user after approval
 @frappe.whitelist()
 def user_validate(doc, method=None):
     if doc.email:
         member_type = frappe.get_value("Member", {"email_id": doc.email}, "member_type")
-        print("member_type :", member_type)
-        if doc.workflow_state == "Enabled" and member_type == "Student":
-            print("in if")
-            row = doc.append('roles')
-            row.role = 'Student'
-        if doc.workflow_state == "Enabled" and member_type == "Alumni":
-            print("in else")
-            row = doc.append('roles')
-            row.role = 'Alumni'
+        if doc.workflow_state == "Enabled":
+            if member_type == "Student":
+                row = doc.append('roles')
+                row.role = 'Student'
+                doc.send_welcome_mail_to_user()
+        if doc.workflow_state == "Enabled":
+            if member_type == "Alumni":
+                row = doc.append('roles')
+                row.role = 'Alumni'
+                doc.send_welcome_mail_to_user()
