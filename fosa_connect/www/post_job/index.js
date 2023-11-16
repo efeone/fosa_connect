@@ -1,32 +1,30 @@
-if(document.getElementById('isPublished').checked){
-    var isPublished = 1;
-  } else {
-    var isPublished = 0;
-  }
-  
-
-
-frappe.ready(function () {
-    $(".cf").on("submit", (e) => {
-        createJobEntry(e);
-    });
+$(document).ready(function () {
+  console.log("on load");
+  $("#input-submit").click(function(){
+    console.log("Button clicked!");
+    createJobEntry();
+  });
 });
 
-const createJobEntry = (e) => {
-    e.preventDefault();
-    
+const createJobEntry = () => {
+  if(document.getElementById('isPublished').checked){
+    var isPublished = 1;
+  }
+  else {
+    var isPublished = 0;
+  }
     // Get values from form fields
-    let title = $("#input-title").val().trim();
-    let qualification = $("#input-qualification").val().trim();
-    let responsibility = $("#input-responsibility").val().trim();
-    let start_date = $("#start-date").val().trim();
-    let end_date = $("#end-date").val().trim();
-    let category = $("#input-category").val().trim();
-    let location = $("#input-location").val().trim();
-    let type = $("#input-type").val().trim();
-    let salary = $("#input-salary").val().trim();
-    let message = $("#input-message").val().trim();
-    let organization = $("#input-organization").val().trim();
+    let title = $("#input-title").val().trim() || '';
+    let qualification = $("#input-qualification").val().trim() || '';
+    let responsibility = $("#input-responsibility").val().trim() || '';
+    let start_date = $("#start-date").val().trim() || '';
+    let end_date = $("#end-date").val().trim() || '';
+    let category = $("#input-category").val().trim() || '';
+    let location = $("#input-location").val().trim() || '';
+    let type = $("#input-type").val().trim() || '';
+    let salary = $("#input-salary").val().trim() || '';
+    let message = $("#input-message").val().trim() || '';
+    let organization = $("#input-organization").val().trim() || '';
 
     // Create a new job posting entry
     frappe.call({
