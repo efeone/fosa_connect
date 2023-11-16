@@ -129,7 +129,7 @@
         </div>
     </div>
     <div class="page-card-actions">
-        <button class="btn btn-sm btn-primary btn-block btn-signup" type="submit">{{ _("Sign up") }}</button>
+        <button class="btn btn-sm btn-primary btn-block btn-signup" type="submit" id="signupBtn">{{ _("Sign up") }}</button>
         <p class="text-center sign-up-message">
             <a href="#login" class="blue">{{ _("Have an account? Login") }}</a>
         </p>
@@ -137,8 +137,8 @@
 </form>
 <script>
     frappe.ready(function () {
-        $(".signup-form-fosa").on("submit", (e) => {
-            signup_fosa_connect(e);
+        $("#signupBtn").click(function(e){
+          signup_fosa_connect(e);
         });
     });
 
@@ -162,6 +162,8 @@
 
           frappe.call({
               method: "fosa_connect.fosa_connect.overrides.sign_up",
+              freeze: true,
+              freeze_message: "Signing up. Please wait...",
               args: {
                   "email": email,
                   "first_name": first_name,
