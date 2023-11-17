@@ -82,10 +82,16 @@
                                         <a href="#slideshow" class="navbar-link00 link">
                                             <span>SlideShow</span>
                                         </a>
-                                        <a href="about" class="link">
+
+
+                                        <span class="link" >
                                             <span>About Us</span>
                                         </span>
-                                      </a>
+                                        {% if not frappe.session.user == "Guest" %}
+                                        <a href="/members" class="navbar-link2 link" style="margin-right: 10px;">
+                                            <span>Profile</span>
+                                              {% endif %}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +124,18 @@
                                 </svg>
                             </div>
                             <div class="navbar-links1">
-                                <a href="#services" class="navbar-link3 link">
+                                {% if not frappe.session.user == "Guest" %}
+                                    <a href="/jobs" class="navbar-link1 link">
+                                        <span>Jobs</span>
+                                    </a>
+                                {% endif %}
+                                <div class="navbar-links1">
+                                    {% if not frappe.session.user == "Guest" %}
+                                        <a href="/job_interest" class="navbar-link1 link">
+                                            <span>Job Interest</span>
+                                        </a>
+                                    {% endif %}
+                                <a href="#services" class="navbar-link5 link">
                                     <span>Services</span>
                                 </a>
                                 <a href="#features" class="navbar-link2 link">
@@ -130,6 +147,12 @@
                                 <span class="link">
                                     <span>About Us</span>
                                 </span>
+                                {% if not frappe.session.user == "Guest" %}
+                                    <a href="/members" class="navbar-link1 link">
+                                        <span>Profile</span>
+                                    </a>
+                                {% endif %}
+                            </div>
                             </div>
                         </div>
                         <div>
