@@ -148,15 +148,19 @@ function add_carrer_history_row() {
     var orgNameCell = newRow.insertCell(0);
     var industryCell = newRow.insertCell(1);
     var roleCell = newRow.insertCell(2);
-    var fromCell = newRow.insertCell(3);
-    var toCell = newRow.insertCell(4);
-    var actionCell = newRow.insertCell(5);
+    var orgdecCell = newRow.insertCell(3)
+    var fromCell = newRow.insertCell(4);
+    var toCell = newRow.insertCell(5);
+    var currentCell = newRow.insertCell(6);
+    var actionCell = newRow.insertCell(7);
 
     orgNameCell.innerHTML = '<input type="text" name="organization_name[]" value="" />';
     industryCell.innerHTML = '<input type="text" name="industry[]" value="" />';
     roleCell.innerHTML = '<input type="text" name="role[]" value="" />';
-    fromCell.innerHTML = '<input type="text" name="from[]" value="" />';
-    toCell.innerHTML = '<input type="text" name="to[]" value="" />';
+    orgdecCell.innerHTML = '<input type="text" name="organization_description[]" value="" />';
+    fromCell.innerHTML = '<input type="date" name="from[]" value="" />';
+    toCell.innerHTML = '<input type="date" name="to[]" value="" />';
+    currentCell.innerHTML = '<input type="checkbox" name="curr_date[]" />';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
 }
 
@@ -293,11 +297,12 @@ function get_carrer_history_data() {
         var organization_description = row.cells[3].querySelector('input').value;
         var from_date = row.cells[4].querySelector('input').value;
         var to_date = row.cells[5].querySelector('input').value;
-        data.push({ organization_name: orgName, industry: industry, role: role,organization_description:organization_description, from_date: from_date, to_date: to_date });
+        var curr_date = row.cells[6].querySelector('input').value;
+        data.push({ organization_name: orgName, industry: industry, role: role,organization_description:organization_description, from_date: from_date, to_date: to_date, curr_date: curr_date });
     }
 
     var jsonData = JSON.stringify(data);
-    // console.log(jsonData);
+    console.log(jsonData);
     return jsonData;
     // You can now send the jsonData to your server or use it as needed.
 }

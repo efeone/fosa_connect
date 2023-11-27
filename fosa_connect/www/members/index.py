@@ -1,4 +1,3 @@
-# my_app/my_module/api.py
 import frappe
 from frappe.utils import escape_html
 from frappe.utils import getdate
@@ -10,6 +9,8 @@ from frappe import _
 def get_context(context):
     # Get the current user's roles
     context.member = frappe.get_doc("Member", {"email_id": frappe.session.user})
+    context.technical_skills = frappe.get_all("Technical Skills", pluck="name")
+    context.soft_skills = frappe.get_all("Soft Skills", pluck="name")
     return {
         "context": context
     }
@@ -96,9 +97,11 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
                 child.role = row.get('role')
                 child.organization_description = row.get('organization_description')
                 if row.get('from_date'):
-                    child.from_date = getdate(row.get('from_date'))
+                    print(row.get('from_date'))
+                    child.from_date = row.get('from_date')
                 if row.get('to_date'):
                     child.to_date = getdate(row.get('to_date'))
+                child.current = row.get('current')
         member.education = []
         if education:
             education = json.loads(education)
@@ -140,13 +143,19 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         if technical_skills:
             technical_skills = json.loads(technical_skills)
             for row in technical_skills:
+                skill = row.get('skills').capitalize()
+                if not frappe.db.exists('Technical Skills', skill):
+                    frappe.get_doc({"doctype": "Technical Skills", "technical_skills_name": skill}).insert()
                 child = member.append('technical_skills')
-                child.skills=row.get('skills')
+                child.skills=skill
                 child.level=row.get('level')
         member.soft_skills=[]
         if soft_skills:
             soft_skills = json.loads(soft_skills)
             for row in soft_skills:
+                skill = row.get('skills').capitalize()
+                if not frappe.db.exists('Soft Skills', skill):
+                    frappe.get_doc({"doctype": "Soft Skills", "soft_skills_name": skill}).insert()
                 child = member.append('soft_skills')
                 child.skills=row.get('skills')
                 child.level=row.get('level')

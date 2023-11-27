@@ -18,7 +18,7 @@
                                           <input type="text" class="form-control" id="name" value="{{member.name}}" hidden="true">
                                             <img
                                                 id="img"
-                                                src="{{ member.image}}"
+                                                src="{{ member.image }}"
                                                 alt="No Picture"
                                                 class="print-only image-space"
                                                 align="center"
@@ -56,7 +56,7 @@
                                 class="form-control"
                                 id="first_name"
                                 placeholder="Enter First Name"
-                                value="{{member.first_name}}"
+                                value="{{ member.first_name or ''}}"
                                 >
                               </div>
                             </div>
@@ -69,7 +69,7 @@
                                 class="form-control"
                                 id="middle_name"
                                 placeholder="Enter Middle Name"
-                                value="{{member.middle_name}}"
+                                value="{{member.middle_name or ''}}"
                                 >
                               </div>
                             </div>
@@ -82,12 +82,12 @@
                                 class="form-control"
                                 id="last_name"
                                 placeholder="Enter Last Name"
-                                value="{{member.last_name}}"
+                                value="{{member.last_name or ''}}"
                                 >
                               </div>
                             </div>
-
-
+                            {% if member.member_type == "Student" %}
+                            <div id="student_fields">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h6 class="mb-2 text-primary">Academic Details</h6>
                             </div>
@@ -131,6 +131,7 @@
                             </div>
                               </div>
                             </div>
+                            {% endif %}
 
                             {% if member.member_type == "Alumni" %}
                             <div id="alumni_fields">
@@ -145,7 +146,7 @@
                                             class="form-control"
                                             id="year_of_passing"
                                             placeholder="Year of Passing"
-                                            value="{{member.year_of_passing}}"
+                                            value="{{member.year_of_passing or ''}}"
                                         >
                                     </div>
                                 </div>
@@ -157,7 +158,7 @@
                                             class="form-control"
                                             id="designation"
                                             placeholder="Designation"
-                                            value="{{member.designation}}"
+                                            value="{{member.designation or ''}}"
                                         >
                                     </div>
                                 </div>
@@ -169,14 +170,14 @@
                                             class="form-control"
                                             id="job_title"
                                             placeholder="Job Title"
-                                            value="{{member.job_title}}"
+                                            value="{{member.job_title or ''}}"
                                         >
                                     </div>
                                 </div>
                             </div>
                             {% endif %}
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-12" style="margin-top: 20px;">
-                                <h6 class="mb-2 text-primary">Contact Detials</h6>
+                                <h6 class="mb-2 text-primary">Contact Details</h6>
                             </div>
                             {% if member.primary_address is not none %}
                             {% set address = frappe.get_doc("Address", member.primary_address) %}
@@ -211,7 +212,7 @@
                                             class="form-control"
                                             id="address_line2"
                                             placeholder="Address line 2"
-                                            value="{{address.address_line2}}"
+                                            value="{{address.address_line2 or ''}}"
                                         >
                                     </div>
                                 </div>
@@ -233,7 +234,7 @@
                                             class="form-control"
                                             id="state"
                                             placeholder="State"
-                                            value="{{address.state}}"
+                                            value="{{address.state or ''}}"
                                         >
                                     </div>
                                 </div>
@@ -244,7 +245,7 @@
                                             class="form-control"
                                             id="pincode"
                                             placeholder="Postal code"
-                                            value="{{address.pincode}}"
+                                            value="{{address.pincode or ''}}"
                                         >
                                     </div>
                                 </div>
@@ -257,7 +258,7 @@
                                         class="form-control"
                                         id="phone"
                                         placeholder="Phone Number"
-                                        value="{{address.phone}}"
+                                        value="{{address.phone or ''}}"
                                     >
                                 </div>
                             </div>
@@ -334,8 +335,8 @@
                                         type="email"
                                         class="form-control"
                                         id="email_id"
-                                        placeholder="Year of Admission"
-                                        value="{{member.email_id}}"
+                                        placeholder="Email"
+                                        value="{{member.email_id or ''}}"
                                     >
                                 </div>
                             </div>
@@ -350,6 +351,7 @@
                                         class="form-control"
                                         id="linkedin"
                                         placeholder="Linkedin"
+                                          value="{{member.linkedin or ''}}"
                                     >
                                 </div>
                             </div>
@@ -362,6 +364,7 @@
                                         id="website_or_portfolio"
                                         name="website_or_portfolio"
                                         placeholder="Enter Website or Portfolio"
+                                        value="{{member.website_or_portfolio or ''}}"
                                     >
                                 </div>
                             </div>
@@ -374,7 +377,7 @@
                                         id="career_objective_or_summary"
                                         name="career_objective_or_summary"
                                         placeholder="Enter career objective or summary"
-                                    >{{member.career_objective_or_summary}}</textarea>
+                                    >{{member.career_objective_or_summary or ''}}</textarea>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -385,6 +388,7 @@
                                         class="form-control"
                                         id="hobbies_and_interests"
                                         placeholder="hobbies_and_interests"
+                                        value="{{member.hobbies_and_interests or ''}}"
                                     >
                                   </div>
                                   <label for="area_interested_in">Area Interested In</label>
@@ -424,7 +428,12 @@
                                         {% for row in member.technical_skills %}
                                         <tr>
                                             <td>
-                                                <input type="text" name="technical-skills[]" value="{{ row.skills }}">
+                                                <input list="technical_skills" id="technical_skill" value="{{ row.skills }}">
+                                                <datalist id="technical_skills">
+                                                  {% for technical_skill in technical_skills %}
+                                                  <option value="{{technical_skill}}">
+                                                    {% endfor %}
+                                                </datalist>
                                             </td>
                                             <td class="star-wrapper">
                                                 <a class="fas fa-star s1"></a>
@@ -456,7 +465,12 @@
                                         {% for row in member.soft_skills %}
                                         <tr>
                                             <td>
-                                                <input type="text" name="soft-skills[]" value="{{ row.skills }}">
+                                                <input list="soft_skills" id="soft_skill" value="{{ row.skills }}">
+                                                <datalist id="soft_skills">
+                                                  {% for soft_skill in soft_skills %}
+                                                  <option value="{{soft_skill}}">
+                                                    {% endfor %}
+                                                </datalist>
                                             </td>
                                             <td class="star-wrapper">
                                                 <a class="fas fa-star s1"></a>
@@ -533,7 +547,7 @@
                                       class="form-control"
                                       id="certifications"
                                       placeholder="Enter Certifications"
-                                      value="{{member.certifications}}"
+                                      value="{{member.certifications or ''}}"
                                   >
                               </div>
                           </div>
@@ -548,9 +562,10 @@
                                             <th>Organization Name</th>
                                             <th>Industry</th>
                                             <th>Role</th>
-                                            <th>organization_description</th>
+                                            <th>organization Description</th>
                                             <th>From</th>
-                                            <th>To</th>
+                                            <th id="toHeading">To</th>
+                                            <th>Current</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -566,13 +581,16 @@
                                                 <input type="text" name="role[]" value="{{ row.role }}">
                                             </td>
                                             <td>
-                                                <input type="text" name="organization_description[]" value="{{ row.organization_description }}">
+                                                <input type="text" name="Organization_description[]" value="{{ row.organization_description }}">
                                             </td>
                                             <td>
-                                                <input type="text" name="from_date[]" value="{{ row.from_date }}">
+                                                <input type="date" name="from[]" value="{{ row.from }}">
                                             </td>
                                             <td>
-                                                <input type="text" name="to_date[]" value="{{ row.to_date }}">
+                                                <input type="date" name="to[]" value="{{ row.to }}">
+                                            </td>
+                                            <td>
+                                              <input type="checkbox" name="curr_date[]" {% if row.current %}checked{% endif %} onchange="toggleToDate(this)">
                                             </td>
                                             <td>
                                                 <button type="button" onclick="deleteRow(this)">Delete</button>
@@ -661,7 +679,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
                             <label class="col-sm-10 control-label">Awards and Achievements</label>
                                 <div class="col-sm-13">
-                                    <textarea rows="3" class="form-control" id="awards_and_achievements">{{member.awards_and_achievements}}</textarea>
+                                    <textarea rows="3" class="form-control" id="awards_and_achievements" placeholder= "Enter Awards and Achievements">{{member.awards_and_achievements or ''}}</textarea>
                                 </div>
                             </div>
                             <br>
@@ -685,7 +703,7 @@
                                                 <input type="text" name="publisher[]" value="{{ row.publisher }}">
                                             </td>
                                             <td>
-                                                <input type="text" name="publication_date[]" value="{{ row.publication_date }}">
+                                                <input type="date" name="publication_date[]" value="{{ row.publication_date }}">
                                             </td>
                                             <td>
                                                 <button type="button" onclick="deleteRow(this)">Delete</button>
@@ -699,7 +717,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
                                 <label class="col-sm-10 control-label">Volunteer Work or Extracurricular Activities</label>
                                 <div class="col-sm-13">
-                                    <textarea rows="3" class="form-control" id="volunteer_work_or_extracurricular_activities">{{member.volunteer_work_or_extracurricular_activities}}</textarea>
+                                    <textarea rows="3" class="form-control" id="volunteer_work_or_extracurricular_activities" placeholder= "Enter Volunteer Work or Extracurricular Activities">{{member.volunteer_work_or_extracurricular_activities or ''}}</textarea>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
@@ -741,17 +759,6 @@
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <!-- <button
-                                        type="button"
-                                        id="cancel"
-                                        name="submit"
-                                        class="btn btn-secondary"
-                                    >Cancel</button>
-                                    <button
-                                        id="submit"
-                                        name="submit"
-                                        class="btn btn-primary"
-                                    >Submit</button> -->
                                     <button type="button" name="submitBtn" id='submitBtn' class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
@@ -799,6 +806,45 @@
   }
   }
   })
+  function toggleToDate(checkbox) {
+      var rowIndex = checkbox.closest('tr').rowIndex;
+      var currentCheckboxes = document.getElementsByName('curr_date[]');
+
+      // Uncheck other checkboxes
+      for (var i = 0; i < currentCheckboxes.length; i++) {
+          if (i !== rowIndex - 1) {
+              currentCheckboxes[i].checked = false;
+              updateVisibility(i, false);
+          } else {
+              updateVisibility(i, checkbox.checked);
+          }
+      }
+  }
+
+  function updateVisibility(rowIndex, isChecked) {
+      var toDateInput = document.getElementsByName('to[]')[rowIndex];
+      var toHeading = document.getElementById('toHeading');
+
+      // Toggle the visibility of the "To" field and its heading
+      if (isChecked) {
+          toDateInput.style.display = 'none';
+          toHeading.style.display = 'none';
+      } else {
+          toDateInput.style.display = 'table-cell';
+          toHeading.style.display = 'table-cell';
+      }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+      var currentCheckboxes = document.getElementsByName('curr_date[]');
+      for (var i = 0; i < currentCheckboxes.length; i++) {
+          toggleToDate(currentCheckboxes[i]); // Initial toggle based on current checkbox state
+          currentCheckboxes[i].addEventListener('change', function () {
+              toggleToDate(this);
+          });
+      }
+  });
+
 </script>
 
 
