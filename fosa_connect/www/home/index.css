@@ -57,7 +57,7 @@
   background-color: var(--dl-color-gray-white);
 }
 .navbar-main {
-  gap: 22vw;
+  gap: 15vw;
   color: #212121;
   display: flex;
   align-items: center;
