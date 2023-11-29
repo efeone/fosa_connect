@@ -212,7 +212,7 @@
 									{% if notification_log.read == 0 %}
 							<span class="blue-dot subject"></span>
 					{% endif %}
-									{{notification_log.subject}} <!-- remove this --><br></a>
+									{{notification_log.subject}}<br></a>
 							</div>
 			<div class="notification-timestamp text-muted">
 				<span class="frappe-timestamp " data-timestamp="{{notification_log.creation}}" title="{{notification_log.modified}}"></span>
@@ -372,18 +372,6 @@
 	{%- endblock %}
 	<!-- csrf_token -->
 		<script>frappe.csrf_token = "{{frappe.session.csrf_token}}";</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var timestampElements = document.querySelectorAll(".frappe-timestamp");
-
-    timestampElements.forEach(function(element) {
-      var timestamp = element.getAttribute("data-timestamp");
-      var formattedTimestamp = moment(timestamp).fromNow();
-      element.textContent = formattedTimestamp;
-    });
-  });
-</script>
 <script>
 const subject = frappe.utils.xss_sanitise($("#subject").val() || "").trim();
 function update_notification(notification) {
