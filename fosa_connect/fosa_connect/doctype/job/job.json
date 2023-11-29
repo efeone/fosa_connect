@@ -118,7 +118,7 @@
   }
  ],
  "links": [],
- "modified": "2023-10-07 23:10:15.359258",
+ "modified": "2023-11-28 15:51:32.877994",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
@@ -172,6 +172,30 @@
    "role": "Student",
    "select": 1,
    "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Placement Officer",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Placement Officer",
+   "share": 1,
+   "write": 1
   }
  ],
  "quick_entry": 1,
