@@ -44,7 +44,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-04 16:32:11.437234",
+ "modified": "2023-11-28 15:52:27.155306",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job Interest",
@@ -83,6 +83,18 @@
    "read": 1,
    "report": 1,
    "role": "Student",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Placement Officer",
    "share": 1,
    "write": 1
   }
