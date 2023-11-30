@@ -155,7 +155,7 @@
           let full_name = (first_name + ' ' + last_name).trim();
           let admission_number = frappe.utils.xss_sanitise($("#admission_number").val() || "").trim();
           let year_of_admission = frappe.utils.xss_sanitise($("#year_of_admission").val() || "").trim();
-          let department = frappe.utils.xss_sanitise($("#department").val() || "").trim();
+          let department = frappe.utils.xss_sanitise($("#department-select").val() || "").trim();
           let year_of_passing = frappe.utils.xss_sanitise($("#year_of_passing").val() || "").trim();
           let job_title = frappe.utils.xss_sanitise($("#job_title").val() || "").trim();
           let designation = frappe.utils.xss_sanitise($("#designation").val() || "").trim();
