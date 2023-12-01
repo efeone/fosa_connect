@@ -9,8 +9,8 @@
   "industry",
   "role",
   "organization_description",
-  "from",
-  "to",
+  "from_date",
+  "to_date",
   "current",
   "remarks",
   "project"
@@ -38,23 +38,6 @@
    "reqd": 1
   },
   {
-   "columns": 1,
-   "fieldname": "from",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "From",
-   "reqd": 1
-  },
-  {
-   "columns": 1,
-   "fieldname": "to",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "To",
-   "mandatory_depends_on": "eval:!doc.current",
-   "read_only_depends_on": "eval:doc.current"
-  },
-  {
    "columns": 2,
    "fieldname": "role",
    "fieldtype": "Data",
@@ -79,12 +62,29 @@
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Current"
+  },
+  {
+   "columns": 1,
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "From",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "To",
+   "mandatory_depends_on": "eval:!doc.current",
+   "read_only_depends_on": "eval:doc.current"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-12 15:34:49.077172",
+ "modified": "2023-11-29 17:07:00.562942",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Career History",

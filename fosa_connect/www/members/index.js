@@ -160,7 +160,7 @@ function add_carrer_history_row() {
     orgdecCell.innerHTML = '<input type="text" name="organization_description[]" value="" />';
     fromCell.innerHTML = '<input type="date" name="from[]" value="" />';
     toCell.innerHTML = '<input type="date" name="to[]" value="" />';
-    currentCell.innerHTML = '<input type="checkbox" name="curr_date[]" />';
+    currentCell.innerHTML = '<input type="checkbox" name="curr_date[]" onchange="toggleToDate(this)"/>';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
 }
 

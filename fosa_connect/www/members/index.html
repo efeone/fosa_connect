@@ -584,10 +584,10 @@
                                                 <input type="text" name="Organization_description[]" value="{{ row.organization_description }}">
                                             </td>
                                             <td>
-                                                <input type="date" name="from[]" value="{{ row.from }}">
+                                                <input type="date" name="from[]" value="{{ row.from_date }}">
                                             </td>
                                             <td>
-                                                <input type="date" name="to[]" value="{{ row.to }}">
+                                                <input type="date" name="to[]" value="{{ row.to_date }}">
                                             </td>
                                             <td>
                                               <input type="checkbox" name="curr_date[]" {% if row.current %}checked{% endif %} onchange="toggleToDate(this)">
@@ -825,13 +825,11 @@
       var toDateInput = document.getElementsByName('to[]')[rowIndex];
       var toHeading = document.getElementById('toHeading');
 
-      // Toggle the visibility of the "To" field and its heading
+      // Toggle the visibility of the "To" field
       if (isChecked) {
           toDateInput.style.display = 'none';
-          toHeading.style.display = 'none';
       } else {
           toDateInput.style.display = 'table-cell';
-          toHeading.style.display = 'table-cell';
       }
   }
 
