@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 {% set catgry_doc = frappe.get_all('Job Category',fields=['job_category']) %}
 {% set member = frappe.get_doc('Member', { 'email_id': frappe.session.user }) %}
+{% set dept_doc = frappe.get_all('Program',fields=["program_name"]) %}
 {% block content %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
@@ -18,22 +19,22 @@
                                           <input type="text" class="form-control" id="name" value="{{member.name}}" hidden="true">
                                             <img
                                                 id="img"
-                                                src="{{ member.image }}"
+                                                src="{{ member.image}}"
                                                 alt="No Picture"
                                                 class="print-only image-space"
                                                 align="center"
                                                 style="width:200px;height:150px; cursor: pointer;"
                                             >
+                                            <h6 class="user-name" align="center" style="text-align: center;margin-top: 17px;">{{member.first_name}}</h6>
                                             <input type="file" name="uploadImg" id="uploadImg">
-                                            <button type="button" name="uploadBtn" id='uploadBtn'>Upload</button>
+                                            <button type="button" name="uploadBtn" id='uploadBtn' style="margin-top: 22px; padding: 1px 12px; border-radius: 4px;">Upload</button>
                                         </div>
                                         <div class="d-flex flex-column w-100">
-                                        <h6 class="user-name" align="center">{{member.first_name}}</h6>
                                       </div>
                                       <div class="ml-auto">
                                         <span class="nav-item dropdown logged-in">
                                           <label for="templateSelect">Select Template:</label>
-                                            <select id="templateSelect" name="templateSelect">
+                                            <select id="templateSelect" name="templateSelect" style="font-size: 13px;  background-color: #d0d0d0;height: 33px;width: 98px; border-radius: 7px; background-color: var(--primary); color: var(--white);">
                                                 <option value="Profile 1">Profile 1</option>
                                                 <option value="Profile 2">Profile 2</option>
                                                 <option value="Profile 3">Profile 3</option>
@@ -45,12 +46,12 @@
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                                <h6 class="mb-2 text-primary" style="color: #003c71 !important;font-size: 22px;margin-bottom: 2.5rem !important;">Personal Details</h6>
                             </div>
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                               <div class="form-group">
-                                <label for="first_name">First Name</label>
+                                <label for="first_name" style="font-size: 15px;">First Name</label>
                                 <input
                                 type="text"
                                 class="form-control"
@@ -63,7 +64,7 @@
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                               <div class="form-group">
-                                <label for="middle_name">Middle Name</label>
+                                <label for="middle_name"style="font-size: 15px;">Middle Name</label>
                                 <input
                                 type="text"
                                 class="form-control"
@@ -76,7 +77,7 @@
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                               <div class="form-group">
-                                <label for="last_name">Last Name</label>
+                                <label for="last_name" style="font-size: 15px;">Last Name</label>
                                 <input
                                 type="text"
                                 class="form-control"
@@ -89,25 +90,25 @@
                             {% if member.member_type == "Student" %}
                             <div id="student_fields">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Academic Details</h6>
+                                <h6 class="mb-2 text-primary" style="margin-top: 36px;color: #003c71 !important ;
+                                  font-size: 22px; margin-bottom: 2.5rem !important;">Academic Details</h6>
                             </div>
 
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                               <div class="form-group">
-                                <label for="admission_number">Admission Number</label>
+                                <label for="admission_number" style="font-size: 15px;">Admission Number</label>
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="admission_number"
                                     placeholder="Admission Number"
-                                    value="{{member.admission_number}}"
-                                >
+                                    value="{{member.admission_number}}">
                               </div>
                             </div>
 
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                               <div class="form-group">
-                                <label for="year_of_admission">Year of Admission</label>
+                                <label for="year_of_admission" style="font-size: 15px;">Year of Admission</label>
                                 <input
                                     type="text"
                                     class="form-control"
@@ -118,16 +119,20 @@
                               </div>
                             </div>
 
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                               <div class="form-group">
-                                <label for="department">Department</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
+                                <label for="department" style="font-size: 15px;">Department</label>
+                                <select
                                     id="department"
-                                    placeholder="Department"
-                                    value="{{member.department}}"
+                                    name="department"
+                                    class="form-control"
+                                    style="background-color: var(--control-bg);"
                                 >
+                    <option value="">Select Department</option>
+                    {%- for department in dept_doc -%}
+                    <option value="{{ department.program_name }}" {% if member.department == department.program_name %}selected{% endif %}>{{ department.program_name }}</option>
+                    {%- endfor -%}
+                </select>
                             </div>
                               </div>
                             </div>
@@ -135,89 +140,84 @@
 
                             {% if member.member_type == "Alumni" %}
                             <div id="alumni_fields">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <h6 class="mb-2 text-primary">Alumni Details</h6>
-                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary" style="margin-top: 36px;color: #003c71 !important ;
+                                      font-size: 22px; margin-bottom: 2.5rem !important;">Alumni Details</h6>
+                                      </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label for="year_of_passing">Year of Passing</label>
+                                        <label for="year_of_passing"style="font-size: 15px;">Year of Passing</label>
                                         <input
                                             type="text"
                                             class="form-control"
                                             id="year_of_passing"
                                             placeholder="Year of Passing"
-                                            value="{{member.year_of_passing or ''}}"
+                                            value="{{member.year_of_passing}}"
                                         >
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label for="designation">Designation</label>
+                                        <label for="designation"style="font-size: 15px;">Designation</label>
                                         <input
                                             type="text"
                                             class="form-control"
                                             id="designation"
                                             placeholder="Designation"
-                                            value="{{member.designation or ''}}"
+                                            value="{{member.designation}}"
                                         >
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label for="job_title">Job Title</label>
+                                        <label for="job_title"style="font-size: 15px;">Job Title</label>
                                         <input
                                             type="text"
                                             class="form-control"
                                             id="job_title"
                                             placeholder="Job Title"
-                                            value="{{member.job_title or ''}}"
+                                            value="{{member.job_title}}"
                                         >
                                     </div>
                                 </div>
                             </div>
                             {% endif %}
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-12" style="margin-top: 20px;">
-                                <h6 class="mb-2 text-primary">Contact Details</h6>
+                                <h6 class="mb-2 text-primary" style="margin-top: 36px;color: #003c71 !important;font-size: 22px;margin-bottom: 2.5rem !important;">Contact Details</h6>
                             </div>
                             {% if member.primary_address is not none %}
                             {% set address = frappe.get_doc("Address", member.primary_address) %}
-                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
-                                <label class="col-sm-10 control-label">Address</label>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                     <div class="form-group">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="address_title"
-                                            placeholder="Address Title"
-                                            value="{{address.address_title}}"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
+                                  <label for="address_line2"style="font-size: 15px;">Address Line 1</label>
                                         <input
                                             type="text"
                                             class="form-control"
                                             id="address_line1"
                                             placeholder="Address line 1"
                                             value="{{address.address_line1}}"
+
                                         >
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                     <div class="form-group">
+                                  <label for="address_line1"style="font-size: 15px;">Address Line 2</label>
                                         <input
-                                            type="text"
+                                           type="textarea"
                                             class="form-control"
                                             id="address_line2"
                                             placeholder="Address line 2"
-                                            value="{{address.address_line2 or ''}}"
+                                           value="{{address.address_line2}}"
+
                                         >
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                     <div class="form-group">
+                                    <label for="city"style="font-size: 15px;">City</label>
                                         <input
                                             type="text"
                                             class="form-control"
@@ -227,8 +227,9 @@
                                         >
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                     <div class="form-group">
+                                      <label for="state"style="font-size: 15px;">State</label>
                                         <input
                                             type="text"
                                             class="form-control"
@@ -238,8 +239,9 @@
                                         >
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                     <div class="form-group">
+                                        <label for="pincode"style="font-size: 15px;">Pincode</label>
                                         <input
                                             type="text"
                                             class="form-control"
@@ -249,24 +251,21 @@
                                         >
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-group">
-                                    <label for="mobile_no">Phone number</label>
+                                          <label for="phone"style="font-size: 15px;">Phone Number</label>
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="phone"
+                                              id="mobile_no"
                                         placeholder="Phone Number"
-                                        value="{{address.phone or ''}}"
+                                              value="{{address.phone}}"
                                     >
                                 </div>
-                            </div>
-                            {% else %}
+                                        </div>{% else %}
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
-                                <label class="col-sm-10 control-label">Address</label>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
+                                                    <label for="admission_number"style="font-size: 15px;">Address </label>
                                         <input
                                             type="text"
                                             class="form-control"
@@ -277,6 +276,7 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
+                                                    <label for="address_line2"style="font-size: 15px;">Address Line 1</label>
                                         <input
                                             type="text"
                                             class="form-control"
@@ -287,6 +287,7 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
+                                                    <label for="address_line1"style="font-size: 15px;">Address Line 2</label>
                                         <input
                                             type="text"
                                             class="form-control"
@@ -297,23 +298,35 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
+                                                    <label for="city"style="font-size: 15px;">City</label>
                                         <input
                                             type="text"
                                             class="form-control"
                                             id="city"
                                             placeholder="City"
+                                                    >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <div class="form-group">
+                                                  <label for="state"style="font-size: 15px;">State</label>
+                                                  <input
+                                                      type="text"
+                                                      class="form-control"
+                                                      id="state"
+                                                      placeholder="State"
                                         >
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
+                                        <label for="pincode"style="font-size: 15px;">Pincode</label>
                                         <input
                                             type="text"
                                             class="form-control"
                                             id="pincode"
                                             placeholder="Postal code"
                                         >
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -327,37 +340,40 @@
                                     >
                                 </div>
                             </div>
+                                        
                             {%endif%}
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-group">
-                                    <label for="email_id">Email ID</label>
+                                            <label for="email_id"style="font-size: 15px;">Email ID</label>
                                     <input
                                         type="email"
                                         class="form-control"
                                         id="email_id"
-                                        placeholder="Email"
+                                                placeholder="Email ID"
                                         value="{{member.email_id or ''}}"
                                     >
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
-                                <h6 class="mb-2 text-primary">Profile</h6>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                       <h6 class="mb-2 text-primary"style="margin-top: 36px;color: #003c71 !important;
+                                         font-size: 22px; margin-bottom: 2.5rem !important;">Profile</h6>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-group">
-                                    <label for="linkedin">Linkedin</label>
+                                       <label for="linkedin" style="font-size: 15px;">Linkedin </label>
                                     <input
                                         type="text"
                                         class="form-control"
                                         id="linkedin"
-                                        placeholder="Linkedin"
+                                        placeholder="Linkedin" style="width:100%"
                                           value="{{member.linkedin or ''}}"
                                     >
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-group">
-                                    <label for="website_or_portfolio">Website or Portfolio</label>
+                                       <label for="website_or_portfolio" style="font-size: 15px;">Website or Portfolio</label>
                                     <input
                                         type="text"
                                         class="form-control"
@@ -365,33 +381,37 @@
                                         name="website_or_portfolio"
                                         placeholder="Enter Website or Portfolio"
                                         value="{{member.website_or_portfolio or ''}}"
+                                        style="width:100%"
                                     >
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-8 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                                 <div class="form-group">
-                                    <label for="career_objective_or_summary">Career Objective or Summary</label>
+                                            <label for="hobbies_and_interests"style="font-size: 15px;"> Hobbies and Interests </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="hobbies_and_interests"
+                                                placeholder="hobbies_and_interests" style="width:100%"
+                                                value="{{member.hobbies_and_interests or ''}}"
+                                            >
+                                        </div>
+                                          </div>
+                                       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                         <div class="form-group">
+                                           <label for="career_objective_or_summary"style="font-size: 15px;">Career Objective or Summary</label>
                                     <textarea
                                         rows="3"
                                         class="form-control"
                                         id="career_objective_or_summary"
                                         name="career_objective_or_summary"
-                                        placeholder="Enter career objective or summary"
+                                               placeholder="Enter career objective or summary" style="width:100%"
                                     >{{member.career_objective_or_summary or ''}}</textarea>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="hobbies_and_interests">Hobbies and Interests</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="hobbies_and_interests"
-                                        placeholder="hobbies_and_interests"
-                                        value="{{member.hobbies_and_interests or ''}}"
-                                    >
-                                  </div>
-                                  <label for="area_interested_in">Area Interested In</label>
+
+                                            <label for="area_interested_in"style="font-size: 15px;">Area Interested In</label>
 
                                   <select class="form-control" id="area_interested_in" name="area_interested_in" multiple>
                                     {% for area in catgry_doc %}
@@ -411,12 +431,13 @@
                                   </select>
 
                                 </div>
+                            </div>
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
-                                <h6 class="mb-2 text-primary">Skills</h6>
+                                <h6 class="mb-2 text-primary"style="margin-top: 36px; color: #003c71 !important;font-size: 22px;margin-bottom: 2.5rem !important;">Skills</h6>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <label class="col-sm-10 control-label">Technical Skills</label>
+                                <label class="col-sm-10 control-label" style="font-size:15px; color: #1f41f7;">Technical Skills</label>
                                 <table class="table" id="technical-skills">
                                     <thead>
                                         <tr>
@@ -435,7 +456,7 @@
                                                     {% endfor %}
                                                 </datalist>
                                             </td>
-                                            <td class="star-wrapper">
+                                            <td class="star-wrapper" >
                                                 <a class="fas fa-star s1"></a>
                                                 <a class="fas fa-star s2"></a>
                                                 <a class="fas fa-star s3"></a>
@@ -444,16 +465,18 @@
                                                 <input type="hidden" class="rating-input" value="{{ row.level }}">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;            
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_technical_skills_row()">Add Row</button>
+                                <button type="button" onclick="add_technical_skills_row()" style="padding: 1px 10px;">Add Row</button>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
-                                <label class="col-sm-10 control-label">Soft Skills</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;">Soft Skills</label>
                                 <table class="table" id="soft-skills">
                                     <thead>
                                         <tr>
@@ -481,16 +504,18 @@
                                                 <input type="hidden" class="rating-input" value="{{ row.level }}">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_soft_skills_row()">Add Row</button>
+                                <button type="button" onclick="add_soft_skills_row()" style="padding: 1px 10px;">Add Row</button>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
-                                <label class="col-sm-10 control-label">language_proficiency</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;;">Language Proficiency</label>
                                 <table class="table" id="language-proficiency">
                                     <thead>
                                         <tr>
@@ -531,17 +556,19 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_language_proficiency_row()">Add Row</button>
+                                <button type="button" onclick="add_language_proficiency_row()" style="padding: 1px 10px;">Add Row</button>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"  style="margin-top: 20px;">
                               <div class="form-group">
-                                  <label for="certifications">Certifications</label>
+                                  <label for="certifications" style="font-size: 15px;color: #1f41f7;">Certifications</label>
                                   <input
                                       type="text"
                                       class="form-control"
@@ -552,17 +579,18 @@
                               </div>
                           </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
-                                <h6 class="mb-2 text-primary">Career History</h6>
+                                <h6 class="mb-2 text-primary" style="margin-top: 36px;color: #003c71 !important;
+                                font-size: 22px; margin-bottom: 2.5rem !important;">Career History</h6>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <label class="col-sm-10 control-label">Career History</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;">Career History</label>
                                 <table class="table" id="carrer-history">
                                     <thead>
                                         <tr>
                                             <th>Organization Name</th>
                                             <th>Industry</th>
                                             <th>Role</th>
-                                            <th>organization Description</th>
+                                            <th>Organization Description</th>
                                             <th>From</th>
                                             <th id="toHeading">To</th>
                                             <th>Current</th>
@@ -581,28 +609,31 @@
                                                 <input type="text" name="role[]" value="{{ row.role }}">
                                             </td>
                                             <td>
-                                                <input type="text" name="Organization_description[]" value="{{ row.organization_description }}">
+                                                <input type="text" name="organization_description[]" value="{{ row.organization_description }}">
                                             </td>
                                             <td>
-                                                <input type="date" name="from[]" value="{{ row.from_date }}">
+                                                <input type="date" name="from_date[]" value="{{ row.from_date }}">
                                             </td>
                                             <td>
-                                                <input type="date" name="to[]" value="{{ row.to_date }}">
+                                                <input type="date" name="to_date[]" value="{{ row.to_date }}">
                                             </td>
                                             <td>
                                               <input type="checkbox" name="curr_date[]" {% if row.current %}checked{% endif %} onchange="toggleToDate(this)">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;                                            
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_carrer_history_row()">Add Row</button>
+                                <button type="button" onclick="add_carrer_history_row()" style="padding: 1px 10px;">Add Row</button>
                             </div>
                             <div class="col-xl-12 col-lg-10 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
-                                <label class="col-sm-10 control-label">Education</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;">Education</label>
                                 <table class="table" id="education">
                                     <thead>
                                         <tr>
@@ -632,16 +663,18 @@
                                                 <input type="text" name="graduation_year[]" value="{{ row.graduation_year }}">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_education_row()">Add Row</button>
+                                <button type="button" onclick="add_education_row()" style="padding: 1px 10px;">Add Row</button>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
-                                <label class="col-sm-6 control-label">Projects</label>
+                                <label class="col-sm-6 control-label" style="font-size: 15px;color: #1f41f7;">Projects</label>
                                 <table class="table" id="projects">
                                     <thead>
                                         <tr>
@@ -667,24 +700,26 @@
                                                 <input type="text" name="technologies_used[]" value="{{ row.technologies_used }}">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_projects_row('projects')">Add Row</button>
+                                <button type="button" onclick="add_projects_row('projects')" style="padding: 1px 10px;">Add Row</button>
                             </div>
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-top: 20px;">
-                            <label class="col-sm-10 control-label">Awards and Achievements</label>
+                            <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;">Awards and Achievements</label>
                                 <div class="col-sm-13">
-                                    <textarea rows="3" class="form-control" id="awards_and_achievements" placeholder= "Enter Awards and Achievements">{{member.awards_and_achievements or ''}}</textarea>
+                                    <textarea rows="3" class="form-control" id="awards_and_achievements">{{member.awards_and_achievements or ''}}</textarea>
                                 </div>
                             </div>
                             <br>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <label class="col-sm-10 control-label">Publications</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;">Publications</label>
                                 <table class="table" id="publications">
                                     <thead>
                                         <tr>
@@ -703,25 +738,27 @@
                                                 <input type="text" name="publisher[]" value="{{ row.publisher }}">
                                             </td>
                                             <td>
-                                                <input type="date" name="publication_date[]" value="{{ row.publication_date }}">
+                                                <input type="text" name="publication_date[]" value="{{ row.publication_date }}">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_publications_row('publication')">Add Row</button>
+                                <button type="button" onclick="add_publications_row('publication')" style="padding: 1px 10px;">Add Row</button>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
-                                <label class="col-sm-10 control-label">Volunteer Work or Extracurricular Activities</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;color: #1f41f7;">Volunteer Work or Extracurricular Activities</label>
                                 <div class="col-sm-13">
-                                    <textarea rows="3" class="form-control" id="volunteer_work_or_extracurricular_activities" placeholder= "Enter Volunteer Work or Extracurricular Activities">{{member.volunteer_work_or_extracurricular_activities or ''}}</textarea>
+                                    <textarea rows="3" class="form-control" id="volunteer_work_or_extracurricular_activities">{{member.volunteer_work_or_extracurricular_activities}}</textarea>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  style="margin-top: 20px;">
-                                <label class="col-sm-10 control-label">References</label>
+                                <label class="col-sm-10 control-label" style="font-size: 15px;">References</label>
                                 <table class="table" id="references">
                                     <thead>
                                         <tr>
@@ -747,19 +784,21 @@
                                                 <input type="text" name="contact_information_phoneemail[]" value="{{ row.contact_information_phoneemail }}">
                                             </td>
                                             <td>
-                                                <button type="button" onclick="deleteRow(this)">Delete</button>
+                                                <button type="button" onclick="deleteRow(this)" style="padding: 1px 12px;
+                                                margin-top: 28px;
+                                                border-radius: 11px;">Delete</button>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                                <button type="button" onclick="add_references_row('references')">Add Row</button>
+                                <button type="button" onclick="add_references_row('references')" style="padding: 1px 10px;">Add Row</button>
                             </div>
                         </div>
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <button type="button" name="submitBtn" id='submitBtn' class="btn btn-primary">Submit</button>
+                                    <button type="button" name="submitBtn" id='submitBtn' class="btn btn-primary btn-submit">Submit</button>
                                 </div>
                             </div>
                         </div>

@@ -162,12 +162,15 @@
     }
 
     img {
-      max-width: 60%;
+      max-width: 58%;
       max-height: 25%;
       display: block; /* To center the image horizontally */
       margin: 0 auto; /* To center the image horizontally */
       border: none; /* Use 'border' instead of 'border-style' */
       border-radius: 6px;
+      width: 200px;
+      height: 123px;
+      cursor: pointer;
     }
 
     input, textarea {
@@ -183,6 +186,10 @@
       resize: none;
     }
 
+    .btn-submit {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
 
     .form-control {
       display: block;
