@@ -97,8 +97,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
                 child.role = row.get('role')
                 child.organization_description = row.get('organization_description')
                 if row.get('from_date'):
-                    print(row.get('from_date'))
-                    child.from_date = row.get('from_date')
+                    child.from_date = getdate(row.get('from_date'))
                 if row.get('to_date'):
                     child.to_date = getdate(row.get('to_date'))
                 child.current = row.get('current')
