@@ -6,7 +6,7 @@ def get_context(context):
     context.job_id = job_id
 
 @frappe.whitelist()
-def edit_job(job_id, job_title, qualification, responsibility, start_date, end_date, job_category, location, job_type, salary_info, job_description, organization, isPublished):
+def edit_job(job_id, job_title, qualification, responsibility, start_date, end_date, job_category, location, job_type, salary_info, job_description, organization, isPublished, disabled):
     job=frappe.get_doc("Job",job_id)
     job.job_title = job_title
     job.qualification = qualification
@@ -20,6 +20,7 @@ def edit_job(job_id, job_title, qualification, responsibility, start_date, end_d
     job.job_description = job_description
     job.organization_name = organization
     job.published = isPublished
+    job.disabled = disabled
     job.save()
     frappe.db.commit()
 
