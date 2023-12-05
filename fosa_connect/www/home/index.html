@@ -65,7 +65,7 @@
                                     <div class="navbar-links">
                                       {% if not frappe.session.user == "Guest" %}
                                       <div class="navbar-link1 link dropdown">
-                                          <span class="dropdown-toggle" onclick="toggleDropdown()">Career</span>
+                                          <span class="dropdown-toggle" onclick="toggleDropdown(this.parentElement)">Career</span>
                                           <ul class="dropdown-menu">
                                               <li><a href="/jobs">Jobs</a></li>
                                               <li><a href="/job_interest">Interested Jobs</a></li>
@@ -82,9 +82,18 @@
                                         <a href="#slideshow" class="navbar-link00 link">
                                             <span>SlideShow</span>
                                         </a>
-                                        <a href="/about" class="link">
-                                            <span>About Us</span>
-                                        </a>
+                                        <div class="navbar-link1 link dropdown">
+                                            <span class="dropdown-toggle" id="hww" onclick="toggleDropdown(this.parentElement)">About Us</span>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://farookcollege.ac.in/history">History</a></li>
+                                                <li><a href="https://farookcollege.ac.in/vision-mission">Vision &Mission</a></li>
+                                                <li><a href="https://farookcollege.ac.in/milestone">Milestones</a></li>
+                                                <li><a href="https://farookcollege.ac.in/sister-institutions">Sister Institutions</a></li>
+                                                <li><a href="https://farookcollege.ac.in/former-principals">Former Leaders</a></li>
+
+                                            </ul>
+
+                                        </div>
                                         {% if not frappe.session.user == "Guest" %}
                                         <a href="/members" class="navbar-link2 link" style="margin-right: 10px;">
                                             <span>Profile</span>
@@ -159,7 +168,6 @@
                   /*
                   Mobile menu - Code Embed
                   */
-
                   // Mobile menu
                   const mobileMenu = document.querySelector('#mobile-menu');
 
@@ -470,11 +478,8 @@ var swiper = new Swiper(".slide-content", {
   });
 
 
-
-
-
-    function toggleDropdown() {
-      var dropdownMenu = document.querySelector('.navbar-link1 .dropdown-menu');
+    function toggleDropdown(item) {
+      var dropdownMenu = item.querySelector('.navbar-link1 .dropdown-menu');
       if (dropdownMenu.style.display === 'block') {
           dropdownMenu.style.display = 'none';
       } else {
@@ -494,4 +499,16 @@ var swiper = new Swiper(".slide-content", {
             console.error('Error logging out:', error);
         });
     }
+    document.addEventListener('click', function (event) {
+    // Check if the clicked element is inside the Career or About Us dropdowns or their parents
+    var careerDropdown = event.target.closest('.navbar-link1 .dropdown');
+    var aboutUsDropdown = event.target.closest('.navbar-link1.link.dropdown');
+
+    if (!careerDropdown && !aboutUsDropdown) {
+        // Clicked outside Career and About Us dropdowns, hide them
+        document.querySelectorAll('.navbar-link1 .dropdown-menu').forEach(function (dropdownMenu) {
+            dropdownMenu.style.display = 'none';
+        });
+    }
+});
 </script>
