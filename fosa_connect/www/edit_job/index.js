@@ -2,19 +2,20 @@ frappe.ready(function () {
   const url_params = new URLSearchParams(window.location.search);
   const job_id = url_params.get("job_id");
   let isPublished = document.getElementById('isPublished').checked ? 1 : 0;
-
-  $(".cf").on("submit", (e) => {
-    e.preventDefault();
-    EditJobEntry(job_id, isPublished);
-  });
-
+  let disabled = document.getElementById('isPublished').checked ? 0 : 1;
   // Add an event listener to update 'isPublished' when the checkbox is clicked
   document.getElementById('isPublished').addEventListener('click', function () {
     isPublished = this.checked ? 1 : 0;
+    disabled = this.checked ? 0 : 1;
+  });
+
+  $(".cf").on("submit", (e) => {
+    e.preventDefault();
+    EditJobEntry(job_id, isPublished, disabled);
   });
 });
 
-const EditJobEntry = (job_id, isPublished) => {
+const EditJobEntry = (job_id, isPublished, disabled) => {
   // Get values from form fields
   let title = $("#input-title").val().trim();
   let qualification = $("#input-qualification").val().trim();
@@ -44,7 +45,8 @@ const EditJobEntry = (job_id, isPublished) => {
       "salary_info": salary,
       "job_description": message,
       "organization": organization,
-      "isPublished": isPublished  // Update 'isPublished' with the new value
+      "isPublished": isPublished,  // Update 'isPublished' with the new value
+      "disabled": disabled
     },
     callback: function (response) {
       if (response.message) {

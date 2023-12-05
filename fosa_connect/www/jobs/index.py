@@ -38,9 +38,7 @@ def get_context(context):
         # Fetch jobs and filter based on the 'disabled' field and the creator (cur_user)
         jobs = frappe.db.sql(f"""
             SELECT name, job_title, location, job_category, job_type, last_date_to_apply
-            FROM `tabJob`
-            WHERE disabled = 0 {f"AND {where_clause}" if filter else ""}
-            AND owner = '{cur_user}';  -- Filter by the job creator
+            FROM `tabJob` WHERE owner = '{cur_user}';  -- Filter by the job creator
         """, as_dict=True)
         job_titles = frappe.db.sql(f"""SELECT DISTINCT job_title FROM tabJob WHERE owner = '{cur_user}';""", as_dict=True)
         job_locations = frappe.db.sql(f"""SELECT DISTINCT location FROM tabJob WHERE owner = '{cur_user}';""", as_dict=True)
