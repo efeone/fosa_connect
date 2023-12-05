@@ -12,7 +12,7 @@
   justify-content: space-between;
 }
 .link span {
-       font-size: 16px; /* Adjust the size as needed */
+       font-size: 16px;
    }
 /* Style the dropdown container */
 .navbar-link1.dropdown {
@@ -36,6 +36,8 @@
 .navbar-link1 .dropdown-menu li {
     padding: 10px;
     list-style: none;
+    background-color: white;
+
 }
 
 /* Style the dropdown item links */
@@ -99,7 +101,7 @@
   gap: var(--dl-space-space-threeunits);
   width: 100%;
   display: flex;
-  font-size: 18px;
+  font-size: 15px;
   align-self: flex-start;
   align-items: flex-end;
   font-family: Poppins;
