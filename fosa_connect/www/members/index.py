@@ -39,6 +39,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
             address.city = city
             address.state = state
             address.pincode = pincode
+            address.phone = mobile_no
         address.save(ignore_permissions=True)
         frappe.db.commit()
 
@@ -51,6 +52,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         address.city = city
         address.state = state
         address.pincode = pincode
+        address.phone = mobile_no
         address.address_type = "Personal"
         link = address.append('links')
         link.link_doctype = "Member"
@@ -67,7 +69,6 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         member.middle_name = middle_name
         member.last_name = last_name
         member.email_id = email
-        member.mobile_no = mobile_no
         user.email = email
         user.first_name = first_name
         user.middle_name = middle_name

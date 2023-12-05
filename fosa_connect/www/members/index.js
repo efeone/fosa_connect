@@ -158,8 +158,8 @@ function add_carrer_history_row() {
     industryCell.innerHTML = '<input type="text" name="industry[]" value="" />';
     roleCell.innerHTML = '<input type="text" name="role[]" value="" />';
     orgdecCell.innerHTML = '<input type="text" name="organization_description[]" value="" />';
-    fromCell.innerHTML = '<input type="date" name="from[]" value="" />';
-    toCell.innerHTML = '<input type="date" name="to[]" value="" />';
+    fromCell.innerHTML = '<input type="date" name="from_date[]" value="" />';
+    toCell.innerHTML = '<input type="date" name="to_date[]" value="" />';
     currentCell.innerHTML = '<input type="checkbox" name="curr_date[]" onchange="toggleToDate(this)"/>';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
 }
@@ -212,7 +212,7 @@ function add_publications_row() {
 
     titleCell.innerHTML = '<input type="text" name="title[]" value="" />';
     publisherCell.innerHTML = '<input type="text" name="publisher[]" value="" />';
-    publication_dateCell.innerHTML = '<input type="text" name="publication_date[]" value="" />';
+    publication_dateCell.innerHTML = '<input type="date" name="publication_date[]" value="" />';
     actionCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
 }
 
@@ -455,6 +455,6 @@ function add_star_wrapper_row(tableName, rowIndex){
 function createCV() {
   var member = $("#name").val()
   var print_format = $("#templateSelect").val();
-  var link = "/printview?doctype=Member&name=" + member + "&format=" + print_format;
+  var link = `api/method/frappe.utils.print_format.download_pdf?doctype=Member&name=${member}&format=${print_format}`
   window.open(link, '_blank');
 }
