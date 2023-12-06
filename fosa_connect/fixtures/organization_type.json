@@ -1,0 +1,79 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 14:12:53.106862",
+  "name": "Public Limit",
+  "organization_type": "Public Limit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:23:15.659957",
+  "name": "Corporation",
+  "organization_type": "Corporation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:23:33.931597",
+  "name": "Nonprofit Organization",
+  "organization_type": "Nonprofit Organization"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:24:04.025146",
+  "name": "Government Agency",
+  "organization_type": "Government Agency"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:24:22.336216",
+  "name": "Partnership",
+  "organization_type": "Partnership"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:24:37.210316",
+  "name": "Sole Proprietorship",
+  "organization_type": "Sole Proprietorship"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:24:54.878003",
+  "name": "Limited Liability Company (LLC)",
+  "organization_type": "Limited Liability Company (LLC)"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:25:20.976943",
+  "name": "Cooperative",
+  "organization_type": "Cooperative"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:25:37.868000",
+  "name": "Social Enterprise",
+  "organization_type": "Social Enterprise"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:25:55.482628",
+  "name": "Professional Association",
+  "organization_type": "Professional Association"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Organization Type",
+  "modified": "2023-12-05 16:26:14.715656",
+  "name": "Educational Institution",
+  "organization_type": "Educational Institution"
+ }
+]
