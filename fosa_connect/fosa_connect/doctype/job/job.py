@@ -54,5 +54,4 @@ def post_job(job_title, qualification, responsibility, start_date, end_date, job
     job_doc = frappe.get_doc(job_data)
     job_doc.insert()
     frappe.db.commit()
-
-    return "Job created successfully"
+    return job_doc.name
