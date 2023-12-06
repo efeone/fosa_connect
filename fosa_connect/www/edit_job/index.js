@@ -19,7 +19,7 @@ const EditJobEntry = (job_id, isPublished, disabled) => {
   // Get values from form fields
   let title = $("#input-title").val().trim();
   let qualification = $("#input-qualification").val().trim();
-  let responsibility = $("#input-responsibility").val().trim();
+  let organization_website = $("#input-organization_website").val().trim();
   let start_date = $("#start-date").val().trim();
   let end_date = $("#end-date").val().trim();
   let category = $("#input-category").val().trim();
@@ -28,6 +28,7 @@ const EditJobEntry = (job_id, isPublished, disabled) => {
   let salary = $("#input-salary").val().trim();
   let message = $("#input-message").val().trim();
   let organization = $("#input-organization").val().trim();
+  let organization_type = $("#input-organization_type").val().trim();
 
   // Update edited job posting entry
   frappe.call({
@@ -36,7 +37,7 @@ const EditJobEntry = (job_id, isPublished, disabled) => {
       "job_id": job_id,
       "job_title": title,
       "qualification": qualification,
-      "responsibility": responsibility,
+      "organization_website": organization_website,
       "start_date": start_date,
       "end_date": end_date,
       "job_category": category,
@@ -46,7 +47,9 @@ const EditJobEntry = (job_id, isPublished, disabled) => {
       "job_description": message,
       "organization": organization,
       "isPublished": isPublished,  // Update 'isPublished' with the new value
-      "disabled": disabled
+      "disabled": disabled,
+      "organization_type": organization_type
+
     },
     callback: function (response) {
       if (response.message) {

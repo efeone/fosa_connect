@@ -35,12 +35,12 @@ def permission_query_conditions(user):
     return None
 
 @frappe.whitelist()
-def post_job(job_title, qualification, responsibility, start_date, end_date, job_category, location, job_type, salary_info, job_description, organization, isPublished):
-    job_data = { 
+def post_job(job_title, qualification, organization_website, start_date, end_date, job_category, location, job_type, salary_info, job_description, organization, organization_type,isPublished):
+    job_data = {
         "doctype": "Job",
         "job_title": job_title,
         "qualification": qualification,
-        "responsibility": responsibility,
+        "organization_website": organization_website,
         "start_date": start_date,
         "last_date_to_apply": end_date,
         "job_category": job_category,
@@ -49,6 +49,7 @@ def post_job(job_title, qualification, responsibility, start_date, end_date, job
         "salary_info": salary_info,
         "job_description": job_description,
         "organization_name": organization,
+        "organization_type": organization_type,
         "published" : isPublished
     }
     job_doc = frappe.get_doc(job_data)

@@ -39,7 +39,7 @@ const createJobEntry = () => {
     // Get values from form fields
     let title = $("#input-title").val().trim() || '';
     let qualification = $("#input-qualification").val().trim() || '';
-    let responsibility = $("#input-responsibility").val().trim() || '';
+    let organization_website = $("#input-organization_website").val().trim() || '';
     let start_date = $("#start-date").val().trim() || '';
     let end_date = $("#end-date").val().trim() || '';
     let category = $("#input-category").val().trim() || '';
@@ -48,7 +48,9 @@ const createJobEntry = () => {
     let salary = $("#input-salary").val().trim() || '';
     let message = $("#input-message").val().trim() || '';
     let organization = $("#input-organization").val().trim() || '';
+    let organization_type = $("#input-organization_type").val().trim() || '';
     let docName;
+
     // Create a new job posting entry
     frappe.call({
         method: "fosa_connect.fosa_connect.doctype.job.job.post_job",
@@ -56,7 +58,7 @@ const createJobEntry = () => {
         args: {
             "job_title": title,
             "qualification": qualification,
-            "responsibility": responsibility,
+            "organization_website": organization_website,
             "start_date": start_date,
             "end_date": end_date,
             "job_category": category,
@@ -64,8 +66,9 @@ const createJobEntry = () => {
             "job_type": type,
             "salary_info": salary,
             "job_description": message,
-            "organization": organization,
-            "isPublished": isPublished
+            "organization" : organization,
+            "isPublished" : isPublished,
+            "organization_type" : organization_type
         },
         callback: function (response) {
             if (response.message) {

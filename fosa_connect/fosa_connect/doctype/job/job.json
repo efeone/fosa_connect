@@ -12,7 +12,7 @@
   "published",
   "job_title",
   "qualification",
-  "responsibility",
+  "organization_website",
   "start_date",
   "job_description",
   "job_details",
@@ -23,7 +23,8 @@
   "job_type",
   "last_date_to_apply",
   "salary_info",
-  "organization_name"
+  "organization_name",
+  "organization_type"
  ],
  "fields": [
   {
@@ -80,16 +81,10 @@
    "reqd": 1
   },
   {
-   "fieldname": "responsibility",
-   "fieldtype": "Data",
-   "label": "Responsibility",
-   "reqd": 1
-  },
-  {
    "fieldname": "job_type",
    "fieldtype": "Select",
    "label": "Job Type",
-   "options": "Full-Time\nPart-Time"
+   "options": "Full-Time\nPart-Time\nInternship"
   },
   {
    "default": "0",
@@ -121,10 +116,22 @@
    "fieldname": "job_details",
    "fieldtype": "Attach",
    "label": "Job Details"
+ },
+ {
+   "fieldname": "organization_type",
+   "fieldtype": "Link",
+   "label": "Organization Type",
+   "options": "Organization Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "organization_website",
+   "fieldtype": "Data",
+   "label": "Organization Website"
   }
  ],
  "links": [],
- "modified": "2023-12-05 12:59:18.646065",
+ "modified": "2023-12-05 16:52:17.777533",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Job",
