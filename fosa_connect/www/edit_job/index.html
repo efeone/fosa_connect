@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 {% set catgry_doc = frappe.get_all('Job Category', fields=['job_category']) %}
 {% set qualification_doc = frappe.get_all('Qualification', fields=['qualification']) %}
+{% set orgtype_doc = frappe.get_all('Organization Type',fields=['organization_type']) %}
 {% set job_doc = frappe.get_doc('Job', job_id) %}
 {%- block content -%}
 
@@ -15,11 +16,11 @@
             <option value="{{ qualify.qualification }}" {% if qualify.qualification == job_doc.qualification %}selected{% endif %}>{{ qualify.qualification }}</option>
         {%- endfor -%}
     </select>
-    
-    
-      <input type="text" id="input-responsibility" value="{{ job_doc.responsibility }}" placeholder="Responsibility">
+
+
+      <input type="text" id="input-organization_website" value="{{ job_doc.organization_website }}" placeholder="Organization Website">
       &nbsp;
-      <label for="start-date" class="fonds">Start Date:</label>
+      <label for="start-date" class="fonds">Post Date:</label>
       <input type="date" id="start-date" value="{{ job_doc.start_date }}">
       &nbsp;
       <label for="end-date" class="fonds">End Date:</label>
@@ -33,15 +34,22 @@
             <option value="{{ category.job_category }}" {% if category.job_category == job_doc.job_category %}selected{% endif %}>{{ category.job_category }}</option>
         {%- endfor -%}
     </select>
-    
+
       <input type="text" id="input-location" value="{{ job_doc.location }}" placeholder="Location">
       <select id="input-type">
         <option value="" disabled selected>Job-Type</option>
         <option value="Full-Time" {% if job_doc.job_type == 'Full-Time' %}selected{% endif %}>Full-Time</option>
         <option value="Part-Time" {% if job_doc.job_type == 'Part-Time' %}selected{% endif %}>Part-Time</option>
+        <option value="Internship" {% if job_doc.job_type == 'Internship' %}selected{% endif %}>Internship</option>
       </select>
       <input type="text" id="input-salary" value="{{ job_doc.salary_info }}" placeholder="Salary">
       <input type="text" id="input-organization" value="{{ job_doc.organization_name}}" placeholder="Organization">
+      <select id="input-organization_type">
+        <option value="" disabled>Organization Type</option>
+        {%- for org in orgtype_doc-%}
+            <option value="{{ org.organization_type }}" {% if org.organization_type == job_doc.organization_type %}selected{% endif %}>{{org.organization_type}}</option>
+        {%- endfor -%}
+    </select>
     </div>
     <div>
       <textarea class="message" name="message" id="input-message" placeholder="Job Description">{{ job_doc.job_description }}</textarea>
@@ -50,7 +58,7 @@
       <label for="isPublished">Publish</label>
       <input type="checkbox" id="isPublished" name="isPublished" value="1" {% if job_doc.published %}checked{% endif %}>
     </div>
-    
+
     <div class="button-container">
       <button class="submit" type="submit" value="Submit" id="input-submit">Save</button>
     </div>
