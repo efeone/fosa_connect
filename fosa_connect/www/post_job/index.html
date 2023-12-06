@@ -6,7 +6,7 @@
 
 <body>
   <h1>Post Job</h1>
-  <form class="cf">
+  <form class="cf" id="post_job">
     <div class="half left cf">
       <input type="text" id="input-title" placeholder="Job Title">
       <select id="input-qualification">
@@ -45,10 +45,12 @@
       <textarea class="message" name="message" type="text" id="input-message" placeholder="Job Description"></textarea>
     </div>
     <div>
+      <input type="file" name="uploadPdf" id="uploadPdf">
+    </div>
+    <div>
       <label for="isPublished">Publish</label>
       <input type="checkbox" id="isPublished" name="isPublished" value="1" checked>
-  </div>
-
+    </div>
 
     <div class="button-container">
       <button class="discard" type="reset">Discard</button>
