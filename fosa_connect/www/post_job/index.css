@@ -127,7 +127,7 @@
       margin-top: 1em;
       font-family: 'Merriweather', sans-serif;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-      resize: none; 
+      resize: none;
     }
     #input-qualification{
       border: 0;
@@ -138,6 +138,21 @@
       display: block;
       color:#000000;
       width: 92%;
+      margin-top: 1em;
+      font-family: 'Merriweather', sans-serif;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      resize: none;
+
+    }
+    #input-organization_type{
+      border: 0;
+      outline: 0;
+      padding: 1em;
+      border-radius: 12px;
+      background: #ffffff;
+      display: block;
+      color:#000000;
+      width: 45%;
       margin-top: 1em;
       font-family: 'Merriweather', sans-serif;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -164,7 +179,7 @@
       margin-bottom: -0.5rem;
       margin-top: 10px;
      }
-     
+
 
     input[type="checkbox"]{
 

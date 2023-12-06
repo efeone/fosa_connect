@@ -116,10 +116,8 @@
    "fieldname": "job_details",
    "fieldtype": "Attach",
    "label": "Job Details"
-  }
- ],
- "links": [],
- "modified": "2023-12-05 12:59:18.646065",
+ },
+ {
    "fieldname": "organization_type",
    "fieldtype": "Link",
    "label": "Organization Type",
