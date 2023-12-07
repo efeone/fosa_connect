@@ -13,6 +13,33 @@ frappe.ready(function () {
     e.preventDefault();
     EditJobEntry(job_id, isPublished, disabled);
   });
+
+  var $form = $("form[id='edit_job']")
+  $form.on("change", "[type='file']", function () {
+    var $input = $(this);
+    var input = $input.get(0);
+    if (input.files.length) {
+      input.filedata = { "files_data": [] }; //Initialize as json array.
+      window.file_reading = true;
+      $.each(input.files, function (key, value) {
+        setupReader(value, input);
+      });
+      window.file_reading = false;
+    }
+  });
+  function setupReader(file, input) {
+    var name = file.name;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      input.filedata.files_data.push({
+        "__file_attachment": 1,
+        "filename": file.name,
+        "dataurl": reader.result
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
 });
 
 const EditJobEntry = (job_id, isPublished, disabled) => {
@@ -29,10 +56,11 @@ const EditJobEntry = (job_id, isPublished, disabled) => {
   let message = $("#input-message").val().trim();
   let organization = $("#input-organization").val().trim();
   let organization_type = $("#input-organization_type").val().trim();
-
+  let docName;
   // Update edited job posting entry
   frappe.call({
     method: "fosa_connect.www.edit_job.index.edit_job",
+    freeze: true,
     args: {
       "job_id": job_id,
       "job_title": title,
@@ -53,6 +81,25 @@ const EditJobEntry = (job_id, isPublished, disabled) => {
     },
     callback: function (response) {
       if (response.message) {
+        var filedata = $('#uploadPdf').prop('filedata')
+        frappe.call({
+          method: 'fosa_connect.www.post_job.index.upload_file',
+          args: {
+            'filedata': filedata,
+            'doc_name': job_id,
+          },
+          freeze: true,
+          freeze_msg: 'Uploading',
+          callback: function (r) {
+            if (r.message) {
+              alert('File uploaded successfully ');
+              location.reload(true);
+            } else {
+              // Handle errors here
+              alert('Error: ' + r.exc);
+            }
+          }
+        });
         // Display a success message or redirect the user
         alert("Job Edited Successfully");
         window.location.href = "/jobs"; // Redirect to a jobs page

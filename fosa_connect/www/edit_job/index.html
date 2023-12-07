@@ -7,7 +7,7 @@
 
 <body>
   <h1>Edit Job</h1>
-  <form class="cf">
+  <form class="cf" id="edit_job">
     <div class="half left cf">
       <input type="text" id="input-title" value="{{ job_doc.job_title }}" placeholder="Job Title">
       <select id="input-qualification">
@@ -53,6 +53,9 @@
     </div>
     <div>
       <textarea class="message" name="message" id="input-message" placeholder="Job Description">{{ job_doc.job_description }}</textarea>
+    </div>
+    <div>
+      <input type="file" name="uploadPdf" id="uploadPdf">
     </div>
     <div>
       <label for="isPublished">Publish</label>
