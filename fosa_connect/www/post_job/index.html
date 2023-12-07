@@ -16,15 +16,11 @@
             <option value="{{ qualify.qualification }}">{{ qualify.qualification  }}</option>
           {%- endfor -%}
       </select>
-      <input type="text" id="input-organization_website" placeholder="Organization Website">
-      &nbsp;
+      <input type="text" id="input-location" placeholder="Location">
+      <input type="text" id="input-organization"  placeholder="Organization">      
       <label for="start-date" class="fonds">Post Date:</label>
       <input type="date" id="start-date" placeholder="start-date">
-      &nbsp;
-      <label for="end-date" class="fonds">End Date:</label>
-      <input type="date" id="end-date" placeholder="end-date">
     </div>
-
     <div class="half left cf" style="padding: 0%;">
       <select id="input-category">
         <option value="" disabled selected>Job Category</option>
@@ -32,23 +28,25 @@
             <option value="{{ category.job_category }}">{{ category.job_category }}</option>
           {%- endfor -%}
       </select>
-      <input type="text" id="input-location" placeholder="Location">
       <select id="input-type">
         <option value="" disabled selected>Job-Type</option>
         <option value="Full-Time">Full-Time</option>
         <option value="Part-Time">Part-Time</option>
         <option value="Internship">Internship</option>
-    </select>
-
+      </select>
       <input type="text" id="input-salary" placeholder="Salary">
-      <input type="text" id="input-organization"  placeholder="Organization">
+      <select id="input-organization_type">
+        <option value="" disabled selected>Organization Type</option>
+          {%- for org in orgtype_doc -%}
+            <option value="{{org.organization_type }}">{{ org.organization_type }}</option>
+          {%- endfor -%}
+      </select>
+      &nbsp;
+      <label for="end-date" class="fonds">End Date:</label>
+      <input type="date" id="end-date" placeholder="end-date">
     </div>
-    <select id="input-organization_type">
-      <option value="" disabled selected>Organization Type</option>
-        {%- for org in orgtype_doc -%}
-          <option value="{{org.organization_type }}">{{ org.organization_type }}</option>
-        {%- endfor -%}
-    </select>
+    <input type="text" id="input-organization_website" placeholder="Organization Website">
+
     <div>
       <textarea class="message" name="message" type="text" id="input-message" placeholder="Job Description"></textarea>
     </div>

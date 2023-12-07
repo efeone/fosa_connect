@@ -17,14 +17,12 @@
         {%- endfor -%}
     </select>
 
-
-      <input type="text" id="input-organization_website" value="{{ job_doc.organization_website }}" placeholder="Organization Website">
+      <input type="text" id="input-location" value="{{ job_doc.location }}" placeholder="Location">
+      <input type="text" id="input-organization" value="{{ job_doc.organization_name}}" placeholder="Organization">
       &nbsp;
       <label for="start-date" class="fonds">Post Date:</label>
       <input type="date" id="start-date" value="{{ job_doc.start_date }}">
-      &nbsp;
-      <label for="end-date" class="fonds">End Date:</label>
-      <input type="date" id="end-date" value="{{ job_doc.last_date_to_apply }}">
+      
     </div>
 
     <div class="half left cf" style="padding: 0%;">
@@ -33,9 +31,7 @@
         {%- for category in catgry_doc -%}
             <option value="{{ category.job_category }}" {% if category.job_category == job_doc.job_category %}selected{% endif %}>{{ category.job_category }}</option>
         {%- endfor -%}
-    </select>
-
-      <input type="text" id="input-location" value="{{ job_doc.location }}" placeholder="Location">
+      </select>
       <select id="input-type">
         <option value="" disabled selected>Job-Type</option>
         <option value="Full-Time" {% if job_doc.job_type == 'Full-Time' %}selected{% endif %}>Full-Time</option>
@@ -43,14 +39,18 @@
         <option value="Internship" {% if job_doc.job_type == 'Internship' %}selected{% endif %}>Internship</option>
       </select>
       <input type="text" id="input-salary" value="{{ job_doc.salary_info }}" placeholder="Salary">
-      <input type="text" id="input-organization" value="{{ job_doc.organization_name}}" placeholder="Organization">
       <select id="input-organization_type">
         <option value="" disabled>Organization Type</option>
         {%- for org in orgtype_doc-%}
             <option value="{{ org.organization_type }}" {% if org.organization_type == job_doc.organization_type %}selected{% endif %}>{{org.organization_type}}</option>
         {%- endfor -%}
-    </select>
+      </select>
+      &nbsp;
+      <label for="end-date" class="fonds">End Date:</label>
+      <input type="date" id="end-date" value="{{ job_doc.last_date_to_apply }}">
     </div>
+    <input type="text" id="input-organization_website" value="{{ job_doc.organization_website }}" placeholder="Organization Website">
+
     <div>
       <textarea class="message" name="message" id="input-message" placeholder="Job Description">{{ job_doc.job_description }}</textarea>
     </div>
