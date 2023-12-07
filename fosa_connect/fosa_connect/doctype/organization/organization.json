@@ -8,7 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "organization"
+  "organization",
+  "logo"
  ],
  "fields": [
   {
@@ -16,11 +17,17 @@
    "fieldtype": "Data",
    "label": "Organization",
    "unique": 1
+  },
+  {
+   "fieldname": "logo",
+   "fieldtype": "Attach Image",
+   "label": "Logo"
   }
  ],
+ "image_field": "logo",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-06 16:59:32.572448",
+ "modified": "2023-12-07 11:51:17.744566",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Organization",
