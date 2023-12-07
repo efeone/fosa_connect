@@ -452,9 +452,16 @@ function add_star_wrapper_row(tableName, rowIndex){
     }
 	}
 //to get the print format
-function createCV() {
-  var member = $("#name").val()
-  var print_format = $("#templateSelect").val();
-  var link = `api/method/frappe.utils.print_format.download_pdf?doctype=Member&name=${member}&format=${print_format}`
-  window.open(link, '_blank');
+function createCV(button) {
+  var dataValue = button.getAttribute('data-value');
+  if (dataValue == 1) {
+    var member = $("#name").val()
+    var print_format = $("#templateSelect").val();
+    var link = `api/method/frappe.utils.print_format.download_pdf?doctype=Member&name=${member}&format=${print_format}`
+    window.open(link, '_blank');
+  }
+  else
+  {
+    alert('Fill the Address fields');
+  }
 }
