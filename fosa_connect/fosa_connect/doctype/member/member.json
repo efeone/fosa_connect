@@ -10,23 +10,24 @@
  "field_order": [
   "general_tab",
   "member_type",
+  "section_break_ngrfp",
   "first_name",
-  "middle_name",
   "last_name",
   "email_id",
-  "column_break_opage",
+  "column_break_2atk8",
+  "middle_name",
+  "mobile_no",
   "academic_details_section",
   "admission_number",
   "year_of_admission",
+  "column_break_opage",
   "department",
-  "column_break_lqgb5",
   "details_section",
   "year_of_passing",
+  "organization",
+  "column_break_lqgb5",
   "job_title",
   "designation",
-  "contact_section",
-  "mobile_no",
-  "column_break_v6wyj",
   "profile_tab",
   "primary_address",
   "address_html",
@@ -64,11 +65,6 @@
    "label": "Member Type",
    "options": "\nAlumni\nStudent",
    "reqd": 1
-  },
-  {
-   "fieldname": "contact_section",
-   "fieldtype": "Section Break",
-   "label": "Contact"
   },
   {
    "fieldname": "address_html",
@@ -112,17 +108,12 @@
    "fetch_from": "primary_address.phone",
    "fieldname": "mobile_no",
    "fieldtype": "Read Only",
-   "label": "Mobile No",
-   "read_only": 1
+   "label": "Mobile No"
   },
   {
    "fieldname": "email_id",
    "fieldtype": "Data",
    "label": "Email ID"
-  },
-  {
-   "fieldname": "column_break_v6wyj",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "primary_address",
@@ -288,12 +279,26 @@
    "depends_on": "eval:doc.member_type=='Student'",
    "fieldname": "column_break_opage",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "organization",
+   "fieldtype": "Link",
+   "label": "Organization",
+   "options": "Organization"
+  },
+  {
+   "fieldname": "section_break_ngrfp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_2atk8",
+   "fieldtype": "Column Break"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-28 15:48:22.610903",
+ "modified": "2023-12-06 16:52:25.356012",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",

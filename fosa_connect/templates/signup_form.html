@@ -117,12 +117,12 @@
                 >
             </div>
             <div class="form-group">
-                <label class="form-label sr-only" for="designation">{{ _("Designation") }}</label>
+                <label class="form-label sr-only" for="organization">{{ _("Organization Name") }}</label>
                 <input
                     type="text"
-                    id="designation"
+                    id="organization"
                     class="form-control"
-                    placeholder="{{ _('Designation') }}"
+                    placeholder="{{ _('Organization Name') }}"
                     required
                 >
             </div>
@@ -158,7 +158,7 @@
           let department = frappe.utils.xss_sanitise($("#department-select").val() || "").trim();
           let year_of_passing = frappe.utils.xss_sanitise($("#year_of_passing").val() || "").trim();
           let job_title = frappe.utils.xss_sanitise($("#job_title").val() || "").trim();
-          let designation = frappe.utils.xss_sanitise($("#designation").val() || "").trim();
+          let organization = frappe.utils.xss_sanitise($("#organization").val() || "").trim();
 
           frappe.call({
               method: "fosa_connect.fosa_connect.overrides.sign_up",
@@ -171,7 +171,7 @@
                   "full_name": full_name,
                   "year_of_passing": year_of_passing,
                   "job_title": job_title,
-                  "designation": designation,
+                  "organization": organization,
                   "member_type": memberType,
                   "admission_number": admission_number,
                   "year_of_admission": year_of_admission,
@@ -195,7 +195,7 @@
       document.getElementById('Alumni_fields').style.display = 'none';
       document.getElementById('year_of_passing').value = '';
       document.getElementById('job_title').value = '';
-      document.getElementById('designation').value = '';
+      document.getElementById('organization').value = '';
     } else if (this.value === 'Alumni') {
       document.getElementById('General_fields').style.display = 'block';
       document.getElementById('Student_fields').style.display = 'none';
@@ -213,7 +213,7 @@
       document.getElementById('department-select').value = '';
       document.getElementById('year_of_passing').value = '';
       document.getElementById('job_title').value = '';
-      document.getElementById('designation').value = '';
+      document.getElementById('organization').value = '';
       document.getElementById('General_fields').style.display = 'none';
       document.getElementById('Student_fields').style.display = 'none';
       document.getElementById('Alumni_fields').style.display = 'none';
