@@ -1,0 +1,24 @@
+{% extends "templates/base.html" %}
+{% set organizations = frappe.get_all("Organization", fields=["name", "logo"]) %}
+{% block content %}
+
+<div class="container">
+    <div class="section-header text-center" style="margin-top: 40px;">
+        <h2>PARTICIPATING COMPANIES</h2>
+    </div>
+    <div class="demo-gallery" style="margin-top: 50px;">
+        <ul id="lightgallery" class="list-unstyled row">
+            {% for organization in organizations %}
+            <div class="col-sm-2" style="margin-bottom: 20px;  margin-right: 6%;display: flex;"> <!-- Adjust margin as needed -->
+                <div style=" gap: 10px;display: ruby;"> <!-- Adjust gap as needed -->
+                    <img class="img-responsive" src="{{ organization.logo }}"  width="100"/>
+                </div>
+                <div style="word-wrap: break-word;width: 150px; ">{{ organization.name }}</div>
+
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{%- endblock -%}
