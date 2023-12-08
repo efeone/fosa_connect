@@ -227,7 +227,7 @@ fixtures = [{"dt": "Program"},
 			{"dt": "Email Template"},
 			{"dt": "Qualification"},
 			{"dt": "Organization Type"},
-			{'dt': 'Role', 'filters': [['name', 'in', ['Student','Alumni','Placement Officer']]]},
+			{'dt': 'Role', 'filters': [['name', 'in', ['Student','Alumni','Placement Officer','All']]]},
 			{"dt": "Custom DocPerm", "filters": [['parent', 'in', ['Address','Contact', 'User','Workflow']]]}
 
 ]
