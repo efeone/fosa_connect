@@ -40,8 +40,12 @@
                                                 <option value="Profile 3">Profile 3</option>
                                                 <option value="Profile 4">Profile 4</option>
                                             </select>
-                                         <a class="btn btn-primary" onclick="createCV()">Create CV</a>
+                                            {% if member.primary_address is none %}
+                                         <a class="btn btn-primary" data-value="0" onclick="createCV(this)">Create CV</a>
+                                         {% else %}
+                                         <a class="btn btn-primary" data-value="1" onclick="createCV(this)">Create CV</a>
                                          </div>
+                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
