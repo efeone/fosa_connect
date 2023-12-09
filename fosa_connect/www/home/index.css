@@ -1347,4 +1347,7 @@
   .swiper-navBtn{
     display: none;
   }
+  .navbar-brand1{
+    padding-left: 10px;
+  }
 }
