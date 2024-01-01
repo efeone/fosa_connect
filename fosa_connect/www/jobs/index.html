@@ -1,94 +1,90 @@
 {% extends "templates/base.html" %}
 
 {% block content %}
+
 <head>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<style>
-    /* Custom CSS for creating a gap between containers */
-    .job-interest-container {
-        margin-bottom: 20px; /* Adjust the margin as needed */
-        border: 1px solid #ccc; /* Add a border to each container */
-        border-radius: 10px;
-    }
-    .card-title {
-        margin-top: 0;
-    }
-</style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div class="container mt-5">
-  <h1>{{ _("Job Portal") }}</h1>
+  <h3>{{ _("Job Portal") }}</h3>
 
   {% if "Alumni" in context.roles %}
   <div class="text-right">
-    <a href="/post_job" class="btn btn-success" >Create New Job</a>
-</div>
+    <a href="/post_job" class="btn btn-success">Create New Job</a>
+  </div>
 
-     {% endif %}
-    <form id="jobFilterForm">
+  {% endif %}
+  <form id="jobFilterForm">
     <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="jobtitle">Job Title</label>
-                <select name="jobtitle" class="form-control" id="jobTitle">
-                  <option value="">Select title</option>
-                  {% for jobtitle in context.job_titles %}
-                  <option value="{{jobtitle.job_title}}" {% if context.job_title == jobtitle.job_title %}selected{% endif %}>{{jobtitle.job_title}}</option>
-                  {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="location">Location</label>
-                <select name="location" class="form-control" id="location">
-                    <option value="">Select location</option>
-                    {% for location in context.job_locations %}
-                    <option value="{{location.location}}" {% if context.job_location == location.location %}selected{% endif %}>{{location.location}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="job_type">Job Type</label>
-                <select name="job_type" class="form-control" id="type">
-                    <option value="">Select type</option>
-                    {% for job_type in context.job_types %}
-                    <option value="{{job_type.job_type}}" {% if context.job_type == job_type.job_type %}selected{% endif %}>{{job_type.job_type}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-    </div>
-</form>
-
-<hr>
-
-<div class="row">
-    {% for jobs in jobs %}
       <div class="col-md-4">
-        <div class="job-interest-container job-interest-card">
-          <div class="card-body">
-            <h3 class="card-title">{{ jobs.job_title }}</h3>
-            <p class="location" style="color: #e67e22">Location: {{ jobs.location }}</p>
-            <p class="card-text">Job Category: {{ jobs.job_category }}</p>
-            <p class="card-text"><i class="fas fa-briefcase"></i> Job Type: {{ jobs.job_type }}</p>
-            <div class="row">
-              <div class="col-md-6">
-                {%- if jobs.last_date_to_apply -%}
-                <p class="card-text">Last Date to Apply: {{ jobs.last_date_to_apply }}</p>
-                {%- endif -%}
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-info float-md-right">
-                  <a href="/jobs/job/{{ jobs.name }}" style="color: white;text-decoration: none;">View Details</a>
-                </button>
-              </div>
+        <div class="form-group">
+          <label for="jobtitle">Job Title</label>
+          <select name="jobtitle" class="form-control" id="jobTitle">
+            <option value="">Select title</option>
+            {% for jobtitle in context.job_titles %}
+            <option value="{{jobtitle.job_title}}" {% if context.job_title==jobtitle.job_title %}selected{% endif %}>
+              {{jobtitle.job_title}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="location">Location</label>
+          <select name="location" class="form-control" id="location">
+            <option value="">Select location</option>
+            {% for location in context.job_locations %}
+            <option value="{{location.location}}" {% if context.job_location==location.location %}selected{% endif %}>
+              {{location.location}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="job_type">Job Type</label>
+          <select name="job_type" class="form-control" id="type">
+            <option value="">Select type</option>
+            {% for job_type in context.job_types %}
+            <option value="{{job_type.job_type}}" {% if context.job_type==job_type.job_type %}selected{% endif %}>
+              {{job_type.job_type}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <hr>
+
+  <div class="card-grid row">
+    {% for jobs in jobs %}
+    <div class="card-grid-items col-md-4">
+      <div class="card job-interest-container job-interest-card">
+        <div class="card-body">
+          <div class="card-title-location">
+            <p class="card-title">{{ jobs.job_title }}</p>
+            <p class="location" style="color: #437562">Location: {{ jobs.location }}</p>
+          </div>
+          <p class="card-text">Job Category: {{ jobs.job_category }}</p>
+          <p class="card-text"><i class="fas fa-briefcase"></i> Job Type: {{ jobs.job_type }}</p>
+          <div class="date-and-button">
+            <div class="date">
+              {%- if jobs.last_date_to_apply -%}
+              <p class="card-text">Last Date to Apply: {{ jobs.last_date_to_apply }}</p>
+              {%- endif -%}
+            </div>
+            <div class="details-button">
+              <button class="btn btn-info float-md-right">
+                <a href="/jobs/job/{{ jobs.name }}" style="color: white;text-decoration: none;">View Details</a>
+              </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
 </div>
