@@ -45,7 +45,9 @@
         <p><i class="far fa-calendar-alt"></i> Published date: {{ jobs.get_formatted("start_date") }} </p>
         {%- endif -%}
         <p><i class="fas fa-calendar-day"></i> Last date to apply: {{ jobs.get_formatted("last_date_to_apply") }} </p>
+        {% if jobs.job_details %}
         <p><i class="fas fa-file"></i> <a href="{{ jobs.job_details }}">Job Details</a></p>
+        {% endif %}
       </div>
       <div class="col-md-6">
         <h4 style="margin-top: 1rem"><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</h4>
