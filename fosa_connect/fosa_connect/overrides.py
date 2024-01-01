@@ -51,8 +51,9 @@ def create_member(email, first_name, last_name, member_type, admission_number=No
     else:
         # Create a new member
         organization = organization.capitalize()
-        if not frappe.db.exists('Organization', organization):
-            frappe.get_doc({"doctype": "Organization", "organization": organization}).insert(ignore_permissions=True)
+        if organization:
+            if not frappe.db.exists('Organization', organization):
+                frappe.get_doc({"doctype": "Organization", "organization": organization}).insert(ignore_permissions=True)
         member_data = {
             "doctype": "Member",
             "email_id": email,
