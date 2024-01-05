@@ -238,3 +238,7 @@ website_route_rules = [
     {'from_route':'/jobs/job/<docname>','to_route':'jobs/job'},
 	{'from_route':'/job_interest/job_interest/<docname>','to_route':'job_interest/job_interest'},
 ]
+
+website_redirects = [
+    {'source':'/update-profile/(.*)','target':'/update_profile'},
+]
