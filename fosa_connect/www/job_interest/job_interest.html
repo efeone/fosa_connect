@@ -2,9 +2,9 @@
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<div style="padding-left:25px; padding-top:20px;">
+<div style="padding-left:25px; padding-top:10px;">
   <a href="/job_interest" style="color: blue; text-decoration: none; display: flex; align-items: center;">
-    <div style="width: 50px; height: 30px; display: flex; justify-content: center; align-items: center;">
+    <div style="width: 50px; height: 25px; display: flex; justify-content: center; align-items: center;">
       <i class="fas fa-arrow-left" style="color: black;font-size: 24px;"></i>
     </div>
   </a>
@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h1 style="margin-top: 20px;">{{ jobs.job_title }}</h1>
+          <h4 style="margin-top: 0;">{{ jobs.job_title }}</h4>
           <div class="status" style="font-weight: bold; display: flex; color: white;">
             {%- if job_interest.status == 'Open' -%}
             <span class="badge badge-primary" style="width: 90px; height: 22px;">Open</span>
@@ -35,7 +35,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <p><i class="fas fa-briefcase"></i> Job ID: <span style="color: red;">{{ job_interest.job }}</span></p>
+        <p style="margin-top: 1rem;"><i class="fas fa-briefcase"></i> Job ID: <span style="color: red;">{{ job_interest.job }}</span></p>
         <p><i class="fas fa-map-marker-alt"></i> Location: {{ jobs.location }}</p>
         {%- if jobs.salary_info -%}
         <p><i class="fas fa-money-bill"></i> Salary: {{ jobs.salary_info }} </p>
@@ -45,43 +45,43 @@
         <p><i class="far fa-calendar-alt"></i> Published date: {{ jobs.get_formatted("start_date") }} </p>
         {%- endif -%}
         <p><i class="fas fa-calendar-day"></i> Last date to apply: {{ jobs.get_formatted("last_date_to_apply") }} </p>
-        <p><i class="fas fa-file"></i> <a href="{{ jobs.job_details }}">Job Details</a></p>
       </div>
       <div class="col-md-6">
-        <h4><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</h4>
+        <p style="margin-top: 1rem; font-size:17px; line-height:initial;"><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</p>
         <p><i class="fas fa-graduation-cap"></i> Qualification: {{ jobs.qualification }}</p>
         <p><i class="fas fa-globe"></i> Organization Website: <a href="{{ jobs.organization_website }}">{{ jobs.organization_website }}</a> </p>
         <p><i class="fas fa-building"></i> Organization Type: {{ jobs.organization_type }} </p>
+        <p><i class="fas fa-file"></i> <a href="{{ jobs.job_details }}">Job Details</a></p>
       </div>
     </div>
     <hr>
-    <p style="text-align: justify;"><i class="fas fa-file-alt"></i> {{ jobs.job_description }}</p>
+    <p style="text-align: justify; line-height: 1.7"><i class="fas fa-file-alt"></i> {{ jobs.job_description }}</p>
     {%- if "Alumni" in context.user_type -%}
     {% if job_interest.status == 'Open' %}
     <p>
-          <a href="/printview?doctype=Member&name={{ job_interest.member }}&format=Profile%201" style="color: blue; text-decoration: none;">
+          <a href="/api/method/frappe.utils.print_format.download_pdf?doctype=Member&name={{ job_interest.member }}&format=Profile%201" style="color: blue; text-decoration: none;">
               <i class="fas fa-user"></i> View Member Detail
           </a>
-          <button id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
-              <i class="fas fa-check-circle" style="color: green; font-size: 24px; margin-left: 10px;"></i>
+          <button style="color: green;" id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+              <i class="fas fa-check-circle" style="color: green; font-size: 17px; margin-left: 3px;"></i>Approve
           </button>
-          <button id="action-button" class="workflow-action-button" data-action="Reject" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
-              <i class="fas fa-times-circle" style="color: red; font-size: 24px; margin-left: 10px;"></i>
+          <button style="color: red;" id="action-button" class="workflow-action-button" data-action="Reject" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+              <i class="fas fa-times-circle" style="color: red; font-size: 17px; margin-left: 3px;"></i>Reject
           </button>
-          <button id="action-button" class="workflow-action-button" data-action="Hold" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
-              <i class="fas fa-pause-circle" style="color: orange; font-size: 24px; margin-left: 10px;"></i>
+          <button style="color: orange;" id="action-button" class="workflow-action-button" data-action="Hold" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+              <i class="fas fa-pause-circle" style="color: orange; font-size: 17px; margin-left: 3px;"></i>Hold
           </button>
         </p>
         {% elif job_interest.status == 'On Hold' %}
         <p>
-          <a href="/printview?doctype=Member&name={{ job_interest.member }}&format=Profile%201" style="color: blue; text-decoration: none;">
+          <a href="/api/method/frappe.utils.print_format.download_pdf?doctype=Member&name={{ job_interest.member }}&format=Profile%201" style="color: blue; text-decoration: none;">
               <i class="fas fa-user"></i> View Member Detail
           </a>
-              <button id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
-                  <i class="fas fa-check-circle" style="color: green; font-size: 24px; margin-left: 10px;"></i>
+              <button style="color: green;" id="action-button" class="workflow-action-button" data-action="Approve" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+                  <i class="fas fa-check-circle" style="color: green; font-size: 17px; margin-left: 3px;"></i>Approve
               </button>
-              <button id="action-button" class="workflow-action-button" data-action="Reject" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
-                  <i class="fas fa-times-circle" style="color: red; font-size: 24px; margin-left: 10px;"></i>
+              <button style="color: red;" id="action-button" class="workflow-action-button" data-action="Reject" data-user-role="Alumni" onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
+                  <i class="fas fa-times-circle" style="color: red; font-size: 17px; margin-left: 3px;"></i>Reject
               </button>
         </p>
     {% endif %}
@@ -89,7 +89,7 @@
     {%- if "Alumni" not in context.user_type -%}
     {% if job_interest.status == 'Open' %}
     <p>
-      <button id="action-button" class="btn btn-danger workflow-action-button" data-action="Cancel" data-user-role="Student"
+      <button style="color:red;" id="action-button" class="btn btn-sm workflow-action-button" data-action="Cancel" data-user-role="Student"
         onclick="triggerWorkflowAction('{{ job_interest.name }}', this)">
         <i class="fas fa-times-circle"></i> Cancel Job Interest
       </button>
@@ -124,22 +124,39 @@
   }
   /* Remove default button styles */
     .workflow-action-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        outline: none;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        background-color: #E8F4FF;
+        box-shadow: 0px 10px 20px #736d6d29,
+                    0px 0px 30px #cccccc29;
+    }
+    p {
+      line-height: initial;
+      font-size: medium;
     }
 
     /* Remove underlines from links */
     .workflow-action-button:hover {
         text-decoration: none;
     }
-    @media (min-width: 1200px) {
-  h4 {
-    font-size: 1.5rem;
-    margin-top: 1rem;
+    .job-details-container {
+      background-color: #CDF5FD26;
+      border: 0;
+      box-shadow: 0px 10px 20px #c2c2c229,
+                  0px 0px 30px #aaaaaa29;
+    }
+  @media (min-width: 1200px) {
+    h4 {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
   }
-}
+  @media (min-width: 768px) {
+    .job-details-container {
+      width: 75%;
+    }
+  }
+
 </style>
 
 <script src="/job_interest.js"></script>

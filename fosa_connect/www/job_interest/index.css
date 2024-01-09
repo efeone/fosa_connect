@@ -23,20 +23,13 @@ body {
   }
 
   .container {
-    padding: 0 10px;
+    padding: 0 20px;
   }
 
   .card-title {
     margin: 0;
     font-size: larger;
     font-weight: 700;
-  }
-
-  .card-title-location {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .card {

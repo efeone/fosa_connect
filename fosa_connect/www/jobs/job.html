@@ -4,17 +4,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div style="padding-left:25px; padding-top:10px;">
   <a href="/jobs" style="color: blue; text-decoration: none; display: flex; align-items: center;">
-    <div style="width: 50px; height: 30px; display: flex; justify-content: center; align-items: center;">
+    <div style="width: 50px; height: 25px; display: flex; justify-content: center; align-items: center;">
       <i class="fas fa-arrow-left" style="color: black; font-size: 24px;"></i>
     </div>
   </a>
 </div>
 <div class="container-outer">
-  <div class="container job-details-container">
+  <div class="container job-details-container" style="width:75%">
     <div class="row">
       <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center">
-          <h1 style="color: black; flex: 1; margin: auto;margin-bottom: 20px;">{{ jobs.job_title }}</h1>
+          <h4 style="color: black; flex: 1; margin: auto;margin-bottom: 20px;">{{ jobs.job_title }}</h4>
           <div class="apply-button">
             {%- if "Alumni" in context.roles -%}
                 <a href="/edit_job?job_id={{ jobs.name }}" class="btn btn-success">Edit Job</a>
@@ -50,15 +50,15 @@
         {% endif %}
       </div>
       <div class="col-md-6">
-        <h4 style="margin-top: 1rem"><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</h4>
+        <p style="margin-top: 1rem; font-size:17px;"><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</p>
         <p><i class="fas fa-graduation-cap"></i> Qualification: {{ jobs.qualification }} </p>
         <p><i class="fas fa-globe"></i> Organization Website: <a href="{{ jobs.organization_website }}">{{ jobs.organization_website }}</a> </p>
         <p><i class="fas fa-building"></i> Organization Type: {{ jobs.organization_type }} </p>
-
+        <p><i class="fas fa-file"></i> <a href="{{ jobs.job_details }}">Job Details</a></p>
       </div>
     </div>
     <hr>
-    <p style="text-align: justify;"><i class="fas fa-file-alt"></i> {{ jobs.job_description }}</p>
+    <p style="text-align: justify; line-height: 1.7"><i class="fas fa-file-alt"></i> {{ jobs.job_description }}</p>
     <p><span style="font-weight: bold;">Published by: {{owner}}, {{jobs.organization_name}}</span></p>
   </div>
 </div>
@@ -91,6 +91,21 @@
 /* Style for the icons */
 .fas, .far {
   margin-right: 5px; /* Add spacing to the right of icons */
+}
+p {
+  line-height: initial;
+  font-size: medium;
+}
+.job-details-container {
+  background-color: #CDF5FD26;
+  border: 0;
+  box-shadow: 0px 10px 20px #c2c2c229,
+              0px 0px 30px #aaaaaa29;
+}
+@media (min-width: 768px) {
+  .job-details-container {
+    width: 75%;
+  }
 }
 </style>
 <script>

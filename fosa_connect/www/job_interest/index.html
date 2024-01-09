@@ -2,26 +2,9 @@
 
 {% block content %}
 
-<style>
-    /* Custom CSS for creating a gap between containers */
-    .job-interest-container {
-        margin-bottom: 20px; /* Adjust the margin as needed */
-        border: 1px solid #ccc; /* Add a border to each container */
-        border-radius:10px;
-    }
-    .card-title {
-      margin-top: 0;
-    }
-    hr {
-        margin-top: 20px; /* Add spacing above HR elements */
-        margin-bottom: 20px; /* Add spacing below HR elements */
-        border: 0; /* Remove default HR styling */
-        border-top: 1px solid #ccc; /* Add a custom horizontal line */
-    }
-</style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div class="container mt-5">
-  <h1>{{ _("Job Interest") }}</h1>
+  <h3>{{ _("Job Interest") }}</h3>
 
 
   <form id="jobFilterForm">
@@ -62,25 +45,22 @@
                               {% if "Student" in context.user_type %}
                               <option value="Cancelled" {% if status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
                               {% endif %}
-                              <!-- Add more status options as needed -->
                           </select>
                       </div>
                   </div>
               </div>
           </form>
-
 <hr>
 
-  <!-- List of job interest -->
-
   <div class="row">
+    <div class="card-grid row">
     {% for job_interest in job_interests %}
-      <div class="col-md-4">
-        <div class="job-interest-container job-interest-card" onclick="window.location='/job_interest/job_interest/{{ job_interest.name }}';">
+      <div class="card-grid-items col-md-4">
+        <div class="card job-interest-container job-interest-card" onclick="window.location='/job_interest/job_interest/{{ job_interest.name }}';">
           <div class="card-body">
-            <h3 class="card-title" style="color: black;">{{ job_interest.job_title }}</h3>
+            <p class="card-title">{{ job_interest.job_title }}</p>
             <p class="card-text">Job ID:<span style="color: red;"> {{ job_interest.id }}</span></p>
-            <p class="card-text">Location: {{ job_interest.location }}</p>
+            <p class="location" style="color: #437562">Location: {{ job_interest.location }}</p>
             <div class="d-flex justify-content-between">
                 <p class="card-text">Posted on {{ job_interest.posting_date.strftime("%b %d, %Y") }}</p>
                 <span class="badge badge-{% if job_interest.status=='Open' %}primary{% elif job_interest.status=='Accepted' %}success{% elif job_interest.status=='Rejected' %}danger{% elif job_interest.status=='On Hold' %}warning{% elif job_interest.status=='Cancelled' %}secondary{% endif %}" style="width: 80px; height: 20px;">{{ job_interest.status }}</span>
@@ -89,6 +69,7 @@
         </div>
       </div>
     {% endfor %}
+    </div>
   </div>
 </div>
 
