@@ -49,9 +49,9 @@
       <div class="col-md-6">
         <p style="margin-top: 1rem; font-size:17px; line-height:initial;"><i class="fas fa-folder"></i> Job Category: {{ jobs.job_category }}</p>
         <p><i class="fas fa-graduation-cap"></i> Qualification: {{ jobs.qualification }}</p>
-        <p><i class="fas fa-globe"></i> Organization Website: <a href="{{ jobs.organization_website }}">{{ jobs.organization_website }}</a> </p>
+        <p><i class="fas fa-globe"></i> Organization Website: <a href="https://{{ jobs.organization_website }}" target="_blank">{{ jobs.organization_website }}</a> </p>
         <p><i class="fas fa-building"></i> Organization Type: {{ jobs.organization_type }} </p>
-        <p><i class="fas fa-file"></i> <a href="{{ jobs.job_details }}">Job Details</a></p>
+        {% if jobs.job_details %}<p><i class="fas fa-file"></i> <a href="{{ jobs.job_details }}">Job Details</a></p>{% endif %}
       </div>
     </div>
     <hr>
