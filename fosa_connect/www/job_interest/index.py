@@ -6,8 +6,6 @@ def get_context(context):
     cur_usr = frappe.session.user
     user_roles = frappe.get_roles(cur_usr)
 
-
-    print(user_roles,"\n\n\n")
     if "Alumni" in frappe.get_roles(cur_usr):
         print(cur_usr)
 

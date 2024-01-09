@@ -1,0 +1,875 @@
+{% extends "templates/base.html" %}
+{% set catgry_doc = frappe.get_all('Job Category',fields=['job_category']) %}
+{% set member = frappe.get_doc('Member', { 'email_id': frappe.session.user }) %}
+{% set dept_doc = frappe.get_all('Program',fields=["program_name"]) %}
+{% block content %}
+<style data-tag="reset-style-sheet">
+  html {
+    line-height: 1.15;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+  }
+
+  p,
+  li,
+  ul,
+  pre,
+  div,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  figure,
+  blockquote,
+  figcaption {
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    background-color: transparent;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  button,
+  select {
+    text-transform: none;
+  }
+
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: button;
+  }
+
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  button:-moz-focus,
+  [type="button"]:-moz-focus,
+  [type="reset"]:-moz-focus,
+  [type="submit"]:-moz-focus {
+    outline: 1px dotted ButtonText;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  input {
+    padding: 2px 4px;
+  }
+
+  img {
+    display: block;
+  }
+
+  html {
+    scroll-behavior: smooth
+  }
+</style>
+<style data-tag="default-style-sheet">
+  html {
+    font-family: Inter;
+    font-size: 16px;
+  }
+
+  body {
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.15;
+    color: var(--dl-color-gray-black);
+    background-color: var(--dl-color-gray-white);
+
+  }
+</style>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+  data-tag="font" />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+  data-tag="font" />
+<link rel="stylesheet" href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<!--This is the head section-->
+<!-- <style> ... </style> -->
+
+<link rel="stylesheet" href="./update_profile/style.css" />
+<div>
+  <link href="./update_profile/index.css" rel="stylesheet" />
+
+  <div class="home-container">
+    <div class="home-card">
+      <div class="home-navbar" id="home-navbar">
+        <div class="home-personal-details">
+          <button type="button" class="nav-text">
+            <span class="nav-text">Personal Details</span>
+          </button>
+          <div class="line home-personal-details-line blue-line"></div>
+        </div>
+        <div class="home-career-history">
+          <button type="button" class="nav-text">
+            <span class="nav-text">Career History</span>
+          </button>
+          <div class="line home-career-history-line"></div>
+        </div>
+        <div class="home-skills">
+          <button type="button" class="nav-text">
+            <span class="nav-text">Skills</span>
+          </button>
+          <div class="line home-skills-line"></div>
+        </div>
+      </div>
+      <form class="home-form" role="form" id="memberForm">
+        <div class="home-personal-details-fields" id="home-personal-details-fields">
+          <div class="home-image-bio">
+            <div class="home-image-button">
+              <span class="home-text03 label-text">
+                Your Profile Picture
+              </span>
+              <img alt="image" src="{{ member.image or './update_profile/images/default-img.jpeg' }}" class="home-image"
+                onclick="openFileInput()" />
+              <input type="file" id="uploadImg" class="home-textinput" />
+            </div>
+            <input type="text" class="form-control" id="name" value="{{member.name}}" hidden="true">
+            <div class="home-bio">
+              <div class="home-container01">
+                <span class="home-text04 label-text">Bio</span>
+              </div>
+              <textarea name="text" placeholder="Please enter your bio" class="home-textarea textarea"
+                id="bio">{{member.career_objective_or_summary or ''}}</textarea>
+            </div>
+            <div class="home-template-format">
+              <div class="home-container01">
+                <span class="home-text05 label-text">Download Curriculum Vitae:</span>
+              </div>
+              <select class="home-select-template" id="templateSelect">
+                <option value="" disabled>Select Template</option>
+                <option value="Profile 1">Profile 1</option>
+                <option value="Profile 2">Profile 2</option>
+                <option value="Profile 3">Profile 3</option>
+                <option value="Profile 4">Profile 4</option>
+              </select>
+              {% if member.primary_address is none %}
+              <div id="uploadBtn" class="home-template-download-button" data-value="0" onclick="createCV(this)">
+                <span class="home-text06">Download</span>
+              </div>
+              {% else %}
+              <div id="uploadBtn" class="home-template-download-button" data-value="1" onclick="createCV(this)">
+                <span class="home-text06">Download</span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="home-line3">
+            <div class="line"></div>
+          </div>
+          <div class="input-group">
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Full Name</label>
+                <input type="text" placeholder="Please enter your full name" class="input" id="full_name"
+                  name="Full Name"
+                  value="{{ member.first_name }}{% if member.middle_name %} {{ member.middle_name }}{% endif %}{% if member.last_name %} {{ member.last_name }}{% endif %}"
+                  required />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Email</label>
+                <input type="email" placeholder="Please enter your email ID" class="input" id="email_id" name="Email"
+                  value="{{member.email_id or ''}}" readonly />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Phone Number</label>
+                <input type="tel" placeholder="Please enter your phone number" class="input" id="mobile_no"
+                  name="Phone Number" value="{{member.mobile_no or ''}}" maxlength="10" required />
+              </div>
+            </div>
+            {% if member.member_type == "Student" %}
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Admission Number</label>
+                <input type="text" placeholder="Please enter admission number" class="input" id="admission_number"
+                  name="Admission Number" value="{{member.admission_number or ''}}" />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Year of Admission</label>
+                <input type="text" placeholder="Please enter year of admission" class="input" id="year_of_admission"
+                  name="Year of Admission" value="{{member.year_of_admission or ''}}" />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Department</label>
+                <select class="input" id="department" name="Department" required>
+                  <option value="">Select Department</option>
+                  {%- for department in dept_doc -%}
+                  <option value="{{ department.program_name }}" {% if member.department==department.program_name
+                    %}selected{% endif %}>{{ department.program_name }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+            {% endif %}
+            {% if member.member_type == "Alumni" %}
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Designation</label>
+                <input type="text" placeholder="Please enter designation" class="input" id="designation"
+                  name="Designation" value="{{member.admission_number or ''}}" />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Job Title</label>
+                <input type="text" placeholder="Please enter job title" class="input" id="job_title" name="Job Title"
+                  value="{{member.year_of_admission or ''}}" />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Year of Passing</label>
+                <input type="text" placeholder="Please enter year of passing" class="input" id="year_of_passing"
+                  name="Year of Passing" value="{{member.year_of_admission or ''}}" />
+              </div>
+            </div>
+            {% endif %}
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">LinkedIn</label>
+                <input type="text" placeholder="Please enter your linkedin profile" class="input" id="linkedin"
+                  name="LinkedIn" value="{{member.linkedin or ''}}" />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Website or Portfolio</label>
+                <input type="text" placeholder="Please enter website or portfolio" class="input"
+                  name="Website or Portfolio" id="website_or_portfolio" value="{{member.website_or_portfolio or ''}}" />
+              </div>
+            </div>
+            <div class="input-column">
+              <div class="input-fields">
+                <label class="input-label">Hobbies and Interests</label>
+                <input type="text" placeholder="Please enter hobbies &amp; interests" class="input"
+                  name="Hobbies and Interests" id="hobbies_and_interests"
+                  value="{{member.hobbies_and_interests or ''}}" />
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="home-container02">
+              <span class="home-text15 label-text">Contact Details</span>
+            </div>
+            {% if member.primary_address is not none %}
+            {% set address = frappe.get_doc("Address", member.primary_address) %}
+            <div class="home-input-fields1">
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Address Line 1</label>
+                  <input type="text" placeholder="Address Line 1" class="input" id="address_line1" name="Address Line 1"
+                    value="{{address.address_line1 or ''}}" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Address Line 2</label>
+                  <input type="text" placeholder="Address Line 2" class="input" id="address_line2" name="Address Line 2"
+                    value="{{address.address_line2 or ''}}" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">City</label>
+                  <input type="text" placeholder="City" class="input" id="city" name="City"
+                    value="{{address.city or ''}}" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Pincode</label>
+                  <input type="text" placeholder="Pincode" class="input" id="pincode" name="Pincode"
+                    value="{{address.pincode or ''}}" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">State</label>
+                  <input type="text" placeholder="State" class="input" id="state" name="State"
+                    value="{{address.state or ''}}" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Country</label>
+                  <input type="text" placeholder="Country" class="input" id="country" name="Country"
+                    value="{{address.country or ''}}" />
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <div class="home-input-fields1">
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Address Line 1</label>
+                  <input type="text" placeholder="Address Line 1" class="input" id="address_line1"
+                    name="Address Line 1" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Address Line 2</label>
+                  <input type="text" placeholder="Address Line 2" class="input" id="address_line2"
+                    name="Address Line 2" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">City</label>
+                  <input type="text" placeholder="City" class="input" id="city" name="City" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Pincode</label>
+                  <input type="text" placeholder="Pincode" class="input" id="pincode" name="Pincode" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">State</label>
+                  <input type="text" placeholder="State" class="input" id="state" name="State" />
+                </div>
+              </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label">Country</label>
+                  <input type="text" placeholder="Country" class="input" id="country" name="Country" />
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="home-career-history-fields" id="home-career-history-fields">
+          <div class="home-tables">
+            <div class="home-container03">
+              <label class="label-text">Career History</label>
+              <div class="table">
+                <table class="career-history" id="career-history">
+                  <thead>
+                    <tr>
+                      <th>Organization Name</th>
+                      <th>Industry</th>
+                      <th>Role</th>
+                      <th>Organization Description</th>
+                      <th>From</th>
+                      <th id="toHeading">To</th>
+                      <th>Current</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.career_history %}
+                    <tr>
+                      <td>
+                        <input class="table-input" type="text" name="organization_name[]"
+                          value="{{ row.organization_name }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="industry[]" value="{{ row.industry }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="role[]" value="{{ row.role }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="organization_description[]"
+                          value="{{ row.organization_description }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="date" name="from_date[]" value="{{ row.from_date }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="date" name="to_date[]" value="{{ row.to_date }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="checkbox" name="curr_date[]" {% if row.current %}checked{%
+                          endif %} onchange="toggleToDate(this)">
+                      </td>
+                      <td>
+                        <button type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_career_history_row()">Add Row</button>
+            </div>
+            <div class="home-container04">
+              <label class="label-text">Education</label>
+              <div class="table">
+                <table class="education" id="education">
+                  <thead>
+                    <tr>
+                      <th>Degree(s) Earned</th>
+                      <th>Major/Field of Study</th>
+                      <th>School/ University Name</th>
+                      <th>Percentage/ Grade</th>
+                      <th>Graduation Year</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.education %}
+                    <tr>
+                      <td>
+                        <input class="table-input" type="text" name="degrees_earned[]" value="{{ row.degrees_earned }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="majorfield_of_study[]"
+                          value="{{ row.majorfield_of_study }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="schooluniversity_name[]"
+                          value="{{ row.schooluniversity_name }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="percentagegrade[]"
+                          value="{{ row.percentagegrade }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="graduation_year[]"
+                          value="{{ row.graduation_year }}">
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_education_row()">Add Row</button>
+            </div>
+            <div class="home-container05">
+              <label class="label-text">Projects</label>
+              <div class="table">
+                <table class="projects" id="projects">
+                  <thead>
+                    <tr>
+                      <th>Project Title</th>
+                      <th>Description</th>
+                      <th>Role</th>
+                      <th>Technologies Used</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.projects %}
+                    <tr>
+                      <td>
+                        <input class="table-input" type="text" name="project_title[]" value="{{ row.project_title }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="description[]" value="{{ row.description }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="role[]" value="{{ row.role }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="technologies_used[]"
+                          value="{{ row.technologies_used }}">
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_projects_row('projects')">Add Row</button>
+            </div>
+            <div class="home-container06">
+              <label class="label-text">Publications</label>
+              <div class="table">
+                <table class="publications" id="publications">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Publisher</th>
+                      <th>Publication Date</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.publications %}
+                    <tr>
+                      <td>
+                        <input class="table-input" type="text" name="title[]" value="{{ row.title or ''}}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="publisher[]" value="{{ row.publisher or ''}}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="date" name="publication_date[]"
+                          value="{{ row.publication_date or ''}}">
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_publications_row('publication')">Add Row</button>
+            </div>
+            <div class="home-container07">
+              <label class="label-text">References</label>
+              <div class="table">
+                <table class="references" id="references">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Title/Position</th>
+                      <th>Company/Organisation</th>
+                      <th>Contact Information</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.references %}
+                    <tr>
+                      <td>
+                        <input class="table-input" type="text" name="name1[]" value="{{ row.name1 or ''}}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="titleposition[]"
+                          value="{{ row.titleposition or ''}}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="companyorganization[]"
+                          value="{{ row.companyorganization or ''}}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="text" name="contact_information_phoneemail[]"
+                          value="{{ row.contact_information_phoneemail or ''}}">
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_references_row('references')">Add Row</button>
+            </div>
+          </div>
+          <div class="home-textareas">
+            <div class="home-awards-and-achievements">
+              <div class="home-container08">
+                <span class="label-text">Awards and Achievements</span>
+              </div>
+              <textarea name="text" placeholder="Please enter your awards and achievements"
+                class="home-textarea1 textarea"
+                id="awards_and_achievements">{{member.awards_and_achievements or ''}}</textarea>
+            </div>
+            <div class="home-volunteer-work">
+              <div class="home-container13">
+                <span class="label-text">
+                  Volunteer Work or Extracurricular Activities
+                </span>
+              </div>
+              <textarea name="text" placeholder="Please enter your volunteer work or extracurricular activities"
+                class="home-textarea2 textarea"
+                id="volunteer_work_or_extracurricular_activities">{{member.volunteer_work_or_extracurricular_activities or ''}}</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="home-skills-fields" id="home-skills-fields">
+          <div class="home-tables1">
+            <div class="home-container10">
+              <label class="label-text">Technical Skills</label>
+              <div class="table">
+                <table class="technical-skills" id="technical-skills">
+                  <thead>
+                    <tr>
+                      <th>Skills</th>
+                      <th>Rating</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.technical_skills %}
+                    <tr>
+                      <td>
+                        <input class="table-input" list="technical_skills" id="technical_skill"
+                          value="{{ row.skills }}">
+                        <datalist id="technical_skills">
+                          {% for technical_skill in technical_skills %}
+                          <option value="{{technical_skill}}">
+                            {% endfor %}
+                        </datalist>
+                      </td>
+                      <td class="star-wrapper">
+                        <a class="fas fa-star s1"></a>
+                        <a class="fas fa-star s2"></a>
+                        <a class="fas fa-star s3"></a>
+                        <a class="fas fa-star s4"></a>
+                        <a class="fas fa-star s5"></a>
+                        <input type="hidden" class="rating-input" value="{{ row.level }}">
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_technical_skills_row()">Add Row</button>
+            </div>
+            <div class="home-container11">
+              <label class="label-text">Soft Skills</label>
+              <div class="table">
+                <table class="soft-skills" id="soft-skills">
+                  <thead>
+                    <tr>
+                      <th>Skills</th>
+                      <th>Rating</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.soft_skills %}
+                    <tr>
+                      <td>
+                        <input class="table-input" list="soft_skills" id="soft_skill" value="{{ row.skills }}">
+                        <datalist id="soft_skills">
+                          {% for soft_skill in soft_skills %}
+                          <option value="{{soft_skill}}">
+                            {% endfor %}
+                        </datalist>
+                      </td>
+                      <td class="star-wrapper">
+                        <a class="fas fa-star s1"></a>
+                        <a class="fas fa-star s2"></a>
+                        <a class="fas fa-star s3"></a>
+                        <a class="fas fa-star s4"></a>
+                        <a class="fas fa-star s5"></a>
+                        <input type="hidden" class="rating-input" value="{{ row.level }}">
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_soft_skills_row()">Add Row</button>
+            </div>
+            <div class="home-container12">
+              <label class="label-text">Language Proficiency</label>
+              <div class="table">
+                <table class="language-proficiency" id="language-proficiency">
+                  <thead>
+                    <tr>
+                      <th>Language</th>
+                      <th>Read</th>
+                      <th>Write</th>
+                      <th>Speak</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in member.language_proficiency %}
+                    <tr>
+                      <td>
+                        <input class="table-input" type="text" name="language[]" value="{{ row.language }}">
+                      </td>
+                      <td>
+                        <input class="table-input" type="checkbox" name="read[]" {% if row.read==1 %} checked>
+                        {% else %}
+                        >
+                        {% endif %}
+                      </td>
+                      <td>
+                        <input class="table-input" type="checkbox" name="write[]" {% if row.write==1 %} checked>
+                        {% else %}
+                        >
+                        {% endif %}
+                      </td>
+                      <td>
+                        <input class="table-input" type="checkbox" name="speak[]" {% if row.speak==1 %} checked>
+                        {% else %}
+                        >
+                        {% endif %}
+                      </td>
+                      <td>
+                        <button class="table-input" type="button" onclick="deleteRow(this)">Delete</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <button class="add-row" type="button" onclick="add_language_proficiency_row()">Add Row</button>
+            </div>
+          </div>
+          <div class="home-textareas">
+            <div class="home-certifications">
+              <div class="home-container13">
+                <span class="label-text">Certifications</span>
+              </div>
+              <textarea name="text" placeholder="Please enter your certifications" class="home-textarea3 textarea"
+                id="certifications">{{member.certifications or ''}}</textarea>
+            </div>
+          </div>
+          <div class="home-areas-interested">
+            <div class="home-container14">
+              <label class="label-text" for="area_interested_in">
+                Areas Interested In (You will receive job alert when a job is posted in one of these categories)
+              </label>
+              <select class="form-control" id="area_interested_in" name="area_interested_in" multiple>
+                {% for area in catgry_doc %}
+                {% set flag = { 'selected': 0 } %}
+                {% for selected_category in member.area_interested_in %}
+                {% if selected_category.job_category == area.job_category %}
+                {% if flag.update({'selected': 1 }) %} {% endif %}
+                {% endif %}
+                {% endfor %}
+
+                {% if flag.selected == 1 %}
+                <option value="{{ area.job_category }}" selected>{{ area.job_category }}</option>
+                {% else %}
+                <option value="{{ area.job_category }}">{{ area.job_category }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="home-submit-button-main">
+          <div class="home-submit-button">
+            <div class="home-buttons">
+              <button type="button" class="home-button3 button" id="submitBtn">
+                Save
+              </button>
+              <button type="reset" class="home-button4 button">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
+<script>
+  tableNames = ['technical-skills', 'soft-skills'];
+  tableNames.forEach((tableName) => {
+    rowlength = document.getElementById(tableName).rows.length
+    for (var i = 1; i <= rowlength; i++) {
+      const row = document.getElementById(tableName).rows[i];
+      if (row) {
+        const stars = row.querySelectorAll('.star-wrapper a');
+        let selectedStar = null;
+
+        stars.forEach((star, index) => {
+          star.addEventListener('click', () => {
+            selectedStar = index;
+            let starValue = (index + 1) / 5; //For posting to server
+            updateStars();
+          });
+        });
+        stars.forEach((star, index) => {
+          let starValue = row.querySelector('.rating-input').value
+          selectedStar = (starValue * 5) - 1;
+          updateStars();
+        });
+        function updateStars() {
+          stars.forEach((star, index) => {
+            if (index <= selectedStar) {
+              star.style.color = 'gold';
+            } else {
+              star.style.color = '#fff';
+            }
+          });
+        }
+      }
+    }
+  })
+  function toggleToDate(checkbox) {
+    var rowIndex = checkbox.closest('tr').rowIndex;
+    var currentCheckboxes = document.getElementsByName('curr_date[]');
+
+    // Uncheck other checkboxes
+    for (var i = 0; i < currentCheckboxes.length; i++) {
+      if (i !== rowIndex - 1) {
+        currentCheckboxes[i].checked = false;
+        updateVisibility(i, false);
+      } else {
+        updateVisibility(i, checkbox.checked);
+      }
+    }
+  }
+
+  function updateVisibility(rowIndex, isChecked) {
+    var toDateInput = document.getElementsByName('to_date[]')[rowIndex];
+
+    // Toggle the visibility of the "To" field
+    if (isChecked) {
+      toDateInput.style.display = 'none';
+    } else {
+      toDateInput.style.display = 'table-cell';
+    }
+  }
+
+</script>
+
+
+{% endblock %}
