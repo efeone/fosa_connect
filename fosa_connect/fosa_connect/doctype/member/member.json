@@ -105,9 +105,8 @@
    "label": "Designation"
   },
   {
-   "fetch_from": "primary_address.phone",
    "fieldname": "mobile_no",
-   "fieldtype": "Read Only",
+   "fieldtype": "Data",
    "label": "Mobile No"
   },
   {
@@ -298,7 +297,7 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-06 16:52:25.356012",
+ "modified": "2024-01-08 15:42:05.042324",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",
