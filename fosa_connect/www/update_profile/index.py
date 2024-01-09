@@ -16,11 +16,11 @@ def get_context(context):
     }
 
 @frappe.whitelist(allow_guest=True)
-def update_member(email, first_name, middle_name, last_name, mobile_no, admission_number,
+def update_member(first_name, middle_name, last_name, mobile_no, admission_number,
     year_of_admission, department, year_of_passing, job_title, designation, linkedin,
     website_or_portfolio, hobbies_and_interests, certifications, career_objective_or_summary,
     awards_and_achievements,volunteer_work_or_extracurricular_activities,
-    address_title, address_line1, address_line2, city, state, pincode,
+    address_line1, address_line2, city, state, pincode, country,
     career_history=None, education = None, projects=None, publications=None,
     technical_skills=None,soft_skills=None, language_proficiency=None, references=None, area_interested_in=None):
 
@@ -33,12 +33,12 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         primary_address = frappe.get_value("Dynamic Link", filters = {"link_name" : member.name}, fieldname = "parent")
         address = frappe.get_doc("Address",primary_address)
         if address:
-            address.address_title = address_title
             address.address_line1 = address_line1
             address.address_line2 = address_line2
             address.city = city
             address.state = state
             address.pincode = pincode
+            address.country = country
             address.phone = mobile_no
         address.save(ignore_permissions=True)
         frappe.db.commit()
@@ -52,6 +52,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         address.city = city
         address.state = state
         address.pincode = pincode
+        address.country = country
         address.phone = mobile_no
         address.address_type = "Personal"
         link = address.append('links')
@@ -68,8 +69,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         member.first_name = escape_html(first_name)
         member.middle_name = middle_name
         member.last_name = last_name
-        member.email_id = email
-        user.email = email
+        member.mobile_no = mobile_no
         user.first_name = first_name
         user.middle_name = middle_name
         user.last_name = last_name
@@ -101,7 +101,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
                     child.from_date = getdate(row.get('from_date'))
                 if row.get('to_date'):
                     child.to_date = getdate(row.get('to_date'))
-                child.current = row.get('current')
+                child.current = row.get('curr_date')
         member.education = []
         if education:
             education = json.loads(education)
@@ -179,6 +179,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
 
         # Save the updated Member document
         member.save()
+        user.save()
 
         # Commit the changes to the database
         frappe.db.commit()
@@ -186,7 +187,7 @@ def update_member(email, first_name, middle_name, last_name, mobile_no, admissio
         return member.name  # Return the updated document's name
     else:
         # Handle the case where no Member with the given email exists
-        return "Member not found for email: " + email
+        return "Member not found for email: " + frappe.session.user
 
 @frappe.whitelist()
 def upload_image(filedata):
