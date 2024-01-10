@@ -7,6 +7,7 @@ from frappe.contacts.address_and_contact import (
 	load_address_and_contact,
 )
 from frappe.model.document import Document
+from frappe.model.workflow import apply_workflow
 
 class Member(Document):
 	def onload(self):
@@ -15,3 +16,14 @@ class Member(Document):
 
 	def on_trash(self):
 		delete_contact_and_address("Member", self.name)
+
+	@frappe.whitelist()
+	def approve_member(self, email, action):
+		doc = frappe.get_doc("User",email)
+		apply_workflow(doc, action)
+		if action == 'Approve' or action == 'Enable':
+			self.status = 'Active'
+		else:
+			self.status = 'Disabled'
+		self.save()
+		return 1
