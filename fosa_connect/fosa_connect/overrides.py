@@ -2,6 +2,8 @@ import frappe
 from frappe.website.utils import is_signup_disabled
 from frappe.utils import escape_html, random_string
 from frappe import _
+from frappe.desk.form.assign_to import add as add_assign
+from frappe.utils.user import get_users_with_role
 
 @frappe.whitelist(allow_guest=True)
 def sign_up(email, first_name, last_name, full_name,  member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, job_title=None, organization=None):
@@ -60,6 +62,7 @@ def create_member(email, first_name, last_name, member_type, admission_number=No
             "first_name": escape_html(first_name),
             "last_name": escape_html(last_name),
             "member_type": member_type,
+            "status": "Pending Approval",
             "admission_number": admission_number if member_type == "Student" else "",
             "year_of_admission": year_of_admission if member_type == "Student" else "",
             "department": department if member_type == "Student" else "",
@@ -72,6 +75,12 @@ def create_member(email, first_name, last_name, member_type, admission_number=No
         member.flags.ignore_permissions = True
         member.flags.ignore_password_policy = True
         member.insert(ignore_permissions=True)
+        assign_to_list = get_users_with_role('Placement Officer')
+        add_assign({
+				"assign_to": assign_to_list,
+				"doctype": 'Member',
+				"name": member.name
+			})
         frappe.db.commit()
 
         return member.name  # Return the name of the newly created member
