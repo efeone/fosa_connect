@@ -154,24 +154,18 @@
         <div class="home-personal-details-fields" id="home-personal-details-fields">
           <div class="home-image-bio">
             <div class="home-image-button">
-              <span class="home-text03 label-text">
-                Your Profile Picture
-              </span>
               <img alt="image" src="{{ member.image or './update_profile/images/default-img.jpeg' }}" class="home-image"
                 onclick="openFileInput()" />
               <input type="file" id="uploadImg" class="home-textinput" />
             </div>
             <input type="text" class="form-control" id="name" value="{{member.name}}" hidden="true">
             <div class="home-bio">
-              <div class="home-container01">
-                <span class="home-text04 label-text">Bio</span>
-              </div>
               <textarea name="text" placeholder="Please enter your bio" class="home-textarea textarea"
                 id="bio">{{member.career_objective_or_summary or ''}}</textarea>
             </div>
             <div class="home-template-format">
               <div class="home-container01">
-                <span class="home-text05 label-text">Download Curriculum Vitae:</span>
+                <span class="home-text05 label-text">Download CV :</span>
               </div>
               <select class="home-select-template" id="templateSelect">
                 <option value="" disabled>Select Template</option>
@@ -292,10 +286,10 @@
               </div>
             </div>
           </div>
+          <div class="home-line3">
+            <div class="line"></div>
+          </div>
           <div class="input-group">
-            <div class="home-container02">
-              <span class="home-text15 label-text">Contact Details</span>
-            </div>
             {% if member.primary_address is not none %}
             {% set address = frappe.get_doc("Address", member.primary_address) %}
             <div class="home-input-fields1">
