@@ -80,18 +80,18 @@
 }
 .home-image-bio {
   flex: 0 0 auto;
-  width: 90%;
+  width: 80%;
   height: 160px;
   display: flex;
   align-self: center;
   margin-top: 10px;
   align-items: flex-start;
   margin-bottom: 10px;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .home-image-button {
   flex: 0 0 auto;
-  width: 20%;
+  width: 128px;
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -115,7 +115,7 @@
 }
 .home-bio {
   flex: 0 0 auto;
-  width: 60%;
+  width: 68%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -124,7 +124,6 @@
 .home-container01 {
   flex: 0 0 auto;
   display: flex;
-  margin-top: 6px;
   align-items: flex-start;
   margin-bottom: 8px;
 }
@@ -134,19 +133,19 @@
 .home-textarea {
   width: 90%;
   border: initial;
-  height: 90%;
+  height: 80%;
   align-self: center;
   border-radius: var(--dl-radius-radius-radius8);
-  margin-bottom: 6px;
   background-color: #edf1f6;
 }
 .home-template-format {
   flex: 0 0 auto;
-  width: 20%;
-  height: 100%;
+  width: 156px;
+  height: 80%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  align-self: center;
 }
 .home-select-template {
   font-size: 15px;
@@ -181,9 +180,8 @@
   flex: 0 0 auto;
   width: 100%;
   display: flex;
-  margin-top: 10px;
+  margin-top: 24px;
   padding-left: 10%;
-  margin-bottom: 10px;
   padding-right: 10%;
 }
 .home-container02 {
@@ -472,6 +470,9 @@
   .home-card {
     width: 95%;
   }
+  .home-image-bio {
+    width: 92vw;
+  }
   .home-submit-button-main {
     width: 96%;
   }
@@ -481,7 +482,14 @@
     width: 90%;
   }
   .home-navbar {
-    width: 90%;
+    width: 92%;
+  }
+  .home-image-bio {
+    width: 96%;
+    justify-content: center;
+  }
+  .home-bio {
+    width: 57%;
   }
   .home-container02 {
     padding-left: 5%;
@@ -532,7 +540,7 @@
   .home-bio {
     width: 100%;
     height: auto;
-    min-height: 160px;
+    min-height: 170px;
   }
   .home-textarea {
     height: 20vw;
@@ -543,9 +551,7 @@
   .home-template-format {
     width: 100%;
     height: auto;
-    margin-top: var(--dl-space-space-unit);
     padding-left: 5%;
-    margin-bottom: var(--dl-space-space-unit);
   }
   .home-select-template {
     min-width: 156px;
