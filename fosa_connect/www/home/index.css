@@ -286,6 +286,9 @@
   text-transform: uppercase;
   text-decoration: none;
 }
+.footer-text1 {
+  text-align: center;
+}
 .footer-icon-group {
   display: flex;
   align-items: center;
