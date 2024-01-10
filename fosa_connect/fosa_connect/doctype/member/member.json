@@ -17,6 +17,7 @@
   "column_break_2atk8",
   "middle_name",
   "mobile_no",
+  "status",
   "academic_details_section",
   "admission_number",
   "year_of_admission",
@@ -292,12 +293,21 @@
   {
    "fieldname": "column_break_2atk8",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending Approval",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending Approval\nActive\nDisabled",
+   "read_only": 1
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 15:42:05.042324",
+ "modified": "2024-01-10 15:04:00.284096",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",
@@ -356,5 +366,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "first_name",
  "track_changes": 1
 }
