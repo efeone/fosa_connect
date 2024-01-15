@@ -17,7 +17,7 @@ def get_context(context):
 
 @frappe.whitelist(allow_guest=True)
 def update_member(first_name, middle_name, last_name, mobile_no, admission_number,
-    year_of_admission, department, year_of_passing, job_title, designation, linkedin,
+    year_of_admission, department, year_of_passing, job_title, organization, linkedin,
     website_or_portfolio, hobbies_and_interests, certifications, career_objective_or_summary,
     awards_and_achievements,volunteer_work_or_extracurricular_activities,
     address_line1, address_line2, city, state, pincode, country,
@@ -78,7 +78,7 @@ def update_member(first_name, middle_name, last_name, mobile_no, admission_numbe
         member.department = department
         member.year_of_passing = year_of_passing
         member.job_title = job_title
-        member.designation = designation
+        member.organization = organization
         member.linkedin = linkedin
         member.website_or_portfolio = website_or_portfolio
         member.hobbies_and_interests = hobbies_and_interests

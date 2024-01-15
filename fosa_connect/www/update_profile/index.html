@@ -243,23 +243,23 @@
             {% if member.member_type == "Alumni" %}
             <div class="input-column">
               <div class="input-fields">
-                <label class="input-label">Designation</label>
-                <input type="text" placeholder="Please enter designation" class="input" id="designation"
-                  name="Designation" value="{{member.admission_number or ''}}" />
+                <label class="input-label">Organization</label>
+                <input type="text" placeholder="Please enter organization" class="input" id="organization"
+                  name="organization" value="{{member.organization or ''}}" />
               </div>
             </div>
             <div class="input-column">
               <div class="input-fields">
                 <label class="input-label">Job Title</label>
                 <input type="text" placeholder="Please enter job title" class="input" id="job_title" name="Job Title"
-                  value="{{member.year_of_admission or ''}}" />
+                  value="{{member.job_title or ''}}" />
               </div>
             </div>
             <div class="input-column">
               <div class="input-fields">
                 <label class="input-label">Year of Passing</label>
                 <input type="text" placeholder="Please enter year of passing" class="input" id="year_of_passing"
-                  name="Year of Passing" value="{{member.year_of_admission or ''}}" />
+                  name="Year of Passing" value="{{member.year_of_passing or ''}}" />
               </div>
             </div>
             {% endif %}
