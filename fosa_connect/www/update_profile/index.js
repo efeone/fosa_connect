@@ -106,7 +106,7 @@ const updateMember = () => {
     const department = frappe.utils.xss_sanitise($("#department").val() || "").trim();
     const year_of_passing = frappe.utils.xss_sanitise($("#year_of_passing").val() || "").trim();
     const job_title = frappe.utils.xss_sanitise($("#job_title").val() || "").trim();
-    const designation = frappe.utils.xss_sanitise($("#designation").val() || "").trim();
+    const organization = frappe.utils.xss_sanitise($("#organization").val() || "").trim();
     const linkedin = frappe.utils.xss_sanitise($("#linkedin").val() || "").trim();
     const website_or_portfolio = frappe.utils.xss_sanitise($("#website_or_portfolio").val() || "").trim();
     const hobbies_and_interests = frappe.utils.xss_sanitise($("#hobbies_and_interests").val() || "").trim();
@@ -142,7 +142,7 @@ const updateMember = () => {
         "department": department,
         "year_of_passing": year_of_passing,
         "job_title": job_title,
-        "designation": designation,
+        "organization": organization,
         "linkedin": linkedin,
         "website_or_portfolio": website_or_portfolio,
         "hobbies_and_interests": hobbies_and_interests,

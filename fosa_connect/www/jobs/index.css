@@ -38,6 +38,10 @@ body {
     align-items: center;
     justify-content: space-between;
   }
+  
+  .location {
+    text-align: right;
+  }
 
   .card {
     border-radius: 10px;

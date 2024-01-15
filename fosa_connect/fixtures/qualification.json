@@ -467,5 +467,82 @@
   "modified": "2023-09-08 14:38:43.471231",
   "name": "Other",
   "qualification": "Other"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.939539",
+  "name": "MSc - Business Administration",
+  "qualification": "MSc - Business Administration"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.958200",
+  "name": "B.Pharm",
+  "qualification": "B.Pharm"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.965222",
+  "name": "Bachelor of Education",
+  "qualification": "Bachelor of Education"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.971604",
+  "name": "BBA",
+  "qualification": "BBA"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.977897",
+  "name": "B.Des",
+  "qualification": "B.Des"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.984546",
+  "name": "B.Lib",
+  "qualification": "B.Lib"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.990999",
+  "name": "BA - English",
+  "qualification": "BA - English"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:26:59.997092",
+  "name": "B.Arch",
+  "qualification": "B.Arch"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:27:00.003534",
+  "name": "LLB",
+  "qualification": "LLB"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:27:00.010060",
+  "name": "Diploma in Hotel Management",
+  "qualification": "Diploma in Hotel Management"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Qualification",
+  "modified": "2024-01-12 14:27:00.016533",
+  "name": "B.Com",
+  "qualification": "B.Com"
  }
 ]
