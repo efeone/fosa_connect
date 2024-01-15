@@ -124,5 +124,96 @@
   "job_category": "Transportation",
   "modified": "2023-09-06 11:15:28.598221",
   "name": "Transportation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Media",
+  "modified": "2024-01-12 14:24:30.660755",
+  "name": "Media"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "IT",
+  "modified": "2024-01-12 14:24:30.676398",
+  "name": "IT"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Business",
+  "modified": "2024-01-12 14:24:30.682915",
+  "name": "Business"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Social Service",
+  "modified": "2024-01-12 14:24:30.689694",
+  "name": "Social Service"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Science",
+  "modified": "2024-01-12 14:24:30.696551",
+  "name": "Science"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Finance",
+  "modified": "2024-01-12 14:24:30.703045",
+  "name": "Finance"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Healthcare",
+  "modified": "2024-01-12 14:24:30.710150",
+  "name": "Healthcare"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Engineering",
+  "modified": "2024-01-12 14:24:30.717967",
+  "name": "Engineering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Language",
+  "modified": "2024-01-12 14:24:30.725152",
+  "name": "Language"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Hospitality",
+  "modified": "2024-01-12 14:24:30.732248",
+  "name": "Hospitality"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Social Services",
+  "modified": "2024-01-12 14:24:30.739031",
+  "name": "Social Services"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Education",
+  "modified": "2024-01-12 14:24:30.748973",
+  "name": "Education"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Category",
+  "job_category": "Research",
+  "modified": "2024-01-12 14:24:30.755271",
+  "name": "Research"
  }
 ]
