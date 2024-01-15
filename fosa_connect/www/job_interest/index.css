@@ -61,6 +61,10 @@ body {
     padding-right: 8px;
   }
 
+  .location {
+    text-align: right;
+  }
+
   .date-and-button {
     display: flex;
     flex-wrap: wrap;
