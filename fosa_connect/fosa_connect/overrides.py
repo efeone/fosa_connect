@@ -6,7 +6,7 @@ from frappe.desk.form.assign_to import add as add_assign
 from frappe.utils.user import get_users_with_role
 
 @frappe.whitelist(allow_guest=True)
-def sign_up(email, first_name, last_name, full_name,  member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, job_title=None, organization=None):
+def sign_up(email, first_name, last_name, full_name,  member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, batch=None, job_title=None, organization=None):
     if is_signup_disabled():
         frappe.throw(_('Sign Up is disabled'), title='Not Allowed')
 
@@ -38,7 +38,7 @@ def sign_up(email, first_name, last_name, full_name,  member_type, admission_num
     user.insert(ignore_permissions=True)
 
 
-    create_member(email, first_name, last_name, member_type,admission_number, year_of_admission, department, year_of_passing, job_title, organization)
+    create_member(email, first_name, last_name, member_type,admission_number, year_of_admission, department, year_of_passing, batch, job_title, organization)
 
     if user.flags.email_sent:
         return 1, _("Please check your email for verification")
@@ -47,7 +47,7 @@ def sign_up(email, first_name, last_name, full_name,  member_type, admission_num
 
 
 @frappe.whitelist(allow_guest=True)
-def create_member(email, first_name, last_name, member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, job_title=None, organization=None):
+def create_member(email, first_name, last_name, member_type, admission_number=None, year_of_admission=None, department=None, year_of_passing=None, batch=None, job_title=None, organization=None):
     if frappe.db.exists('Member', { 'email': email }):
         frappe.throw('Member already registered with this email id.')
     else:
@@ -69,6 +69,7 @@ def create_member(email, first_name, last_name, member_type, admission_number=No
             "year_of_passing": year_of_passing if member_type == "Alumni" else "",
             "job_title": job_title if member_type == "Alumni" else "",
             "organization": organization if member_type == "Alumni" else "",
+            "batch": batch,
         }
 
         member = frappe.get_doc(member_data)

@@ -221,6 +221,7 @@ doc_events = {
 # ]
 
 fixtures = [{"dt": "Program"},
+			{"dt": "Batch"},
 			{"dt": "Job Category"},
 			{"dt": "Workflow"},
 			{"dt": "Workflow State"},

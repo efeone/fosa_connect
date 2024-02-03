@@ -1,4 +1,5 @@
 {% set dept_doc = frappe.get_all('Program',fields=["program_name"]) %}
+{% set batch_doc = frappe.get_all('Batch',fields=["batch"]) %}
 <form class="signup-form signup-form-fosa" role="form" id="signup-form">
     <div class="page-card-body">
         <div class="form-group">
@@ -47,7 +48,7 @@
                     required
                 >
             </div>
-           
+
         </div>
         <div id="Student_fields">
             <div class="form-group">
@@ -69,6 +70,21 @@
                     placeholder="{{ _('Year of Admission') }}"
                     required
                 >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="batch"></label>
+                <select
+                    id="batch-select"
+                    name="batch"
+                    class="form-control"
+                    style="background-color: var(--control-bg);"
+                    required
+                >
+                    <option value="">Select Batch</option>
+                    {%- for batch in batch_doc -%}
+                    <option value="{{ batch.batch }}">{{ batch.batch}}</option>
+                    {%- endfor -%}
+                </select>
             </div>
             <div class="form-group">
                 <label class="form-label sr-only" for="department"></label>
@@ -96,6 +112,21 @@
                     placeholder="{{ _('Year of Passing') }}"
                     required
                 >
+            </div>
+            <div class="form-group">
+                <label class="form-label sr-only" for="batch"></label>
+                <select
+                    id="batch-select"
+                    name="batch"
+                    class="form-control"
+                    style="background-color: var(--control-bg);"
+                    required
+                >
+                    <option value="">Select Batch</option>
+                    {%- for batch in batch_doc -%}
+                    <option value="{{ batch.batch }}">{{ batch.batch}}</option>
+                    {%- endfor -%}
+                </select>
             </div>
             <div class="form-group">
                 <label class="form-label sr-only" for="job_title">{{ _("Job Title") }}</label>
@@ -148,6 +179,7 @@
           let year_of_admission = frappe.utils.xss_sanitise($("#year_of_admission").val() || "").trim();
           let department = frappe.utils.xss_sanitise($("#department-select").val() || "").trim();
           let year_of_passing = frappe.utils.xss_sanitise($("#year_of_passing").val() || "").trim();
+          let batch = frappe.utils.xss_sanitise($("#batch-select").val() || "").trim();
           let job_title = frappe.utils.xss_sanitise($("#job_title").val() || "").trim();
           let organization = frappe.utils.xss_sanitise($("#organization").val() || "").trim();
 
@@ -161,6 +193,7 @@
                   "last_name": last_name,
                   "full_name": full_name,
                   "year_of_passing": year_of_passing,
+                  "batch": batch,
                   "job_title": job_title,
                   "organization": organization,
                   "member_type": memberType,
@@ -202,6 +235,7 @@
       document.getElementById('year_of_admission').value = '';
       document.getElementById('department-select').value = '';
       document.getElementById('year_of_passing').value = '';
+      document.getElementById('batch-select').value = '';
       document.getElementById('job_title').value = '';
       document.getElementById('organization').value = '';
       document.getElementById('General_fields').style.display = 'none';
