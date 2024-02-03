@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+import json
 from frappe.contacts.address_and_contact import (
 	delete_contact_and_address,
 	load_address_and_contact,
@@ -27,3 +28,25 @@ class Member(Document):
 			self.status = 'Disabled'
 		self.save()
 		return 1
+@frappe.whitelist()
+def create_user_permission(user_permission):
+    permission = json.loads(user_permission)
+    member = permission.get('member')
+    email_id = frappe.get_value("Member", {'name': member}, 'email_id')
+
+    doc = frappe.new_doc('User Permission')
+    doc.user = email_id
+    doc.allow = "Batch"
+    doc.for_value = permission.get('batch')
+    doc.apply_to_all_doctypes = 1
+
+    doc.insert(ignore_permissions=True)
+
+    user = frappe.get_doc("User", email_id)
+    user.flags.ignore_permissions = True
+
+    if "Member Approver" not in user.get("roles"):
+        user.append_roles("Member Approver")
+        user.save()
+
+    return doc.name
