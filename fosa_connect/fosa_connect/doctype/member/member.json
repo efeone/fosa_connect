@@ -29,6 +29,10 @@
   "column_break_lqgb5",
   "job_title",
   "designation",
+  "section_break_bde60",
+  "batch",
+  "column_break_pasec",
+  "university_member_id",
   "profile_tab",
   "primary_address",
   "address_html",
@@ -302,12 +306,31 @@
    "label": "Status",
    "options": "Pending Approval\nActive\nDisabled",
    "read_only": 1
+  },
+  {
+   "fieldname": "university_member_id",
+   "fieldtype": "Data",
+   "label": "University Registeration No."
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "section_break_bde60",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_pasec",
+   "fieldtype": "Column Break"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-10 15:04:00.284096",
+ "modified": "2024-02-03 15:24:01.914423",
  "modified_by": "Administrator",
  "module": "FOSA Connect",
  "name": "Member",
@@ -359,6 +382,18 @@
    "read": 1,
    "report": 1,
    "role": "Placement Officer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Member Approver",
    "share": 1,
    "write": 1
   }

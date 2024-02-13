@@ -263,6 +263,28 @@
               </div>
             </div>
             {% endif %}
+            <div class="input-column" style="margin-left: -25px;">
+              <div class="input-fields">
+                <label class="input-label">University Registration ID</label>
+                <input type="text" placeholder="Please enter your university registration id" class="input" id="university_registration_id"
+                  name="University Registration ID"
+                  value="{{ member.university_registration_id or '' }}"required />
+              </div>
+            </div>
+            <div class="input-column" style="margin-left: -25px;">
+              <div class="input-fields" style="margin-left: -32px;">
+                <label class="input-label">Batch</label>
+                <input type="text" placeholder="Please enter your batch" class="input" id="batch" name="Batch"
+                  value="{{member.batch or ''}}" readonly />
+              </div>
+            </div>
+              <div class="input-column">
+                <div class="input-fields">
+                  <label class="input-label"></label>
+                  <input class="none" id="mobile_no"
+                  />
+                </div>
+              </div>
             <div class="input-column">
               <div class="input-fields">
                 <label class="input-label">LinkedIn</label>
