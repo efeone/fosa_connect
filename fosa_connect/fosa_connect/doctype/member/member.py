@@ -28,6 +28,7 @@ class Member(Document):
 			self.status = 'Disabled'
 		self.save()
 		return 1
+
 @frappe.whitelist()
 def create_user_permission(user_permission):
     permission = json.loads(user_permission)
